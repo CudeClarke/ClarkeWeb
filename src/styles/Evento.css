@@ -1,0 +1,95 @@
+
+.event-div{
+    border: 1px solid #0fab1477;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    width: 35vw;
+    aspect-ratio: 40/18.5;
+    align-items: center;
+    gap: 5%;
+}
+
+@media (max-width: 900px) {
+  .event-div{
+    width: 70vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .event-div{
+    width: 90vw;
+  }
+}
+
+.event-div-img{
+    height: 90%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.event-div-content{
+    container-type: size;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.event-div-content-title{
+    font-size: 9cqw;
+    width: auto;
+}
+
+.event-div-content-info-div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-size: 7cqw;
+    font-weight: 500;
+    gap: 5%;
+}
+
+.event-div-icon{
+    width: 13.5%;
+    color: #0fab13;
+}
+
+.event-div-content-buttons-area{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.button{
+    font-size: 4.5cqw;
+    font-weight: 800;
+    padding: 4.0cqw;
+    border-radius: 4.5cqw;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.confirm-button{
+    background-color: #0fab13;
+    color: white;
+
+    border: none;
+}
+
+.confirm-button:hover{
+    background-color: #1b701d;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.more-info-button{
+    background-color: transparent;
+    text-decoration: underline;
+    color: #0fab13;
+    border: none;
+
+}
