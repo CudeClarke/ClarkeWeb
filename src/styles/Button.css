@@ -41,3 +41,19 @@
     color: #1b701d;
     transition: all .3s;
 }
+
+.header-button{
+    color: #0fab13;
+    background-color: white;
+    border: .1px groove #919191;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: .5em;
+}
+
+.header-button:hover{
+    color: #0fab13;
+    background-color: rgb(232, 231, 231);
+    transition: all .3s;
+
+}
