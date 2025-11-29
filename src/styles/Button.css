@@ -45,7 +45,7 @@
 .header-button{
     color: #0fab13;
     background-color: white;
-    border: .1px groove #919191;
+    border: .1px groove #ffffff;
     padding-top: 4px;
     padding-bottom: 4px;
     border-radius: .5em;
@@ -57,3 +57,4 @@
     transition: all .3s;
 
 }
+
