@@ -5,6 +5,6 @@ import Cabecera from './components/Cabecera.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Cabecera/>
-  </StrictMode>,
+    <Cabecera></Cabecera>
+  </StrictMode>
 )
