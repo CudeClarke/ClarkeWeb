@@ -9,7 +9,9 @@ function Evento({title, location, date, imageUrl}){
     return (
         <>
             <div className='event-div'>
-                <img className='event-div-img' src={imageUrl}></img>
+                <div className='event-div-img-wrap'>
+                    <img className='event-div-img' src={imageUrl}></img>
+                </div>
                 <div className='event-div-content'>
                     <h1 className='event-div-content-title'>{title.toUpperCase()}</h1>
                     <div className='event-div-content-info-div'>
