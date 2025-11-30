@@ -1,11 +1,11 @@
 
 import '../styles/Button.css'
 
-const IS_CONFIRM = 0, IS_MOREINFO = 1, IS_RETURN = 2;
+const IS_CONFIRM = 0, IS_MOREINFO = 1, IS_RETURN = 2, IS_HEADER = 3;
 
 function ClarkeButton({text, type, size}){
 
-    const map_class_type = ["confirm-button", "more-info-button", "return-button"]
+    const map_class_type = ["confirm-button", "more-info-button", "return-button", "header-button"]
 
     const classnames = "button " + map_class_type[type];    
         
@@ -13,4 +13,4 @@ function ClarkeButton({text, type, size}){
 
 }
 
-export { ClarkeButton, IS_CONFIRM, IS_MOREINFO, IS_RETURN };
+export { ClarkeButton, IS_CONFIRM, IS_MOREINFO, IS_RETURN, IS_HEADER };

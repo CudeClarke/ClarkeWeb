@@ -41,3 +41,20 @@
     color: #1b701d;
     transition: all .3s;
 }
+
+.header-button{
+    color: #0fab14;
+    font-weight: 550;
+    background-color: rgb(255, 255, 255);
+    border: .1px groove #ffffff;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: .4em;
+}
+
+.header-button:hover{
+    color: #0fab13;
+    background-color: rgb(232, 231, 231);
+    transition: all .3s;
+}
+
