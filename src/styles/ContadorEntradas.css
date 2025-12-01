@@ -1,0 +1,54 @@
+/* El contenedor principal */
+.contador-container {
+  display: inline-flex; /* Se ajusta al contenido y alinea los elementos en fila */
+  align-items: center; /* Centra verticalmente los elementos dentro */
+  border: 2px solid #0fab13; /* El borde verde */
+  border-radius: 10px; /* Esquinas redondeadas */
+  padding: 5px 10px; /* Espacio interior */
+  background-color: white;
+  font-family: sans-serif;
+}
+
+/* El estilo del número */
+.numero-display {
+  font-size: 1.2rem;
+  margin-right: 40px; /* Espacio entre el número y los botones */
+  margin-left: 10px;
+}
+
+/* Estilos base para ambos botones */
+.boton {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Esto hace que sean perfectamente redondos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-left: 10px; /* Espacio entre los botones */
+  padding: 0; /* Quitar relleno por defecto */
+}
+
+/* Estilos específicos para el botón MENOS (-) */
+.boton-menos {
+  background-color: #e0dada;
+  border: 2px solid #d9534f;
+  color: black;
+  line-height: 0; /* Ayuda a centrar verticalmente el guion */
+  padding-bottom: 4px; 
+}
+
+/* Estilos específicos para el botón MAS (+) */
+.boton-mas {
+  background-color: #0abf13; /* Verde sólido */
+  border: none; /* Sin borde */
+  color: white; /* El signo + en blanco */
+  padding-bottom: 4px;
+  line-height: 0;
+}
+
+/* Un pequeño efecto al pulsar los botones */
+.boton:active {
+  transform: scale(0.95);
+}
