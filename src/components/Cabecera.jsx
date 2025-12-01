@@ -12,7 +12,9 @@ function Cabecera(){
             <div>
                 <button>Inicio</button>
                 <button>Eventos</button>
+                
             </div>
+            
         </div>
         
     )
