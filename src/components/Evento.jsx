@@ -4,7 +4,7 @@ import '../styles/Evento.css'
 import mapIcon from '/map-icon.svg'
 import calendarIcon from '/calendar-icon.svg'
 import { ClarkeButton, IS_CONFIRM, IS_MOREINFO, IS_RETURN } from './Button';
-function Evento({title, location, date, imageUrl}){
+function Evento({title, location, date, imageUrl, buy_tickets_click_effect, more_info_click_effect}){
 
     return (
         <>
@@ -24,8 +24,8 @@ function Evento({title, location, date, imageUrl}){
                     </div>
 
                     <div className='event-div-content-buttons-area'>
-                        <ClarkeButton text={"Comprar Tickets"} type={IS_CONFIRM} size={"5cqw"}></ClarkeButton>
-                        <ClarkeButton text={"Leer más"} type={IS_RETURN} size={"5cqw"}></ClarkeButton>
+                        <ClarkeButton text={"Comprar Tickets"} type={IS_CONFIRM} size={"5cqw"} click_effect={buy_tickets_click_effect}></ClarkeButton>
+                        <ClarkeButton text={"Leer más"} type={IS_RETURN} size={"5cqw"} click_effect={more_info_click_effect}></ClarkeButton>
                     </div>
                 </div>
             </div>
