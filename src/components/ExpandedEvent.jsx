@@ -1,7 +1,7 @@
 import '../styles/ExpandedEvent.css'
 import { ClarkeButton, IS_CONFIRM } from './Button';
 
-function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_list, objective_recaudation, actual_recaudation}){
+function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_list, objective_recaudation, actual_recaudation, close_action}){
 
     const percentage = ""+Math.trunc(actual_recaudation/objective_recaudation*100)+"%";
 
@@ -9,7 +9,7 @@ function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_
     return (
         <div className="expanded-event-div">
             <div className='expanded-event-nav-bar'>
-                <div className='expanded-event-close-button' title='volver'></div>
+                <div className='expanded-event-close-button' title='volver' onClick={()=>close_action()}></div>
             </div>
             <div className='expanded-event-content'>
                 <div className='expanded-event-content-upper-half'>
