@@ -16,7 +16,6 @@ function Cabecera(){
                 <ClarkeButton text={"Inicio"} type={IS_HEADER} size={"1em"}></ClarkeButton>
                 <ClarkeButton text={"Eventos"} type={IS_HEADER} size={"1em"}></ClarkeButton>
             </div>
-            
         </div>
         
     )

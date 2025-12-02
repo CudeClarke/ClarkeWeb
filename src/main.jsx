@@ -3,8 +3,6 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import Cabecera from './components/Cabecera.jsx'
 
-
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Cabecera></Cabecera>
