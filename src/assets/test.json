@@ -1,0 +1,64 @@
+{
+    "events": [
+        {
+            "name" : "Evento Genérico 1",
+            "location": "Lugar Genérico 1",
+            "date": "2 de Diciembre, 20:00h",
+            "img": "https://design.penpot.app/assets/by-file-media-id/8fd8c29f-33f9-8038-8007-1ed23b38acdd",
+            "tag_list": ["concierto", "infantil"],
+            "objective_recaudation": 10000,
+            "actual_recaudation": 5000,
+            "description": "Esta es la descripción del evento genérico 1"
+        },
+        {
+            "name" : "Evento Genérico 2",
+            "location": "Lugar Genérico 2",
+            "date": "2 de Diciembre, 20:00h",
+            "img": "https://design.penpot.app/assets/by-file-media-id/8fd8c29f-33f9-8038-8007-1ed23bae1a23",
+            "tag_list": ["cena", "benéfico", "vegano"],
+            "objective_recaudation": 1500,
+            "actual_recaudation": 120,
+            "description": "Esta es la descripción del evento genérico 2"
+        },
+        {
+            "name" : "Evento Genérico 3",
+            "location": "Lugar Genérico 3",
+            "date": "2 de Diciembre, 20:00h",
+            "img": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b5043de",
+            "tag_list": ["rifa", "sorteo"],
+            "objective_recaudation": 25000,
+            "actual_recaudation": 8900,
+            "description": "Esta es la descripción del evento genérico 3"
+        },
+        {
+            "name" : "Evento Genérico 4",
+            "location": "Lugar Genérico 4",
+            "date": "2 de Diciembre, 20:00h",
+            "img": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b1447b9",
+            "tag_list": ["carrera", "solidario", "maratón"],
+            "objective_recaudation": 500,
+            "actual_recaudation": 430,
+            "description": "Esta es la descripción del evento genérico 4"
+        },
+        {
+            "name" : "Evento Genérico 5",
+            "location": "Lugar Genérico 5",
+            "date": "2 de Diciembre, 20:00h",
+            "img": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b5043de",
+            "tag_list": ["rifa", "sorteo"],
+            "objective_recaudation": 25000,
+            "actual_recaudation": 8900,
+            "description": "Esta es la descripción del evento genérico 5"
+        },
+        {
+            "name" : "Evento Genérico 6",
+            "location": "Lugar Genérico 6",
+            "date": "2 de Diciembre, 20:00h",
+            "img": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b1447b9",
+            "tag_list": ["carrera", "solidario", "maratón"],
+            "objective_recaudation": 500,
+            "actual_recaudation": 430,
+            "description": "Esta es la descripción del evento genérico 6"
+        }
+    ]
+}
