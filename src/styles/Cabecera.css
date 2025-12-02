@@ -20,7 +20,7 @@
 
 .img-flor{
     display: flex;
-    position: fixed;
+    position: absolute;
     right: 0;
     margin-top: 3.2%;
     margin-right: 11%;
@@ -30,7 +30,7 @@
 .div-button{
     display: flex;
     gap: 30px;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 0;
     margin-right: 35%;

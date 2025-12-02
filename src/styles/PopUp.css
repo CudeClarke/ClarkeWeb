@@ -2,7 +2,7 @@
 
 .cover{
     content: "";
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.575);
@@ -17,6 +17,5 @@
 .pop-up{
     background-color: white;
     border-radius: 1vw;
-    padding: 1vw;
     box-shadow: 0px 0px 5px 2px black;
 }
