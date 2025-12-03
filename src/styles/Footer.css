@@ -1,0 +1,210 @@
+/* --- Estilos Generales --- */
+.footer-container {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Una fuente limpia */
+}
+
+/* --- PARTE SUPERIOR (Fondo Blanco) --- */
+.footer-top {
+  background-color: white;
+  padding: 50px 20px; /* Espacio arriba/abajo y a los lados */
+  display: flex;
+  justify-content: center; /* Centra todo el bloque de columnas en la pantalla */
+  border-top: 10px solid #f4f4f4;
+}
+
+/* Contenedor que agrupa las 4 columnas */
+.footer-columns-wrapper {
+  display: flex; /* Esto hace que las columnas se pongan una al lado de la otra */
+  justify-content: space-between; /* Separa las columnas equitativamente */
+  width: 100%;
+  max-width: 1200px; /* Que no se estire infinito en pantallas gigantes */
+  gap: 30px; /* Espacio entre columnas */
+  align-items: flex-start; /* Alinea todas las columnas arriba */
+}
+
+/* Cada columna individual */
+.footer-columna {
+  flex: 1; /* Hace que todas las columnas intenten ocupar el mismo ancho */
+}
+
+/* El título de cada columna (NUESTROS CUIDADOS, etc.) */
+.columna-titulo {
+  color: #999; /* Gris suave */
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  text-transform: uppercase; /* Pone el texto en mayúsculas automáticamente */
+  letter-spacing: 0.5px; /* Un poco de aire entre letras */
+}
+
+/* La lista (ul) sin los puntos negros por defecto */
+.columna-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada elemento de la lista */
+.columna-item {
+  margin-bottom: 8px; /* Espacio entre cada link */
+  font-size: 0.85rem;
+  color: #666; /* Gris un poco más oscuro que el título */
+}
+
+/* El enlace en sí */
+.columna-item a {
+  text-decoration: none; /* Quita el subrayado típico de los links */
+  color: inherit; /* Hereda el color gris del padre */
+  transition: color 0.2s; /* Suaviza el cambio de color al pasar el ratón */
+}
+
+.columna-item a:hover {
+  color: #0fab13; /* Se pone verde al pasar el ratón (opcional) */
+  text-decoration: underline;
+}
+
+/* La pequeña flecha (>) */
+.flecha {
+  color: #999;
+  margin-right: 5px;
+  font-size: 0.8rem;
+}
+
+/* --- RESPONSIVE (Para móviles) --- */
+@media (max-width: 768px) {
+  
+  /* 1. Ajustes del contenedor blanco de arriba */
+  .footer-top {
+    padding: 20px 5px; /* Quitamos relleno lateral para ganar espacio */
+  }
+
+  .footer-columns-wrapper {
+    flex-direction: row; /* IMPORTANTE: Mantiene la fila, NO cambia a columna */
+    gap: 8px; /* Espacio mínimo entre columnas */
+    align-items: flex-start;
+  }
+
+  /* 2. Truco para que las columnas no revienten el ancho de la pantalla */
+  .footer-columna {
+    flex: 1; /* Todas ocupan lo mismo */
+    min-width: 0; /* Permite que la columna se encoja más allá de su contenido si es necesario */
+    overflow-wrap: break-word; /* Si una palabra es muy larga (ej: Asesoramiento), la parte */
+  }
+
+  /* 3. Textos tamaño "micro" para que quepan */
+  .columna-titulo {
+    font-size: 0.55rem; /* Título muy pequeño (aprox 9px) */
+    font-weight: bold;
+    margin-bottom: 8px;
+    height: 25px; /* Forzamos una altura mínima para alinear los títulos */
+  }
+  
+  .columna-titulo a {
+    display: block; /* Asegura que el link ocupe el espacio */
+  }
+
+  .columna-item {
+    font-size: 0.5rem; /* Texto de links diminuto (aprox 8px) */
+    line-height: 1.2; /* Líneas más pegadas */
+    margin-bottom: 6px;
+  }
+
+  /* Ocultamos la flechita (>) en móvil para ganar espacio limpio */
+  .flecha {
+    display: none; 
+  }
+
+  /* --- Ajustes para la parte GRIS de abajo --- */
+  /* Aquí sí recomiendo dejar que se apilen porque son párrafos largos, 
+     pero reducimos el texto también para que sea coherente */
+  .footer-bottom {
+    padding: 20px 10px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.6rem;
+  }
+}
+
+.columna-titulo a {
+  text-decoration: none; /* Quita el subrayado */
+  color: inherit; /* Usa el color gris que ya tiene el h4 */
+  transition: color 0.3s;
+}
+
+.columna-titulo a:hover {
+  color: #0fab13; /* Opcional: que se ponga verde al pasar el ratón */
+}
+
+/* --- PARTE INFERIOR (Fondo Gris) --- */
+.footer-bottom {
+  background-color: #f4f4f4;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+  color: #777;
+  /* Ya no necesitamos 'position: relative' porque no hay botón flotante */
+}
+
+.footer-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Fila superior: Texto Izquierda vs Derecha --- */
+
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+}
+
+.footer-bottom-left, 
+.footer-bottom-right {
+  flex: 1;
+}
+
+.footer-bottom-right {
+  text-align: right;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+/* --- Zona Central: Colaboración y Logo --- */
+.footer-collaboration {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-collaboration p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.logo-img {
+  /* CAMBIA ESTE VALOR PARA HACERLO MÁS GRANDE */
+  height: 100px;
+  width: auto;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* --- RESPONSIVE (Móviles) --- */
+@media (max-width: 768px) {
+  .footer-bottom-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .footer-bottom-right {
+    text-align: center;
+  }
+}
