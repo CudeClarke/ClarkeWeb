@@ -1,0 +1,20 @@
+{
+  "datosColumnas": [
+    {
+      "titulo": "NUESTROS CUIDADOS",
+      "links": ["Soy un paciente", "Soy Familiar o Cuidador", "Información y Asesoramiento", "Biblioteca de Cuidados"]
+    },
+    {
+      "titulo": "LA FUNDACIÓN",
+      "links": ["Visión, Misión y Valores", "Nuestra Historia", "Las Cuentas Claras", "Órganos de Gobierno", "Informes y Memorias", "Descubre nuestro Centro"]
+    },
+    {
+      "titulo": "CÓMO PUEDES AYUDARNOS",
+      "links": ["Hazte Socio | Dona", "Hazte Voluntario", "Colabora con Tiendas Benéficas", "Celebra una Iniciativa Solidaria", "Conviértete en empresa solidaria", "Pon una hucha en tu vida", "Dedica un azulejo", "Herencias y Legados"]
+    },
+    {
+      "titulo": "ACTUALIDAD",
+      "links": []
+    }
+  ]
+}
