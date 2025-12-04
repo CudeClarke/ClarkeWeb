@@ -1,0 +1,104 @@
+.payment-wrapper {
+  min-height: calc(100vh - 90px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  background-color: #dfe0e4;
+}
+
+.payment-box {
+  width: 70%;
+  max-width: 1000px;
+  min-height: 600px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+/* Contenedor general del formulario */
+.payment-form {
+  margin-top: 32px;
+  padding-left: 32px;   /* 👈 separa la primera columna del borde */
+  padding-right: 32px;  /* por si quieres simetría */
+}
+
+/* GRID de dos columnas para Mastercard */
+.payment-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  row-gap: 16px;
+}
+
+/* Campo que ocupa las dos columnas (Número de tarjeta) */
+.payment-field.full-width {
+  grid-column: 1 / 3;
+}
+
+/* Cada campo */
+.payment-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Formularios de una columna (Bizum, PayPal) */
+.payment-form-single {
+  margin-top: 32px;
+  max-width: 420px;
+  
+   display: flex;            /* 👈 lo convertimos en columna */
+  flex-direction: column;   /* uno debajo de otro */
+  gap: 20px; 
+}
+
+/* Fila con los 3 métodos de pago */
+.payment-methods-row {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  margin-top: 32px; 
+}
+
+/* Tarjeta de cada método de pago */
+.payment-method-card {
+  background-color: hsl(0, 0%, 100%);
+  border: 4px solid #c5c5c5;
+  border-radius: 10px;
+  padding: 3px 40px;
+  min-width: 160px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+
+  transition:
+   border-color 0.2s ease,
+   box-shadow 0.2s ease,
+   transform 0.12s ease;
+}
+
+/* Tamaño de los logos */
+.payment-logo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.payment-method-card.selected {
+  border-color: #1cb543;
+  box-shadow: 0 0 0 5px rgba(28, 181, 67, 0.35);
+  transform: translateY(-2px);
+}
+
+
+.payment-method-card:hover {
+  border-color: #1cb543;
+  box-shadow: 0 0 0 5px rgba(28, 181, 67, 0.25);
+}
