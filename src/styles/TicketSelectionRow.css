@@ -1,0 +1,30 @@
+
+
+.ticket-selection-row-container{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    width: 100%;
+    padding: 1em;
+}
+
+.ticket-selection-row-info{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    width: 60%;
+}
+
+.ticket-selection-row-info > p {
+    margin-left: 2em;
+    color: grey;
+    font-size: .8em;
+}
+
+
+.ticket-selection-price{
+    background-color: #0fab13;
+    color: white;
+    padding: .6em;
+    border-radius: 1em;
+}
