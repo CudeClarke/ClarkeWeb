@@ -1,0 +1,65 @@
+
+
+.ticket-buy-deploy-container{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+.ticket-buy-deploy-header{
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: .4em;
+    gap: 1%;
+}
+
+.ticket-buy-deploy-header-active{
+    color: #0fab13;
+}
+
+.ticket-buy-deploy-header-unactive{
+    color: black;
+}
+
+
+.ticket-buy-deploy-header:hover{
+    cursor: pointer;
+}
+
+.ticket-buy-deploy-header > p {
+    margin-left: 5%;
+    color: #0fab13;
+}
+
+.ticket-buy-deploy-content{
+    width: 95%;
+    background-color: white;
+}
+
+@keyframes ticket-deploy-grow {
+    from { height: 0vh; font-size: 0em;}
+    to {height: auto; font-size: 1em;}
+}
+
+.ticket-buy-deploy-content-active{
+    height: auto;
+    animation-name: ticket-deploy-grow;
+    animation-duration: .2s;
+}
+
+@keyframes ticket-deploy-ungrow {
+    from { height: auto; font-size: 1em;}
+    to {height: 0vh; font-size: 0em;}
+}
+
+.ticket-buy-deploy-content-unactive{
+    height: 0vh;
+    font-size: 0em;
+    animation-name: ticket-deploy-ungrow;
+    animation-duration: .2s;
+}
