@@ -60,6 +60,7 @@
 .ticket-buy-deploy-content-unactive{
     height: 0vh;
     font-size: 0em;
+    display: none;
     animation-name: ticket-deploy-ungrow;
     animation-duration: .2s;
 }
