@@ -1,5 +1,5 @@
 import "../styles/Footer.css"
-import footer from "../assets/footer.json"
+import footer from "../../assets/footer.json"
 import logoAyuntamiento from "../images/logoTorremolinos.png"
 
 function Footer(){ 

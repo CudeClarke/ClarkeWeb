@@ -1,9 +1,9 @@
 import '../styles/Payment.css';
 import { useState } from 'react';
-import MastercardLogo from '../images/logomastercard.png';
-import BizumLogo from '../images/logobizum.png';
-import PaypalLogo from '../images/logopaypal.png';
-import { CampoTexto } from './CampoTexto.jsx';
+import MastercardLogo from '../assets/logomastercard.png';
+import BizumLogo from '../assets/logobizum.png';
+import PaypalLogo from '../assets/logopaypal.png';
+import { CampoTexto } from '/src/generic/components/CampoTexto.jsx';
 
 function PaymentPage() {
 

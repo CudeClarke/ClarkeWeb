@@ -2,8 +2,8 @@
 
 
 import "../styles/Accessibility_button.css"
-import Access_on from "../images/Access_on.png"
-import Access_off from "../images/Access_off.jpg"
+import Access_on from "../assets/Access_on.png"
+import Access_off from "../assets/Access_off.jpg"
 const IS_ON = 0, IS_OFF = 1;
 
 
