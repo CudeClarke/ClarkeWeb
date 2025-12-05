@@ -1,0 +1,25 @@
+.sub-menu-guest-data-wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.sub-menu-guest-data-ticket{
+    width: 90%;
+    padding: 2em;
+}
+
+.sub-menu-guest-data-ticket > h1 {
+    text-decoration: underline;
+}
+
+
+.sub-menu-guest-data-buttons{
+    display: flex;
+    width: 85%;
+    justify-content: end;
+    gap: 2em;
+}
