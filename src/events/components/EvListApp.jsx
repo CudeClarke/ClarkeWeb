@@ -29,6 +29,11 @@ function EvListApp(){
                                             setSelected(evento)
                                         }
                                     }
+                                    buy_tickets_click_effect={
+                                        ()=>{
+                                            window.location.href = "/ticket_buy/"
+                                        }
+                                    }
                                     ></Evento>
                     })
 

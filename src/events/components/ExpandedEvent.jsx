@@ -56,7 +56,7 @@ function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_
                 <div className='expanded-event-content-bottom-half'>
                     <div className='expanded-event-content-bottom-left'>
                         <h1>{name}</h1>
-                        <ClarkeButton text={"Comprar Ticket"} type={IS_CONFIRM} size={"1rem"}></ClarkeButton>
+                        <ClarkeButton text={"Comprar Ticket"} type={IS_CONFIRM} size={"1rem"} click_effect={()=>{window.location.href="/ticket_buy/"}}></ClarkeButton>
                     </div>
 
                     <div className='expanded-event-content-bottom-right'>
