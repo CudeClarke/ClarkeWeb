@@ -13,6 +13,10 @@
 
 .sub-menu-ticket-select-tickets{
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em;
 }
 
 .sub-menu-ticket-select-collaborate{

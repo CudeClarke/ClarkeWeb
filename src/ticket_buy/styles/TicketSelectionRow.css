@@ -3,16 +3,14 @@
 .ticket-selection-row-container{
     display: flex;
     align-items: center;
-    gap: 5%;
     width: 100%;
-    padding: 1em;
+    justify-content: space-between;
 }
 
 .ticket-selection-row-info{
     display: flex;
     flex-direction: column;
     gap: .5em;
-    width: 60%;
 }
 
 .ticket-selection-row-info > p {
@@ -21,10 +19,16 @@
     font-size: .8em;
 }
 
+.ticket-selection-row-prices{
+    display: flex;
+    gap: 2em;
+}
 
 .ticket-selection-price{
     background-color: #0fab13;
     color: white;
     padding: .6em;
     border-radius: 1em;
+    display: flex;
+    align-items: center;
 }

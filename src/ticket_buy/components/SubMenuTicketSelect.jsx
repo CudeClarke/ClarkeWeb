@@ -97,7 +97,7 @@ function SubMenuTicketSelect(){
             }
         </div>
 
-        <div className={"sub-menu-ticket-select-button-area" +  (selectedTicketsEmpty(selectedTickets) ? " sub-menu-ticket-select-button-area-unactive" : "")}>
+        <div title={selectedTicketsEmpty(selectedTickets)? "Selecciona entradas para continuar": "" } className={"sub-menu-ticket-select-button-area" +  (selectedTicketsEmpty(selectedTickets) ? " sub-menu-ticket-select-button-area-unactive" : "")}>
             <ClarkeButton text={"Continuar"} type={IS_CONFIRM} size={"1em"}></ClarkeButton>
         </div>
         
