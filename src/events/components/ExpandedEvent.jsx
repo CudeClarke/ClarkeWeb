@@ -1,5 +1,5 @@
 import '../styles/ExpandedEvent.css'
-import { ClarkeButton, IS_CONFIRM } from './Button';
+import { ClarkeButton, IS_CONFIRM } from '/src/generic/components/Button';
 
 function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_list, objective_recaudation, actual_recaudation, close_action}){
 

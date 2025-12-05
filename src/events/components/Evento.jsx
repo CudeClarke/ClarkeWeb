@@ -3,7 +3,7 @@
 import '../styles/Evento.css'
 import mapIcon from '/map-icon.svg'
 import calendarIcon from '/calendar-icon.svg'
-import { ClarkeButton, IS_CONFIRM, IS_MOREINFO, IS_RETURN } from './Button';
+import { ClarkeButton, IS_CONFIRM, IS_MOREINFO, IS_RETURN } from '/src/generic/components/Button.jsx';
 function Evento({title, location, date, imageUrl, buy_tickets_click_effect, more_info_click_effect}){
 
     return (

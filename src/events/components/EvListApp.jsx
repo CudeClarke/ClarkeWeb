@@ -4,7 +4,7 @@ import { EventoList } from './EventoList.jsx'
 import Evento from './Evento.jsx'
 import { ExpandedEvent } from './ExpandedEvent.jsx'
 import { useState } from 'react';
-import {PopUp} from './PopUp.jsx'
+import {PopUp} from '/src/generic/components/PopUp.jsx'
 
 function EvListApp(){
     const eventList = test.events;

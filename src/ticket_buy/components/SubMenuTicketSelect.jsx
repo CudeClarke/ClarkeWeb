@@ -3,7 +3,7 @@ import '../styles/SubMenuTicketSelect.css'
 import TicketSelectionRow from "./TicketSelectionRow";
 import SubTotalPrice from "./SubTotalPrice";
 import CollaborationQuery from "./CollaborationQuery";
-import { ClarkeButton, IS_CONFIRM } from "./Button";
+import { ClarkeButton, IS_CONFIRM } from "../../generic/components/Button.jsx";
 
 const ticket_types = [
     {

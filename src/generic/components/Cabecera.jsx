@@ -2,9 +2,9 @@
 
 
 import "../styles/Cabecera.css"
-import Flor from "../images/Flor.png"
-import Logo from "../images/Logo.png"
-import { ClarkeButton, IS_HEADER} from './Button.jsx';
+import Flor from "../assets/Flor.png"
+import Logo from "../assets/Logo.png"
+import { ClarkeButton, IS_HEADER } from './Button.jsx';
 
 function Cabecera(){
 

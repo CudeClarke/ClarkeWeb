@@ -1,5 +1,5 @@
-import { ClarkeButton, IS_CONFIRM } from "./Button";
-import { CampoTexto } from "./CampoTexto";
+import { ClarkeButton, IS_CONFIRM } from "../../generic/components/Button.jsx";
+import { CampoTexto } from "../../generic/components/CampoTexto.jsx";
 import '../styles/CollaborationQuery.css'
 
 function CollaborationQuery(){
