@@ -5,24 +5,6 @@ import SubTotalPrice from "./SubTotalPrice";
 import CollaborationQuery from "./CollaborationQuery";
 import { ClarkeButton, IS_CONFIRM } from "../../generic/components/Button.jsx";
 
-const ticket_types = [
-    {
-        name: "Menú Básico",
-        descrip: "Menú general",
-        price: 19.99
-    },
-    {
-        name: "Menú Vegetariano",
-        descrip: "Menú adaptado para personas vegetarianas",
-        price: 22.99
-    },
-    {
-        name: "Menú Celíaco",
-        descrip: "Menú adaptado para personas celíacas",
-        price: 24.99
-    }
-]
-
 
 function selectedTicketsEmpty(list){
     return list.reduce((a,b)=> a+b) == 0;
@@ -36,7 +18,7 @@ function computeTotal(listSelected, ticket_list){
     return Math.round(total*100) / 100;
 }
 
-function SubMenuTicketSelect(){
+function SubMenuTicketSelect({ticket_types, handleConfirm}){
 
     const [selectedTickets, setSelectedTickets] = useState(Array(ticket_types.length).fill(0))
 
@@ -98,7 +80,16 @@ function SubMenuTicketSelect(){
         </div>
 
         <div title={selectedTicketsEmpty(selectedTickets)? "Selecciona entradas para continuar": "" } className={"sub-menu-ticket-select-button-area" +  (selectedTicketsEmpty(selectedTickets) ? " sub-menu-ticket-select-button-area-unactive" : "")}>
-            <ClarkeButton text={"Continuar"} type={IS_CONFIRM} size={"1em"}></ClarkeButton>
+            <ClarkeButton 
+                text={"Continuar"} 
+                type={IS_CONFIRM} size={"1em"} 
+                click_effect={
+                    selectedTicketsEmpty(selectedTickets) ? //no hay nada seleccionado?
+                    ()=>{} //no hagas nada
+                    : //de lo contrario
+                    ()=>handleConfirm(selectedTickets) //haz lo tuyo
+                }
+                ></ClarkeButton> 
         </div>
         
     </div>)

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {CampoTexto} from '../../generic/components/CampoTexto'
 import { ClarkeButton, IS_CONFIRM, IS_RETURN } from '../../generic/components/Button';
 import '../styles/SubMenuUserData.css'
-function SubMenuUserData(){
+function SubMenuUserData({handleConfirm, handleReturn}){
 
     const [data, setData] = useState({name: "", surname: "", email: "", dni: "", tlf: "", address: "", postal_code: "", spam: false, consent: false, partner: false})
 
@@ -169,12 +169,12 @@ function SubMenuUserData(){
         </div>
 
          <div className='sub-menu-user-data-buttons'>
-            <ClarkeButton text={"Volver"} type={IS_RETURN} size={"1em"}></ClarkeButton>
+            <ClarkeButton text={"Volver"} type={IS_RETURN} size={"1em"} click_effect={()=>handleReturn()}></ClarkeButton>
             <ClarkeButton 
                 text={"Continuar"} 
                 type={IS_CONFIRM} 
                 size={"1em"} 
-                click_effect={()=>{console.log(data)}} //this function is for testing yet. TODO checking fields and sending them to server
+                click_effect={()=>{handleConfirm(data)}} //this function is for testing yet. TODO checking fields and sending them to server
             ></ClarkeButton>
          </div>
     </div>

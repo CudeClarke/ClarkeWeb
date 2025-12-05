@@ -3,21 +3,6 @@ import { ClarkeButton, IS_CONFIRM, IS_RETURN } from '../../generic/components/Bu
 import '../styles/SubMenuGuestData.css'
 import GuestForm from './GuestForm';
 
-const selected_tickets_prueba = [
-    {
-        name: "Menú Vegano",
-        id: 1234
-    },
-    {
-        name: "Menú Vegano",
-        id: 2345
-    },
-    {
-        name: "Menú Normal",
-        id: 5678
-    }
-]
-
 function generateGuestForms(selected_tickets, data, setData){
 
     return (selected_tickets.map((ticket, ind)=>{
@@ -35,13 +20,9 @@ function generateGuestForms(selected_tickets, data, setData){
     }))
 }
 
-const buyer_info_prueba = {
-    name: "Abel", surname: "Fernández Palomo", email: "fernandezpalomoabel@uma.es", dni: "77684813J"
-}
+function SubMenuGuestData({selected_tickets, buyer_info, handleConfirm, handleReturn}){
 
-function SubMenuGuestData({selected_tickets, buyer_info}){
-
-    const [data, setData] = useState(selected_tickets_prueba.map((_)=>{return {name: "", surname: "", email: "", dni: ""}}))
+    const [data, setData] = useState(selected_tickets.map((_)=>{return {name: "", surname: "", email: "", dni: ""}}))
 
     return <div className='sub-menu-guest-data-wrap'>
 
@@ -50,22 +31,22 @@ function SubMenuGuestData({selected_tickets, buyer_info}){
             type={IS_CONFIRM} 
             size={"1.5em"} 
             click_effect={()=>{
-                const newData = Array(selected_tickets_prueba.length).fill(buyer_info_prueba);
+                const newData = Array(selected_tickets.length).fill(buyer_info);
                 setData(newData)
             }}
         ></ClarkeButton>
 
         {   
-            generateGuestForms(selected_tickets_prueba, data, setData)
+            generateGuestForms(selected_tickets, data, setData)
         }
 
          <div className='sub-menu-guest-data-buttons'>
-            <ClarkeButton text={"Volver"} type={IS_RETURN} size={"1em"}></ClarkeButton>
+            <ClarkeButton text={"Volver"} type={IS_RETURN} size={"1em"} click_effect={()=>handleReturn()}></ClarkeButton>
             <ClarkeButton 
                 text={"Continuar"} 
                 type={IS_CONFIRM} 
                 size={"1em"} 
-                click_effect={()=>{console.log(data)}} //this function is for testing. TODO checking fields and sending them to server
+                click_effect={()=>handleConfirm(data)} //this function is for testing. TODO checking fields and sending them to server
             ></ClarkeButton>
          </div>
     </div>
