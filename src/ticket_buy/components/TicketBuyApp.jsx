@@ -21,7 +21,7 @@ function TicketBuyApp(){
 
     return (
     
-    <div style={{width: "80%"}}>
+    <div style={{width: "80%", maxHeight: "85vh", overflowY: "scroll"}}>
 
 
 

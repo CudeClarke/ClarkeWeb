@@ -17,6 +17,7 @@ createRoot(document.getElementById('root')).render(
         margin: "auto",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        boxShadow: "0px 2px 2px 2px grey"
     }}>
 
     
@@ -24,7 +25,6 @@ createRoot(document.getElementById('root')).render(
         {
           display: 'flex',
           alignItems: "center",
-          justifyContent: "space-around",
           backdropFilter: "blur(8px)"
         }
         }>
