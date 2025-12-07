@@ -43,7 +43,7 @@ function SubMenuGuestData({selected_tickets, buyer_info, handleConfirm, handleRe
          <div className='sub-menu-guest-data-buttons'>
             <ClarkeButton text={"Volver"} type={IS_RETURN} size={"1em"} click_effect={()=>handleReturn()}></ClarkeButton>
             <ClarkeButton 
-                text={"Continuar"} 
+                text={"Finalizar"} 
                 type={IS_CONFIRM} 
                 size={"1em"} 
                 click_effect={()=>handleConfirm(data)} //this function is for testing. TODO checking fields and sending them to server
