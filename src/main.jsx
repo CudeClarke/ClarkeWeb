@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Cabecera from './generic/components/Cabecera.jsx'
+import CudeWrap from './generic/components/CudeWrap'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Cabecera></Cabecera>
+    <CudeWrap></CudeWrap>
   </StrictMode>
 )
