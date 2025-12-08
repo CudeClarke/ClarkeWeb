@@ -196,10 +196,6 @@ function TicketBuyApp(){
       :
         <></>
     }
-
-    {
-      alertInfo.status != null ? console.log("cambios"): "" 
-    }
     </>
     )
 }

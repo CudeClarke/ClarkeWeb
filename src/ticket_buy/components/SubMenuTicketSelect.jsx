@@ -28,6 +28,7 @@ function SubMenuTicketSelect({ticket_types, handleConfirm}){
             {
                 ticket_types.map( (ticket, index) => {
                     return (<TicketSelectionRow 
+                        key={ticket.name+ticket.descrip}
                         name={ticket.name} 
                         descrip={ticket.descrip} 
                         price={ticket.price} 
@@ -67,7 +68,7 @@ function SubMenuTicketSelect({ticket_types, handleConfirm}){
 
                         const name = ticket_types[index].name + " x " + value;
                         const price = ticket_types[index].price*value;
-                        return <SubTotalPrice name={name} total={Math.round(price*100)/100}></SubTotalPrice>
+                        return <SubTotalPrice key={name+Math.round(price*100)/100} name={name} total={Math.round(price*100)/100}></SubTotalPrice>
 
                     })}
 

@@ -10,14 +10,14 @@ function Section_image({nombre, ubicacion, fecha, imageUrl}){
                 <img className="img-first" src={imageUrl}></img>
             </div>   
             <div className="div-info">
-                <text className="text-nombre"><strong>{nombre.toUpperCase()}</strong></text>
+                <p className="text-nombre"><strong>{nombre.toUpperCase()}</strong></p>
                 <div className="div-ubic">
                     <img className="img-map" src={mapIcon}></img>
-                    <text className="text-ubic"><strong>{ubicacion}</strong></text>
+                    <p className="text-ubic"><strong>{ubicacion}</strong></p>
                 </div>
                 <div className="div-ubic">
                     <img className="img-calendar" src={calendarIcon}></img>
-                    <text className="text-fecha"><strong>{fecha}</strong></text>
+                    <p className="text-fecha"><strong>{fecha}</strong></p>
                 </div>
             </div>  
         </div>  
