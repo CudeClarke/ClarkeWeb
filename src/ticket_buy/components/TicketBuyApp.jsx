@@ -199,9 +199,6 @@ function TicketBuyApp({event_id}){
         <></>
     }
 
-    {
-      alertInfo.status != null ? console.log("cambios"): "" 
-    }
     </>
     )
 }
