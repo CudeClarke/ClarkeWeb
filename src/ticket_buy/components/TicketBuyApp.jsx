@@ -198,7 +198,6 @@ function TicketBuyApp({event_id}){
       :
         <></>
     }
-
     </>
     )
 }
