@@ -8,7 +8,7 @@ function CampoTexto({nombre, placeholder, obligatorio, value, hasValue = false, 
 
 
   return <div className="div-campo">
-    <label for="campo">{nombre}</label><p>{text}</p><br/>
+    <label htmlFor="campo">{nombre}</label><p>{text}</p><br/>
     <input id="campo" type="text" style={{width: "20%",height: "25px"}}  placeholder = {placeholder} value={hasValue ? value : undefined} onChange={handleChange}></input>
     </div>
 
