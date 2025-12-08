@@ -2,7 +2,7 @@ import TicketBuyDeploy from './TicketBuyDeploy.jsx'
 import SubMenuUserData from './SubMenuUserData.jsx'
 import SubMenuTicketSelect from './SubMenuTicketSelect.jsx'
 import SubMenuGuestData from './SubMenuGuestsData.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getTicketsFromEvent, generateRequestForTickets } from '../utils/api/api_functions.js'
 import { isValidUser } from '../utils/fieldValidation/field_validation_functions.js'
 import Section_image from './Section_image.jsx'
@@ -17,10 +17,12 @@ function clarkeAlert(setAlert, content){
   }, 4000)
 }
 
-function TicketBuyApp(){
+function TicketBuyApp({event_id}){
+    if(event_id === undefined || event_id === null)
+      return;
 
     //llamada a la api para pillar los tipos de ticket de nuestro evento
-    const tickets = getTicketsFromEvent(0);
+    const tickets = getTicketsFromEvent(event_id);
 
     const [isActive, setActive] = useState(0); // #0 para el Seleccionar tipo de entrada, #1 para Datos Comprador y #2 para Datos Asistentes
 

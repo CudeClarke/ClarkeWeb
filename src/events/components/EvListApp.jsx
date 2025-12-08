@@ -32,7 +32,7 @@ function EvListApp(){
                                     }
                                     buy_tickets_click_effect={
                                         ()=>{
-                                            window.location.href = "/ticket_buy/"
+                                            window.location.href = ("/ticket_buy/?eventId="+evento.evid)
                                         }
                                     }
                                     ></Evento>
@@ -46,6 +46,7 @@ function EvListApp(){
                 selected != null ?
                     <PopUp>
                         <ExpandedEvent 
+                            id = {selected.evid}
                             name={selected.name} 
                             location={selected.location} 
                             date={selected.date}

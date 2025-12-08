@@ -1,7 +1,7 @@
 import '../styles/ExpandedEvent.css'
 import { ClarkeButton, IS_CONFIRM } from '/src/generic/components/Button';
 
-function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_list, objective_recaudation, actual_recaudation, close_action}){
+function ExpandedEvent({id, name, descrip, location, date, imageUrl, patr_list, tag_list, objective_recaudation, actual_recaudation, close_action}){
 
     const percentage = ""+Math.trunc(actual_recaudation/objective_recaudation*100)+"%";
 
@@ -56,7 +56,7 @@ function ExpandedEvent({name, descrip, location, date, imageUrl, patr_list, tag_
                 <div className='expanded-event-content-bottom-half'>
                     <div className='expanded-event-content-bottom-left'>
                         <h1>{name}</h1>
-                        <ClarkeButton text={"Comprar Ticket"} type={IS_CONFIRM} size={"1rem"} click_effect={()=>{window.location.href="/ticket_buy/"}}></ClarkeButton>
+                        <ClarkeButton text={"Comprar Ticket"} type={IS_CONFIRM} size={"1rem"} click_effect={()=>{window.location.href=("/ticket_buy/?eventId="+id)}}></ClarkeButton>
                     </div>
 
                     <div className='expanded-event-content-bottom-right'>
