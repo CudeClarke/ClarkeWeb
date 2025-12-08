@@ -1,0 +1,102 @@
+[
+  {
+    "idEvento": 1,
+    "tipo": 3,
+    "evento": {  "nombre" : "Concierto en la Malagueta",  "ubicacion" : "La Malagueta",  "recaudacion" : 5000,  "objetivoRecaudacion" : 10000,  "descripcion" : "Presentación musical al aire libre.",  "date" : 1739142000000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "artista" : "Estopa",  "informacion" : "Estopa"}
+  },
+  {
+    "idEvento": 2,
+    "tipo": 1,
+    "evento": {  "nombre" : "Carrera Paseo Marítimo",  "ubicacion" : "Paseo Marítimo Pablo Ruiz Picasso",  "recaudacion" : 2000,  "objetivoRecaudacion" : 2500,  "descripcion" : "Carrera popular de 5 km junto al mar.",  "date" : 1740870000000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "recorrido" : 5,  "informacion" : "5"}
+  },
+  {
+    "idEvento": 3,
+    "tipo": 2,
+    "evento": {  "nombre" : "Rifa Solidaria en Teatinos",  "ubicacion" : "Teatinos",  "recaudacion" : 1500,  "objetivoRecaudacion" : 3000,  "descripcion" : "Rifa benéfica organizada por asociaciones locales.",  "date" : 1743458400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "premios" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 4,
+    "tipo": 4,
+    "evento": {  "nombre" : "Festival Cultural Soho",  "ubicacion" : "Barrio del Soho",  "recaudacion" : 6000,  "objetivoRecaudacion" : 6500,  "descripcion" : "Actividades culturales y talleres artísticos.",  "date" : 1747000800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 5,
+    "tipo": 3,
+    "evento": {  "nombre" : "Concierto en el Cervantes",  "ubicacion" : "Teatro Cervantes",  "recaudacion" : 5000,  "objetivoRecaudacion" : 9000,  "descripcion" : "Actuación de banda local.",  "date" : 1750370400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "artista" : "Rosalia",  "informacion" : "Rosalia"}
+  },
+  {
+    "idEvento": 6,
+    "tipo": 1,
+    "evento": {  "nombre" : "Carrera del Parque del Oeste",  "ubicacion" : "Parque del Oeste",  "recaudacion" : 5200,  "objetivoRecaudacion" : 4000,  "descripcion" : "Competición deportiva para todas las edades.",  "date" : 1751666400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "recorrido" : 0,  "informacion" : "0"}
+  },
+  {
+    "idEvento": 7,
+    "tipo": 2,
+    "evento": {  "nombre" : "Rifa del Mercado de Atarazanas",  "ubicacion" : "Mercado Central de Atarazanas",  "recaudacion" : 3500,  "objetivoRecaudacion" : 3000,  "descripcion" : "Rifa de productos locales.",  "date" : 1755208800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "premios" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 8,
+    "tipo": 4,
+    "evento": {  "nombre" : "Taller Creativo en el Muelle Uno",  "ubicacion" : "Muelle Uno",  "recaudacion" : 400,  "objetivoRecaudacion" : 9000,  "descripcion" : "Taller artístico abierto al público.",  "date" : 1757368800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 9,
+    "tipo": 3,
+    "evento": {  "nombre" : "Concierto en Plaza de la Merced",  "ubicacion" : "Plaza de la Merced",  "recaudacion" : 510,  "objetivoRecaudacion" : 200,  "descripcion" : "Evento musical gratuito.",  "date" : 1759442400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "artista" : "Melendi",  "informacion" : "Melendi"}
+  },
+  {
+    "idEvento": 10,
+    "tipo": 1,
+    "evento": {  "nombre" : "Carrera Montes de Málaga",  "ubicacion" : "Montes de Málaga",  "recaudacion" : 5000,  "objetivoRecaudacion" : 900,  "descripcion" : "Carrera de montaña de 10 km.",  "date" : 1763074800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "recorrido" : 2,  "informacion" : "2"}
+  },
+  {
+    "idEvento": 11,
+    "tipo": 2,
+    "evento": {  "nombre" : "Rifa de Navidad en El Palo",  "ubicacion" : "El Palo",  "recaudacion" : 800,  "objetivoRecaudacion" : 2000,  "descripcion" : "Rifa tradicional del barrio.",  "date" : 1766012400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "premios" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 12,
+    "tipo": 4,
+    "evento": {  "nombre" : "Encuentro Cultural Pedregalejo",  "ubicacion" : "Pedregalejo",  "recaudacion" : 600,  "objetivoRecaudacion" : 5000,  "descripcion" : "Reunión vecinal con actividades.",  "date" : 1740610800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 13,
+    "tipo": 3,
+    "evento": {  "nombre" : "Concierto en el Auditorio Eduardo Ocón",  "ubicacion" : "Parque de Málaga",  "recaudacion" : 250,  "objetivoRecaudacion" : 6500,  "descripcion" : "Presentación de artistas emergentes.",  "date" : 1742511600000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "artista" : "Aitana",  "informacion" : "Aitana"}
+  },
+  {
+    "idEvento": 14,
+    "tipo": 1,
+    "evento": {  "nombre" : "Carrera Río Guadalhorce",  "ubicacion" : "Río Guadalhorce",  "recaudacion" : 800,  "objetivoRecaudacion" : 9000,  "descripcion" : "",  "date" : 1743890400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "recorrido" : 3,  "informacion" : "3"}
+  },
+  {
+    "idEvento": 15,
+    "tipo": 2,
+    "evento": {  "nombre" : "Rifa en el Barrio de Huelin",  "ubicacion" : "Huelin",  "recaudacion" : 100,  "objetivoRecaudacion" : 2000,  "descripcion" : "Rifa comunitaria con premios locales.",  "date" : 1748556000000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "premios" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 16,
+    "tipo": 4,
+    "evento": {  "nombre" : "Feria Artesanal del Centro Histórico",  "ubicacion" : "Centro Histórico",  "recaudacion" : 300,  "objetivoRecaudacion" : 1000,  "descripcion" : "Exposición y venta de artesanías.",  "date" : 1749592800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 17,
+    "tipo": 3,
+    "evento": {  "nombre" : "Concierto en Gibralfaro",  "ubicacion" : "Castillo de Gibralfaro",  "recaudacion" : 250,  "objetivoRecaudacion" : 600,  "descripcion" : "Concierto nocturno con vistas panorámicas.",  "date" : 1753394400000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "artista" : "Raphael",  "informacion" : "Raphael"}
+  },
+  {
+    "idEvento": 18,
+    "tipo": 1,
+    "evento": {  "nombre" : "Carrera Playa de la Misericordia",  "ubicacion" : "Playa de la Misericordia",  "recaudacion" : 150,  "objetivoRecaudacion" : 900,  "descripcion" : "Carrera playera de 3 km.",  "date" : 1754085600000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "recorrido" : 2,  "informacion" : "2"}
+  },
+  {
+    "idEvento": 19,
+    "tipo": 2,
+    "evento": {  "nombre" : "Rifa del Puerto de Málaga",  "ubicacion" : "Puerto de Málaga",  "recaudacion" : 900,  "objetivoRecaudacion" : 950,  "descripcion" : "Rifa de recaudación solidaria.",  "date" : 1758232800000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "premios" : [ ],  "informacion" : ""}
+  },
+  {
+    "idEvento": 20,
+    "tipo": 4,
+    "evento": {  "nombre" : "Encuentro de Arte en la Térmica",  "ubicacion" : "La Térmica",  "recaudacion" : 400,  "objetivoRecaudacion" : 400,  "descripcion" : "Actividades culturales y exposiciones.",  "date" : 1761519600000,  "url" : "default.png",  "tags" : [ ],  "patrocinadores" : [ ],  "entradas" : [ ],  "informacion" : ""}
+  }
+]
