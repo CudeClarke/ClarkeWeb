@@ -1,13 +1,15 @@
 
-import test from '../assets/test.json'
 import { EventoList } from './EventoList.jsx'
 import Evento from './Evento.jsx'
 import { ExpandedEvent } from './ExpandedEvent.jsx'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {PopUp} from '/src/generic/components/PopUp.jsx'
+import { fetchEvents, fetchFromLocal } from '../utils/api/api_functions.js';
 
 function EvListApp(){
-    const eventList = test.events;
+
+    let eventList = fetchEvents();
+
 
     const [selected, setSelected] = useState(null)
 
