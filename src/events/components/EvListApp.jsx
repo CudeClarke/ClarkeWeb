@@ -20,6 +20,7 @@ function EvListApp(){
 
                     eventList.map((evento)=>{
                         return <Evento 
+                                    key={evento.evid+evento.entid+evento.name}
                                     title={evento.name} 
                                     location={evento.location} 
                                     date={evento.date} 

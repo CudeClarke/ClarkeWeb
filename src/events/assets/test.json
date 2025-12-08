@@ -1,6 +1,8 @@
 {
     "events": [
         {
+            "evid": 0,
+            "entid": 0,
             "name" : "Evento Genérico 1",
             "location": "Lugar Genérico 1",
             "date": "2 de Diciembre, 20:00h",
@@ -11,6 +13,8 @@
             "description": "Esta es la descripción del evento genérico 1"
         },
         {
+            "evid": 0,
+            "entid": 1,
             "name" : "Evento Genérico 2",
             "location": "Lugar Genérico 2",
             "date": "2 de Diciembre, 20:00h",
@@ -21,6 +25,8 @@
             "description": "Esta es la descripción del evento genérico 2"
         },
         {
+            "evid": 0,
+            "entid": 2,
             "name" : "Evento Genérico 3",
             "location": "Lugar Genérico 3",
             "date": "2 de Diciembre, 20:00h",
@@ -31,6 +37,8 @@
             "description": "Esta es la descripción del evento genérico 3"
         },
         {
+            "evid": 0,
+            "entid": 3,
             "name" : "Evento Genérico 4",
             "location": "Lugar Genérico 4",
             "date": "2 de Diciembre, 20:00h",
@@ -41,6 +49,8 @@
             "description": "Esta es la descripción del evento genérico 4"
         },
         {
+            "evid": 0,
+            "entid": 4,
             "name" : "Evento Genérico 5",
             "location": "Lugar Genérico 5",
             "date": "2 de Diciembre, 20:00h",
@@ -51,6 +61,8 @@
             "description": "Esta es la descripción del evento genérico 5"
         },
         {
+            "evid": 0,
+            "entid": 5,
             "name" : "Evento Genérico 6",
             "location": "Lugar Genérico 6",
             "date": "2 de Diciembre, 20:00h",

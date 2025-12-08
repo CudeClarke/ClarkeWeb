@@ -6,5 +6,6 @@
     margin-top: 5vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 5%;
+    grid-gap: 4em;
+    margin-bottom: 2em;
 }
