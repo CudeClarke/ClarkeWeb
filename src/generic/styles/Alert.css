@@ -1,0 +1,30 @@
+@keyframes alert-appear {
+    0%{opacity: 0; bottom: 2vh;}
+    40%{bottom: 10vh;}
+    100%{opacity: 100%;}
+}
+
+.alert-container{
+    position: fixed;
+    bottom: 10vh;
+    left: 50%;
+    margin: auto;
+    display: flex;
+    padding: 1.5em;
+    background-color: rgb(28, 28, 56);
+    color: white;
+    gap: 2em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 1.5em;
+    transform: translate(-50%);
+    z-index: 9999;
+    animation-name: alert-appear;
+    animation-duration: .8s;
+    max-width: 70vw;
+}
+
+.alert-unactive{
+    transition: .8s;
+    opacity: 0;
+}
