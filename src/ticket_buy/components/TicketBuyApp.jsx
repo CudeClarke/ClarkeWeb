@@ -3,7 +3,7 @@ import SubMenuUserData from './SubMenuUserData.jsx'
 import SubMenuTicketSelect from './SubMenuTicketSelect.jsx'
 import SubMenuGuestData from './SubMenuGuestsData.jsx'
 import { useEffect, useState } from 'react'
-import { getTicketsFromEvent, generateRequestForTickets } from '../utils/api/api_functions.js'
+import { getTicketsFromEvent, generateRequestForTickets, cancelTransaction, uploadTicketsInfo, getEventFromId } from '../utils/api/api_functions.js'
 import { isValidUser } from '../utils/fieldValidation/field_validation_functions.js'
 import Section_image from './Section_image.jsx'
 import { Alert, IS_ERROR, IS_OK } from '../../generic/components/Alert.jsx'
@@ -18,11 +18,13 @@ function clarkeAlert(setAlert, content){
 }
 
 function TicketBuyApp({event_id}){
+
     if(event_id === undefined || event_id === null)
       return;
 
-    //llamada a la api para pillar los tipos de ticket de nuestro evento
-    const tickets = getTicketsFromEvent(event_id);
+    const [eventInfo, setEventInfo] = useState(null);
+
+    const [tickets, setTickets] = useState([]);
 
     const [isActive, setActive] = useState(0); // #0 para el Seleccionar tipo de entrada, #1 para Datos Comprador y #2 para Datos Asistentes
 
@@ -32,12 +34,38 @@ function TicketBuyApp({event_id}){
 
     const [alertInfo, setAlert] = useState({status: null, msg: ""});
 
+    const [transactionId, setTransactionId] = useState(null);
+
+
+
+    const handleWindowExit = (e)=>{
+      cancelTransaction(transactionId);
+    }
+
+    useEffect(()=>{
+      window.addEventListener("beforeunload", handleWindowExit);
+
+      setTickets(getTicketsFromEvent(event_id));
+
+      setEventInfo(getEventFromId(event_id));
+
+      ()=>{
+        window.removeEventListener("beforeunload", handleWindowExit);
+      }
+    }, [])
+
+
+    const backgroundImage = "url('"+(eventInfo != null ? eventInfo.img : "")+"')";
+
     return (
+      eventInfo == null ?
+      <></>
+      :
     <>
 
 
       <div style={{
-        backgroundImage: "url('https://design.penpot.app/assets/by-file-media-id/8fd8c29f-33f9-8038-8007-2123360d1547')", 
+        backgroundImage: backgroundImage, 
         width: "80%", 
         margin: "auto",
         backgroundRepeat: "no-repeat",
@@ -65,9 +93,14 @@ function TicketBuyApp({event_id}){
 
               isSelected={isActive===0} 
 
-              handleHeaderClick={()=>{if(isActive != 0) {setActive(0); setReceivedTickets(null);}}} //siempre se puede volver al primero, pero implica anular los tickets pedidos
+              handleHeaderClick={()=>{if(isActive != 0) {setActive(0); setReceivedTickets(null); cancelTransaction(transactionId);}}} //siempre se puede volver al primero, pero implica anular los tickets pedidos
               >
-
+              
+              {
+                tickets.length != 0 ?
+              
+            
+            
               <SubMenuTicketSelect 
 
                 ticket_types={tickets}
@@ -75,7 +108,7 @@ function TicketBuyApp({event_id}){
                 handleConfirm={
                   (selectedTickets)=>{
 
-                    const {response, status} = generateRequestForTickets(selectedTickets, tickets)
+                    const {response, transaction_id, status} = generateRequestForTickets(selectedTickets, tickets)
 
                     if(status != 200){
                       //aqui panick total, no nos han dado lo que queriamos
@@ -87,6 +120,9 @@ function TicketBuyApp({event_id}){
                     //si seguimos aqui es q nos han dado nuestras entradas con sus id, las guardamos en un estado 
                     setReceivedTickets(response);
 
+                    //actualizamos y guardamos nuestro transaction id
+                    setTransactionId(transaction_id);
+
                     //y ya podemos pasar a la siguiente parte, nos cerramos y abrimos la siguiente pestaña
                     setActive(1);
 
@@ -95,7 +131,9 @@ function TicketBuyApp({event_id}){
                 }
 
               ></SubMenuTicketSelect>
-
+              
+            :<></>
+            }
             </TicketBuyDeploy>
 
 
@@ -170,12 +208,18 @@ function TicketBuyApp({event_id}){
                     handleConfirm={(data)=>{
                       if(data.every( u => isValidUser(u).status == 200)){ //es decir, si todos los usuarios son validos
                         //ya se mandará el mensaje final a la api
+                        uploadTicketsInfo(receivedTickets, buyerInfo, data, transactionId);
 
-                        window.location.replace("/payment/");
+                        window.removeEventListener("beforeunload", handleWindowExit);
+
+                        window.addEventListener("beforeunload", (e)=>{});
+
+                        window.location.href = ("/payment/?transactionId="+transactionId);
 
                       }else{
                         clarkeAlert(setAlert,{status: IS_ERROR, msg: "Ha ocurrido un error procesando los datos de los asistentes, por favor revise los datos insertados."});
                       }
+
                     }}
                   ></SubMenuGuestData> //renderiza
                   : //si no
@@ -186,7 +230,7 @@ function TicketBuyApp({event_id}){
 
           </div>
           
-          <Section_image nombre={"Evento ejemplo"} ubicacion={"Torremolinos"} fecha={"5 de Diciembre"} imageUrl={"https://design.penpot.app/assets/by-file-media-id/8fd8c29f-33f9-8038-8007-2123360d1547"}></Section_image>
+          <Section_image nombre={eventInfo.name} ubicacion={eventInfo.location} fecha={eventInfo.date} imageUrl={eventInfo.img}></Section_image>
         
         </div>
 
