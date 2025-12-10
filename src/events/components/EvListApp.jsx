@@ -8,8 +8,11 @@ import { fetchEvents, fetchFromLocal } from '../utils/api/api_functions.js';
 
 function EvListApp(){
 
-    let eventList = fetchEvents();
+    const [eventList, setEventList] = useState([]);
 
+    useEffect(()=>{
+        setEventList(fetchEvents());
+    }, []);
 
     const [selected, setSelected] = useState(null)
 
