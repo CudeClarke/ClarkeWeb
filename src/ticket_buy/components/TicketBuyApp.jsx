@@ -18,11 +18,11 @@ function clarkeAlert(setAlert, content){
 }
 
 function TicketBuyApp({event_id}){
+
     if(event_id === undefined || event_id === null)
       return;
 
-    //llamada a la api para pillar los tipos de ticket de nuestro evento
-    const tickets = getTicketsFromEvent(event_id);
+    const [tickets, setTickets] = useState([]);
 
     const [isActive, setActive] = useState(0); // #0 para el Seleccionar tipo de entrada, #1 para Datos Comprador y #2 para Datos Asistentes
 
@@ -31,6 +31,23 @@ function TicketBuyApp({event_id}){
     const [buyerInfo, setBuyerInfo] = useState(null);
 
     const [alertInfo, setAlert] = useState({status: null, msg: ""});
+
+    const [transactionId, setTransactionId] = useState(null);
+
+
+    useEffect(()=>{
+      window.addEventListener("beforeunload", (e)=>{
+        e.preventDefault()
+        
+        //llamada a la api para decir que cancelamos la transaccion
+      })
+      setTickets(getTicketsFromEvent(event_id));
+
+      ()=>{
+        window.removeEventListener("beforeunload");
+      }
+    }, [])
+
 
     return (
     <>
@@ -67,7 +84,12 @@ function TicketBuyApp({event_id}){
 
               handleHeaderClick={()=>{if(isActive != 0) {setActive(0); setReceivedTickets(null);}}} //siempre se puede volver al primero, pero implica anular los tickets pedidos
               >
-
+              
+              {
+                tickets.length != 0 ?
+              
+            
+            
               <SubMenuTicketSelect 
 
                 ticket_types={tickets}
@@ -75,7 +97,7 @@ function TicketBuyApp({event_id}){
                 handleConfirm={
                   (selectedTickets)=>{
 
-                    const {response, status} = generateRequestForTickets(selectedTickets, tickets)
+                    const {response, transaction_id, status} = generateRequestForTickets(selectedTickets, tickets)
 
                     if(status != 200){
                       //aqui panick total, no nos han dado lo que queriamos
@@ -87,6 +109,9 @@ function TicketBuyApp({event_id}){
                     //si seguimos aqui es q nos han dado nuestras entradas con sus id, las guardamos en un estado 
                     setReceivedTickets(response);
 
+                    //actualizamos y guardamos nuestro transaction id
+                    setTransactionId(transaction_id);
+
                     //y ya podemos pasar a la siguiente parte, nos cerramos y abrimos la siguiente pestaña
                     setActive(1);
 
@@ -95,7 +120,9 @@ function TicketBuyApp({event_id}){
                 }
 
               ></SubMenuTicketSelect>
-
+              
+            :<></>
+            }
             </TicketBuyDeploy>
 
 
@@ -171,7 +198,7 @@ function TicketBuyApp({event_id}){
                       if(data.every( u => isValidUser(u).status == 200)){ //es decir, si todos los usuarios son validos
                         //ya se mandará el mensaje final a la api
 
-                        window.location.replace("/payment/");
+                        window.location.replace("/payment/?transactionId="+transactionId);
 
                       }else{
                         clarkeAlert(setAlert,{status: IS_ERROR, msg: "Ha ocurrido un error procesando los datos de los asistentes, por favor revise los datos insertados."});

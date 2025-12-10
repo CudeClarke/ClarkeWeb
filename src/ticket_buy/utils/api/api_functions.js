@@ -36,9 +36,13 @@ function generateRequestForTickets(selectedTickets, tickets){
     //aqui se hará un trabajo interesante de llamadas a la api
     //habrá que pedir una confirmación de que esas entradas estén disponibles y tal 
     //emulamos una posible respuesta
-    const {response, status} = getTicketsFromRequest(requestJson) 
+    const {response, status} = getTicketsFromRequest(requestJson);
 
-    return {response, status};
+
+    //nos devuelven tambien un transaction id que usaremos para recordar al servidor las entradas que nos han sido prestadas o para cancelarlas
+    const transaction_id = 0;
+
+    return {response, transaction_id, status};
 }
 
 function getTicketsFromRequest(list_of_requested_tickets){
