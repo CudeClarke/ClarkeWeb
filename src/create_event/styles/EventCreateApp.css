@@ -1,0 +1,112 @@
+/* Contenedor principal */
+.three-column-layout {
+    display: flex;
+    width: 100%;        /* Ocupa el 100% del ancho disponible */
+    min-height: 80vh;   /* Altura mínima del 80% de la altura de la ventana */
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* --- COLUMNA 1: IZQUIERDA (El margen izquierdo) --- */
+.left-column {
+    /* PROPORCIÓN: 2 de 10 */
+    flex: 1.5; 
+    
+    /* Espaciado interno opcional en porcentaje */
+    padding: 2%; 
+}
+
+/* --- COLUMNA 2: CENTRO (El contenido) --- */
+.center-column {
+    /* PROPORCIÓN: 6 de 10 (Es 3 veces más grande que los lados) */
+    flex: 7; 
+    
+    /* BORDES VERDES */
+    border-left: 0.15rem solid #0fab13;  /* Usamos rem en vez de px para grosores si prefieres */
+    border-right: 0.15rem solid #0fab13;
+    
+    background-color: white;
+    
+    /* Padding 0 para que los desplegables toquen los bordes */
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Aseguramos que los desplegables ocupen el 100% de la columna central */
+.center-column .ticket-buy-deploy-container {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* --- COLUMNA 3: DERECHA (Flor y margen derecho) --- */
+.right-column {
+    /* PROPORCIÓN: 2 de 10 */
+    flex: 1.5; 
+    
+    display: flex;
+    justify-content: center; /* Centra la flor horizontalmente en su 20% de espacio */
+    align-items: flex-start; /* Pone la flor arriba */
+    
+    /* Padding superior proporcional */
+    padding-top: 5%; 
+    padding-right: 2%;
+    
+    /* Permite que la columna se encoja todo lo necesario */
+    min-width: 0; 
+}
+
+/* --- LA IMAGEN (FLOR) --- */
+.flower-container {
+    width: 100%; /* El contenedor ocupa todo el ancho de la columna derecha */
+    display: flex;
+    justify-content: center;
+}
+
+.flower-img {
+    /* AQUÍ ESTÁ LA MAGIA DE LA PROPORCIÓN */
+    /* La flor ocupará el 80% del ancho de la columna derecha. 
+       Si la columna se hace pequeña, la flor también. */
+    width: 80%; 
+    
+    /* Mantiene su relación de aspecto (no se deforma) */
+    height: auto; 
+    
+    /* Animación suave si cambias el tamaño de la ventana */
+    transition: width 0.3s ease;
+}
+
+
+/* --- RESPONSIVE (Puntos de quiebre) --- */
+
+/* PANTALLAS MEDIANAS (Tablets grandes / Laptops pequeños) */
+/* Cuando el espacio escasea, cambiamos las proporciones para dar más aire al centro */
+@media (max-width: 1100px) {
+    .left-column { flex: 1; }   /* Reducimos margen a 1 parte */
+    .center-column { flex: 8; } /* Aumentamos centro a 8 partes */
+    .right-column { flex: 1; }  /* Reducimos margen a 1 parte */
+    
+    /* Como la columna derecha es más estrecha, hacemos que la flor ocupe el 100% de ella */
+    .flower-img { width: 100%; }
+}
+
+/* MÓVILES */
+/* En móviles pasamos todo a vertical */
+@media (max-width: 768px) {
+    .three-column-layout {
+        flex-direction: column;
+        margin-top: 5%;
+    }
+
+    /* Ocultamos los laterales en móvil */
+    .left-column, .right-column {
+        display: none;
+    }
+
+    .center-column {
+        width: 100%;
+        border: none; /* Quitamos bordes en móvil */
+    }
+}
