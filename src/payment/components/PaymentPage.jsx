@@ -4,6 +4,8 @@ import MastercardLogo from '../assets/logomastercard.png';
 import BizumLogo from '../assets/logobizum.png';
 import PaypalLogo from '../assets/logopaypal.png';
 import VerifiedVisaLogo from '../assets/verifiedvisa.jpg';
+import Bizumphone from '../assets/bizumsecure.png';
+import Paypalphone from '../assets/segurepaypal.png';
 import { CampoTexto } from '/src/generic/components/CampoTexto.jsx';
 function PaymentPage() {
 
@@ -158,46 +160,67 @@ if (selectedMethod === 'mastercard') {
 
     if (selectedMethod === 'bizum') {
       return (
-        <div className="payment-form payment-form-single">
-          <div className="payment-field">
-            <CampoTexto
-              nombre="Teléfono asociado a Bizum"
-              placeholder="123 456 789"
-              obligatorio="si"
-              onChange={(v) => setBizumData({ ...bizumData, telefono: v })}
-              type="tel"
-            />
-          </div>
+       <div className="payment-form payment-form-bizum">
+      <div className="payment-bizum-left">
+        <div className="payment-field">
+          <CampoTexto
+             id="telefonoBizum"
+            nombre="Teléfono asociado a bizum"
+            placeholder="123 456 789"
+            obligatorio="si"
+            type="tel"
+            
+          />
         </div>
+      </div>
 
-        
+      <div className="payment-bizum-right">
+        <img
+          src={Bizumphone}
+          alt="Pago con Bizum"
+          className="payment-bizum-image"
+        />
+      </div>
+    </div>
       );
     }
 
     if (selectedMethod === 'paypal') {
       return (
-        <div className="payment-form payment-form-single">
+       <div className="payment-form payment-form-single">
           <div className="payment-field">
             <CampoTexto
+              id="emailPaypal"
               nombre="Email"
               placeholder="email@mail.com"
-              onChange={(v) => setPaypalData({ ...paypalData, email: v })}
               obligatorio="si"
               type="email"
+              
             />
           </div>
 
           <div className="payment-field">
             <CampoTexto
+              id="passPaypal"
               nombre="Contraseña"
               placeholder=""
               obligatorio="si"
-              onChange={(v) => setPaypalData({ ...paypalData, password: v })}
+              
               type="password"
             />
           </div>
+
+          {/* Columna derecha: imagen */}
+      <div className="payment-paypal-right">
+        <img
+          src={Paypalphone}
+          alt="Pago con Paypal"
+          className="payment-paypal-image"
+        />
+      </div>
         </div>
       );
+
     }
 
     return null;

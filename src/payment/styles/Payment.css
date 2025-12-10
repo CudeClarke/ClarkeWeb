@@ -69,6 +69,51 @@
   flex-direction: column;   
   gap: 20px; 
 }
+.payment-form-bizum {
+  margin-top: 32px;
+  padding-left: 32px;
+  padding-right: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Columna izquierda (el campo de teléfono) */
+.payment-bizum-left {
+  flex: 1;
+  max-width: 420px;      
+}
+
+/* Columna derecha (la imagen) */
+.payment-bizum-right {
+ display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-right: 180px; 
+}
+
+/* Columna derecha (la imagen) */
+.payment-paypal-right {
+ display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+  padding-right: 0px; 
+}
+/* Tamaño de la imagen de Bizum */
+.payment-bizum-image {
+  width: 200px;    
+  height: auto;
+  object-fit: contain;
+}
+
+/* Tamaño de la imagen de Paypal */
+.payment-paypal-image {
+  width: 300px;   
+  height: auto;
+  object-fit: contain;
+}
+
 
 /* ====METODOS DE PAGO======= */
 .payment-methods-row {
