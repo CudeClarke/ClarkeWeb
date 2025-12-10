@@ -1,3 +1,29 @@
+import events from '../../../events/assets/test2.json'
+
+function getEventFromId(evid){
+
+    let event = events.filter((e)=> e.idEvento == evid);
+
+    if(event.length > 0){
+        event = event.at(0);
+    }else{
+        return null;
+    }
+
+    return {
+            evid: event.idEvento,
+            name : event.evento.nombre,
+            location: event.evento.ubicacion,
+            date: event.evento.date,
+            img: event.evento.url,
+            tag_list: event.evento.tags,
+            objective_recaudation: event.evento.objetivoRecaudacion,
+            actual_recaudation: event.evento.recaudacion,
+            description: event.evento.descripcion
+        }
+
+}
+
 
 function getTicketsFromEvent(evid){
     return [
@@ -40,7 +66,7 @@ function generateRequestForTickets(selectedTickets, tickets){
 
 
     //nos devuelven tambien un transaction id que usaremos para recordar al servidor las entradas que nos han sido prestadas o para cancelarlas
-    const transaction_id = 0;
+    const transaction_id = Math.trunc(Math.random()*100);
 
     return {response, transaction_id, status};
 }
@@ -62,4 +88,16 @@ function getTicketsFromRequest(list_of_requested_tickets){
     }
 }
 
-export {getTicketsFromEvent, generateRequestForTickets, getTicketsFromRequest}
+function uploadTicketsInfo(tickets, buyer, guests, transactionId){
+    //aqui haré mi llamada a la api
+    return true; 
+}   
+
+function cancelTransaction(transactionId){
+    if(transactionId !== null){
+        //llamada a la api para cancelar la transaccion
+        console.log("El usuario ha cancelado la transaccion");
+    }
+}
+
+export {getTicketsFromEvent, generateRequestForTickets, getTicketsFromRequest, cancelTransaction, uploadTicketsInfo, getEventFromId}
