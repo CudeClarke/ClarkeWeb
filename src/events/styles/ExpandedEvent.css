@@ -151,6 +151,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    text-align: center;
 }
 
 .expanded-event-content-bottom-right{
@@ -221,13 +222,9 @@
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1350px) {
     .expanded-event-div{
         font-size: .8em;
     }
 }
 
-
-@media (max-width: 950px){
-    /*ya otros estilos seran*/
-}
