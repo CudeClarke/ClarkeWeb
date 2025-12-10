@@ -183,25 +183,11 @@
   display: flex;
   justify-content: flex-end;
   padding: 16px 32px 24px 32px; /* arriba, derecha, abajo, izquierda */
+  gap: .4em;
+  align-items: center;
 }
-.payment-confirm-button {
-  padding: 12px 28px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+
+.payment-button-continue-unactive > .button{
   cursor: not-allowed;
-  background-color: #0e7a1a;  /* verde oscuro */
-  color: white;
-  transition: 0.25s ease;
-}
-
-.payment-confirm-button.enabled {
-  background-color: #1cb543; /* verde claro */
-  cursor: pointer;
-}
-
-.payment-confirm-button.disabled {
-  background-color: #0e7a1a;
-  cursor:pointer;
+  background-color: #074b09;
 }

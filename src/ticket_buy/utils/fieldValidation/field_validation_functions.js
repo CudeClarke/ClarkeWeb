@@ -58,4 +58,4 @@ function isValidUser(data){
 
 }
 
-export {isValidUser}
+export {isValidUser, validateEmail}
