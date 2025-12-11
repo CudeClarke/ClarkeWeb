@@ -11,6 +11,11 @@
     width: 95%;
 }
 
+.sub-menu-ticket-select-accesible .sub-menu-ticket-select-tickets{
+    gap: 3em !important;
+    font-size: 1.2em !important;
+}
+
 .sub-menu-ticket-select-tickets{
     width: 90%;
     display: flex;
