@@ -2,7 +2,6 @@
 .acc-button-wrap{
     position: absolute;
     left: 1em;
-    bottom: 1em;
     width: 3vw;
     aspect-ratio: 1/1;
     transform: translate(0, -3vw);
