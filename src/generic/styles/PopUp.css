@@ -5,7 +5,10 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
+
     background-color: rgba(0, 0, 0, 0.575);
+    box-shadow: 0 0 20px 12px rgba(33, 34, 34, 0.7); /* X | Y | Difuminado | Extensión | Color */    
+
     top: 0;
     left: 0;
     display: flex;
@@ -16,6 +19,31 @@
 
 .pop-up{
     background-color: white;
-    border-radius: 1vw;
-    box-shadow: 0px 0px 5px 2px black;
+
+    border-radius: .5em;
+}
+
+.pop-up-access{
+    background-color: white;
+
+    border-radius: .5em;
+}
+
+.polygon-square{
+    /* El elemento que quieres que se vea */
+    background-color: white; 
+    
+    /* Dimensiones para el agujero (deben coincidir con el clip-path) */
+    width: 6.5%;
+    height: 12.5%;
+
+    /* Posición: Esquina Inferior Izquierda */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    box-shadow: 0 0 20px 8px rgba(48, 49, 49, 0.7); /* X | Y | Difuminado | Extensión | Color */    
+
+    /* Asegura que esté ANTES de la capa de fondo semi-transparente */
+    z-index: 1001;
 }

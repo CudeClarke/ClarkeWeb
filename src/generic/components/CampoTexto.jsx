@@ -1,6 +1,6 @@
 import "../styles/CampoTexto.css"
 
-function CampoTexto({nombre, placeholder, obligatorio, value, hasValue = false, handleChange = ()=>{}}){
+function CampoTexto({nombre, placeholder, obligatorio}){
   var text = ''
   if (obligatorio === 'si'){
     text = '*'
@@ -8,8 +8,8 @@ function CampoTexto({nombre, placeholder, obligatorio, value, hasValue = false, 
 
 
   return <div className="div-campo">
-    <label htmlFor="campo">{nombre}</label><p>{text}</p><br/>
-    <input id="campo" type="text" style={{width: "20%",height: "25px"}}  placeholder = {placeholder} value={hasValue ? value : undefined} onChange={handleChange}></input>
+    <label for="campo">{nombre}</label><p>{text}</p><br/>
+    <input id="campo" type="text" style={{width: "100%",height: "35px"}}  placeholder = {placeholder}></input>
     </div>
 
 }
