@@ -1,0 +1,97 @@
+.form-concierto-container {
+    /* IMPORTANTE PARA EL SCROLL: */
+    /* Definimos una altura máxima para que si el contenido se pasa, aparezca el scroll */
+    max-height: 65vh; /* Ajusta este valor según necesites */
+    overflow-y: auto; /* Muestra barra de scroll vertical si hace falta */
+    padding-right: 10px; /* Espacio para que la barra de scroll no tape contenido */
+}
+
+/* Layout de grid para poner los campos en dos columnas */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 20px; /* Espacio entre columnas y filas */
+    margin-bottom: 30px;
+}
+
+/* Estilos para los títulos de secciones */
+.ticket-section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Contenedor del botón de añadir y confirmar */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.buttons-left-group {
+    display: flex;
+    gap: 10px; /* Espacio entre Añadir y Borrar */
+}
+
+/* El botón verde con el símbolo + */
+.add-ticket-button {
+    background-color: #0fab13;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.add-ticket-button:hover {
+    background-color: #0f9210;
+}
+
+.delete-ticket-button {
+    background-color: #d32f2f; /* Rojo */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.delete-ticket-button:hover {
+    background-color: #b71c1c; /* Rojo más oscuro al pasar ratón */
+}
+
+.plus-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    padding-bottom: 3px;
+}
+
+/* Ajuste para que el componente CampoTexto se comporte bien en el grid */
+.form-grid .div-campo {
+    width: 100%;
+}
+.form-grid .div-campo input {
+    width: 100% !important; /* Forzamos el ancho completo dentro del grid */
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #eee; /* Fondo grisáceo como en la foto */
+}

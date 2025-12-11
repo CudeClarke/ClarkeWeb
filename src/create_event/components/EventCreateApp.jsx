@@ -1,68 +1,146 @@
 import React, { useState } from 'react';
 import TicketBuyDeploy from '../../ticket_buy/components/TicketBuyDeploy.jsx';
-import SelectEventType from './SelectButton.jsx';
+import SelectButton from './SelectButton.jsx';
 import '../styles/EventCreateApp.css';
+import FormularioConcierto from './FormularioConcierto.jsx';
+import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
 
-// URL de ejemplo de la flor. Sustitúyela por tu imagen local o URL correcta.
-const SUNFLOWER_IMAGE_URL = "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673"; 
+// --- CONFIGURACIÓN DE IMÁGENES ---
+// Aquí debes poner las rutas reales a tus imágenes importadas o URLs.
+const EVENT_IMAGES = {
+    // Imagen por defecto (Girasol) cuando no hay nada seleccionado
+    default: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673",
+    
+    // Las claves deben coincidir EXACTAMENTE con los 'value' de tus botones en SelectButton
+    Carrera: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee49eb83d37",   // Foto de los corredores
+    Rifa: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4d13de7bd",         // Foto del bingo/rifa
+    Concierto: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4f4261631", // Foto del concierto
+    Otro: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673" // Girasol u otra
+};
 
 function EventCreateApp() {
-    const [activeStep, setActiveStep] = useState(0); 
-    const [eventType, setEventType] = useState(null);
+    // ESTADO
+    const [isActive, setActive] = useState(0);
+    const [eventData, setEventData] = useState({
+        type: null, 
+        details: null 
+    });
 
+    // --- ESTADO PARA LA ALERTA ---
+    const [alertInfo, setAlert] = useState({ status: null, msg: "" });
+
+    const showAlert = (status, msg) => {
+        setAlert({ status, msg });
+        // Limpiamos la alerta un poco después de que termine su animación interna (3000ms)
+        setTimeout(() => {
+            setAlert({ status: null, msg: "" });
+        }, 4000);
+    };
+
+    // LÓGICA PARA ELEGIR LA IMAGEN ACTUAL
+    // Si hay un tipo seleccionado, usa su imagen. Si no, usa la default.
+    const currentSideImage = eventData.type && EVENT_IMAGES[eventData.type] 
+        ? EVENT_IMAGES[eventData.type] 
+        : EVENT_IMAGES.default;
+
+    const handleFormSuccess = (formData) => {
+        // Guardamos los datos recibidos del formulario
+        setEventData({ ...eventData, details: formData });
+        // Avanzamos al siguiente paso
+        setActive(2);
+        // ALERTA DE ÉXITO AL CONFIRMAR DATOS
+        showAlert(IS_OK, "Datos del evento guardados correctamente");
+    };
     return (
         <div className="three-column-layout">
-            
-            {/* 1. COLUMNA IZQUIERDA (Margen Izquierdo) */}
-            <div className="layout-column left-column">
-                {/* Aquí puedes poner algo en el futuro si quieres, de momento vacío */}
-            </div>
 
-            {/* 2. COLUMNA CENTRAL (Contenido) */}
-            {/* Esta columna tendrá los bordes verdes a los lados */}
-            <div className="layout-column center-column">
-                
-                <TicketBuyDeploy 
-                    name="Seleccionar tipo de evento" 
-                    isSelected={activeStep === 0}
-                    handleHeaderClick={() => setActiveStep(0)}
-                >
-                    <SelectEventType 
-                        handleConfirm={(selectedType) => {
-                            setEventType(selectedType);
-                            setActiveStep(1); 
+            <div className="left-column"></div>
+
+            <div className="center-column">
+
+                {/* --- PASO 0: WRAPPER --- */}
+                {/* Si isActive es 0, este bloque crece y empuja a los de abajo al fondo */}
+                <div className={`deploy-wrapper ${isActive === 0 ? 'expanded' : ''}`}>
+                    <TicketBuyDeploy
+                        name="Seleccionar tipo de evento"
+                        isSelected={isActive === 0}
+                        handleHeaderClick={() => {
+                            if (isActive !== 0) {
+                                setActive(0);
+                                setEventData({ type: null, details: null }); 
+                            }
                         }}
-                    />
-                </TicketBuyDeploy>
+                    >
+                        <SelectButton
+                            handleConfirm={(selectedType) => {
+                                setEventData({ ...eventData, type: selectedType });
+                                setActive(1);
+                                // ALERTA DE ÉXITO AL SELECCIONAR TIPO
+                                showAlert(IS_OK, "Tipo de evento seleccionado: " + selectedType);
+                            }}
+                        />
+                    </TicketBuyDeploy>
+                </div>
 
-                <TicketBuyDeploy 
-                    name="Datos Evento" 
-                    isSelected={activeStep === 1}
-                    handleHeaderClick={() => {
-                        if(eventType) setActiveStep(1);
-                    }}
-                >
-                   <div style={{padding: "20px"}}>Contenido de Datos del Evento...</div>
-                </TicketBuyDeploy>
 
-                <TicketBuyDeploy 
-                    name="Verificar Evento" 
-                    isSelected={activeStep === 2}
-                    handleHeaderClick={() => {
-                        if(eventType && activeStep >= 1) setActiveStep(2);
-                    }}
-                >
-                   <div style={{padding: "20px"}}>Contenido de Verificación...</div>
-                </TicketBuyDeploy>
+                {/* --- PASO 1: WRAPPER --- */}
+                {/* Si isActive es 1, este bloque crece. Empuja al Paso 2 al fondo */}
+                <div className={`deploy-wrapper ${isActive === 1 ? 'expanded' : ''}`}>
+                    <TicketBuyDeploy
+                        name="Datos Evento"
+                        isSelected={isActive === 1}
+                        handleHeaderClick={() => {
+                            if (eventData.type !== null && isActive !== 1) setActive(1);
+                        }}
+                    >
+                        <div style={{ padding: "20px" }}>
+                            
+                            {/* RENDERIZADO CONDICIONAL: SI ES CONCIERTO, MOSTRAMOS SU FORMULARIO */}
+                            {eventData.type === "Concierto" && (
+                                <FormularioConcierto onFormSubmit={handleFormSuccess} triggerAlert={showAlert} />
+                            )}
+
+                            {/* Resto de tipos (placeholders por ahora) */}
+                            {eventData.type === "Carrera" && <p>Formulario Carrera en construcción...</p>}
+                            {eventData.type === "Rifa" && <p>Formulario Rifa en construcción...</p>}
+                            {eventData.type === "Otro" && <p>Formulario Otro en construcción...</p>}
+
+                            {/* NOTA: Hemos quitado el botón "CONFIRMAR DATOS" genérico de aquí,
+                                porque ahora cada formulario tiene el suyo propio dentro. */}
+                        </div>
+                    </TicketBuyDeploy>
+                </div>
+
+
+                {/* --- PASO 2: WRAPPER --- */}
+                {/* Si isActive es 2, este crece (aunque ya no hay nada debajo) */}
+                <div className={`deploy-wrapper ${isActive === 2 ? 'expanded' : ''}`}>
+                    <TicketBuyDeploy
+                        name="Verificar Evento"
+                        isSelected={isActive === 2}
+                        handleHeaderClick={() => {
+                            if (eventData.type && eventData.details && isActive !== 2) setActive(2);
+                        }}
+                    >
+                        <div style={{ padding: "20px" }}>
+                            <h3>Resumen: {eventData.type}</h3>
+                            <button className="confirm-button">CREAR EVENTO</button>
+                        </div>
+                    </TicketBuyDeploy>
+                </div>
 
             </div>
 
-            {/* 3. COLUMNA DERECHA (Margen Derecho + Flor) */}
-            <div className="layout-column right-column">
+            <div className="right-column">
                 <div className="flower-container">
-                    <img src={SUNFLOWER_IMAGE_URL} alt="Girasol" className="flower-img" />
+                    <img src={currentSideImage} alt="Decoración lateral" className="flower-img" />
                 </div>
             </div>
+
+            {/* --- RENDERIZADO DE LA ALERTA --- */}
+            {alertInfo.status !== null && (
+                <Alert type={alertInfo.status} msg={alertInfo.msg} />
+            )}
 
         </div>
     );
