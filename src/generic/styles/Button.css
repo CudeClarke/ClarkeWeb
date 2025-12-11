@@ -58,3 +58,47 @@
     transition: all .3s;
 }
 
+
+.popUp-button{
+    background-color: #0fab13;
+    color: white;
+
+    padding: .8vh;
+    padding-left: 8%;
+    padding-right: 8%;
+
+    border: .1px solid white;
+    border-radius: .6em;
+
+    height: 3vw;
+
+    font-size: 100%;
+}
+
+.popUp-button:hover{
+    background-color: #1b701d;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.gray-button{
+    background-color: #a1a6a1;
+    color: white;
+
+    padding: .8vh;
+    padding-left: 8%;
+    padding-right: 8%;
+
+    border: .1px solid white;
+    border-radius: .6em;
+
+    height: 3vw;
+
+    font-size: 100%;
+}
+
+.gray-button:hover{
+    background-color: #282a28;
+    transition: all .3s;
+    cursor: pointer;
+} 
