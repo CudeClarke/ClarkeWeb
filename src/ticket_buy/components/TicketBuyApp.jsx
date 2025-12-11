@@ -7,7 +7,7 @@ import { getTicketsFromEvent, generateRequestForTickets, cancelTransaction, uplo
 import { isValidUser } from '../utils/fieldValidation/field_validation_functions.js'
 import Section_image from './Section_image.jsx'
 import { Alert, IS_ERROR, IS_OK } from '../../generic/components/Alert.jsx'
-
+import {Accessibility_button, IS_OFF, IS_ON} from './Accessibility_button.jsx'
 
 
 function clarkeAlert(setAlert, content){
@@ -36,7 +36,7 @@ function TicketBuyApp({event_id}){
 
     const [transactionId, setTransactionId] = useState(null);
 
-
+    const [isAccessible, setAccessible] = useState(false);
 
     const handleWindowExit = (e)=>{
       cancelTransaction(transactionId);
@@ -130,6 +130,7 @@ function TicketBuyApp({event_id}){
                   }
                 }
 
+                isAccessible={isAccessible}
               ></SubMenuTicketSelect>
               
             :<></>
@@ -165,12 +166,16 @@ function TicketBuyApp({event_id}){
                     if(status != 200){
                       //panico, notificamos al usuario
                       clarkeAlert(setAlert,{status: IS_ERROR, msg: msg});
-                      return;
+                      return -1;
                     }
 
                     //si llegamos hasta aquí todo bien, podemos seguir
                     setBuyerInfo(data);
 
+                    if(isAccessible){
+                      uploadTicketsInfo(receivedTickets, data, receivedTickets.map((t)=>{return {name: data.name, surname: data.surname, email: data.email, dni:data.dni}}), transactionId);
+                      window.location.href = ("/payment/?transactionId="+transactionId);
+                    }
                     //pasamos a la última parte
                     setActive(2);
 
@@ -178,8 +183,11 @@ function TicketBuyApp({event_id}){
 
 
                   }
-                }
 
+                }
+                
+                isAccessible={isAccessible}
+                
                 ></SubMenuUserData>
 
             </TicketBuyDeploy>
@@ -242,6 +250,10 @@ function TicketBuyApp({event_id}){
       :
         <></>
     }
+    <div className={"accessibility-button-app-wrap"} title={isAccessible ? 'Desactivar modo accesible' : "Activar modo accesible"} onClick={()=>setAccessible(!isAccessible)}>
+      <Accessibility_button type={isAccessible?IS_ON:IS_OFF}></Accessibility_button>
+    </div>
+
     </>
     )
 }
