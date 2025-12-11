@@ -12,7 +12,11 @@ function TicketBuyDeploy({name, isSelected, handleHeaderClick, children}){
         <div className={deploy_header_classname}  onClick={()=>handleHeaderClick()}> <p>{isSelected ? "v" : ">"}</p>{name}</div>
         
         <div className={deploy_content_classname}>
-            {children}
+            {
+                isSelected ?
+                children
+                :<></>
+            }
         </div>
         
     </div>;
