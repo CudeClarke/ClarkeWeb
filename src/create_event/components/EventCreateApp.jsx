@@ -4,6 +4,7 @@ import SelectButton from './SelectButton.jsx';
 import '../styles/EventCreateApp.css';
 import FormularioConcierto from './FormularioConcierto.jsx';
 import FormularioRifa from './FormularioRifa.jsx';
+import FormularioOtro from './FormularioOtro.jsx';
 import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
 
 // --- CONFIGURACIÓN DE IMÁGENES ---
@@ -116,7 +117,9 @@ function EventCreateApp() {
                             {eventData.type === "Rifa" && (
                                 <FormularioRifa onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
                             )}
-                            {eventData.type === "Otro" && <p>Formulario Otro en construcción...</p>}
+                            {eventData.type === "Otro" && (
+                                <FormularioOtro onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
+                            )}
 
                             {/* NOTA: Hemos quitado el botón "CONFIRMAR DATOS" genérico de aquí,
                                 porque ahora cada formulario tiene el suyo propio dentro. */}

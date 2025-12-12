@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 // Asegúrate de que la ruta a CampoTexto es correcta según tu estructura
 import { CampoTexto } from "../../generic/components/CampoTexto";
-import '../styles/FormularioRifa.css';
+import '../styles/FormularioOtro.css';
 import CampoAdjunto from "../../generic/components/CampoAdjunto"; 
 import { IS_ERROR } from "../../generic/components/Alert"; // Importamos la constante de error
 
-function FormularioRifa({ onFormSubmit, triggerAlert, onBackClick }) {
+function FormularioOtro({ onFormSubmit, triggerAlert, onBackClick }) {
     // --- ESTADOS ---
 
     // 1. Datos principales del evento
@@ -13,9 +13,9 @@ function FormularioRifa({ onFormSubmit, triggerAlert, onBackClick }) {
         nombre: '',
         fecha: '',
         localizacion: '',
-        dorsales: '',
+        hora: '',
+        aforo: '',
         recaudacion: '',
-        precio: '',
         descripcion: '',
         imagen: ''
     });
@@ -32,7 +32,7 @@ function FormularioRifa({ onFormSubmit, triggerAlert, onBackClick }) {
     const validateForm = () => {
         // Campos obligatorios: nombre, fecha, localizacion, dorsales, recaudacion, precio
         // Opcionales: descripcion, imagen
-        const mandatoryFields = ['nombre', 'fecha', 'localizacion', 'dorsales', 'recaudacion', 'precio'];
+        const mandatoryFields = ['nombre', 'fecha', 'localizacion', 'hora', 'aforo', 'recaudacion'];
 
         for (const field of mandatoryFields) {
             if (!mainData[field] || !mainData[field].trim()) {
@@ -80,19 +80,19 @@ function FormularioRifa({ onFormSubmit, triggerAlert, onBackClick }) {
                     handleChange={(e) => handleMainDataChange(e, 'localizacion')}
                 />
                 <CampoTexto
-                    nombre="NUMERO DE DORSALES" placeholder="Número de dorsales" obligatorio="si"
-                    value={mainData.dorsales} hasValue={!!mainData.dorsales}
-                    handleChange={(e) => handleMainDataChange(e, 'dorsales')}
+                    nombre="HORA" placeholder="Hora del evento" obligatorio="si"
+                    value={mainData.hora} hasValue={!!mainData.hora}
+                    handleChange={(e) => handleMainDataChange(e, 'hora')}
+                />
+                <CampoTexto
+                    nombre="AFORO" placeholder="Número de entradas a la venta" obligatorio="si"
+                    value={mainData.aforo} hasValue={!!mainData.aforo}
+                    handleChange={(e) => handleMainDataChange(e, 'aforo')}
                 />
                 <CampoTexto
                     nombre="RECAUDACION" placeholder="Ingresos para recaudar" obligatorio="si"
                     value={mainData.recaudacion} hasValue={!!mainData.recaudacion}
                     handleChange={(e) => handleMainDataChange(e, 'recaudacion')}
-                />
-                <CampoTexto
-                    nombre="PRECIO" placeholder="Precio para participar" obligatorio="si"
-                    value={mainData.precio} hasValue={!!mainData.precio}
-                    handleChange={(e) => handleMainDataChange(e, 'precio')}
                 />
             </div>
 
@@ -135,4 +135,4 @@ function FormularioRifa({ onFormSubmit, triggerAlert, onBackClick }) {
     );
 }
 
-export default FormularioRifa;
+export default FormularioOtro;
