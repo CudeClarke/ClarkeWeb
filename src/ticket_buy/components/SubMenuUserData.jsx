@@ -7,7 +7,7 @@ import UserDataAccessiblePopUpContent from './UserDataAccessiblePopUpContent';
 import { Content_popUp } from './Content_popUp';
 import { IS_ERROR } from '../../generic/components/Alert';
 
-function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert}){
+function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, exitAccessible}){
 
     const [data, setData] = useState({name: "", surname: "", email: "", dni: "", tlf: "", address: "", postal_code: "", spam: false, consent: false, partner: false})
 
@@ -246,6 +246,7 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert}){
                         value={accessibleStep == 0 ? data.name : accessibleStep == 1 ? data.surname : accessibleStep == 2 ? data.email : data.dni}
                         handleChangeField={fieldsForPopUp[accessibleStep].handleChangeField}
                         handleContinue={fieldsForPopUp[accessibleStep].handleContinue}
+                        exitAccessible={exitAccessible}
                     >
 
                     </UserDataAccessiblePopUpContent>
