@@ -1,13 +1,16 @@
 import events from '../../../events/assets/test2.json'
 
-function getEventFromId(evid){
+async function getEventFromId(evid){
+    
+    let event;
 
-    let event = events.filter((e)=> e.idEvento == evid);
-
-    if(event.length > 0){
-        event = event.at(0);
+    if(!import.meta.env.VITE_IS_API_LOCAL){
+        event = events.filter((e)=> (e.idEvento == evid)).at(0)
     }else{
-        return null;
+        const URL = import.meta.env.VITE_API_URL ?? "localhost";
+        const PORT = import.meta.env.VITE_API_PORT ?? "8080";
+        const response = await fetch(`http://${URL}:${PORT}/eventos/${evid}`);
+        event = await response.json();
     }
 
     return {
@@ -25,8 +28,9 @@ function getEventFromId(evid){
 }
 
 
-function getTicketsFromEvent(evid){
-    return [
+async function getTicketsFromEvent(evid){
+
+    const tickets = [
         {   
             evid: 0,
             id: 1,
@@ -49,67 +53,160 @@ function getTicketsFromEvent(evid){
             price: 24.99
         }
     ];
+
+    if(!import.meta.env.VITE_IS_API_LOCAL){
+        return tickets;
+    }else{
+        const URL = import.meta.env.VITE_API_URL ?? "localhost";
+        const PORT = import.meta.env.VITE_API_PORT ?? "8080";
+
+        const response = await fetch(`http://${URL}:${PORT}/eventos/${evid}/entradas`);
+        let api_tickets = await response.json();
+
+        api_tickets = api_tickets.map((ticket)=>{
+            return {
+                evid: ticket.idEvento,
+                id: ticket.entrada.id,
+                name: ticket.entrada.nombre,
+                descrip: ticket.entrada.descripcion,
+                price: ticket.entrada.precio
+            }
+        })
+
+        return api_tickets;
+    }
+
 }
 
-function generateRequestForTickets(selectedTickets, tickets){
+async function generateRequestForTickets(selectedTickets, tickets){
 
     //creamos el json para la query ( todo muy provisional )
     const requestJson = tickets.map((tckt, index)=>{
-        if(selectedTickets[index]>0) return {amount: selectedTickets[index], id: tckt.id, evid: tckt.evid, name: tckt.name}
+        if(selectedTickets[index]>0) return {amount: selectedTickets[index], idEntrada: tckt.id, idEvento: tckt.evid, name: tckt.name}
         else return null;
     }).filter(n=>n)
 
-    //aqui se hará un trabajo interesante de llamadas a la api
-    //habrá que pedir una confirmación de que esas entradas estén disponibles y tal 
-    //emulamos una posible respuesta
-    const {response, status} = getTicketsFromRequest(requestJson);
+    //llamamos a la api
+    const {status, ..._} = await checkTickets(requestJson);
 
+    let response = [];
 
-    //nos devuelven tambien un transaction id que usaremos para recordar al servidor las entradas que nos han sido prestadas o para cancelarlas
-    const transaction_id = Math.trunc(Math.random()*100);
-
-    return {response, transaction_id, status};
-}
-
-function getTicketsFromRequest(list_of_requested_tickets){
-    //en fin tu sabes, aqui el backend hará lo suyo
-
-    const response = []
-
-    for(let i = 0; i<list_of_requested_tickets.length; i++){
-        for(let j = 0; j<list_of_requested_tickets[i].amount; j++){
-            let req = list_of_requested_tickets[i];
-            response.push({name: req.name, evid: req.evid, id: req.id+req.evid+Math.trunc((Math.random()*10))})
+    for(let i = 0; i<requestJson.length; i++){
+        for(let j = 0; j<requestJson[i].amount; j++){
+            let req = requestJson[i];
+            response.push({name: req.name, evid: req.idEvento, id: req.idEntrada})
         }
     }
 
-    return { response: response,
-        status: 200
-    }
+    return {response, status};
 }
 
-function uploadTicketsInfo(tickets, buyer, guests, transactionId){
-    //aqui haré mi llamada a la api
-    return true; 
+async function checkTickets(list_of_requested_tickets){
+    //en fin tu sabes, aqui el backend hará lo suyo
+
+    if(!import.meta.env.VITE_IS_API_LOCAL){
+        return { response: "ok", status: 200 }
+    }else{
+        const URL = import.meta.env.VITE_API_URL ?? "localhost";
+        const PORT = import.meta.env.VITE_API_PORT ?? "8080";
+
+        const response = await fetch(`http://${URL}:${PORT}/comprar/check`, {
+            method: "POST",
+            body: JSON.stringify(list_of_requested_tickets)
+            
+        });
+
+        const result = await response.json();
+
+        return { response: result.Status == "OK" ? "ok" : "error", status: result.Status == "OK" ? 200 : 400};
+
+    }
+
+    
+}
+
+async function uploadTicketsInfo(tickets, buyer, guests){
+    //en fin tu sabes, aqui el backend hará lo suyo
+
+    if(!import.meta.env.VITE_IS_API_LOCAL){
+        return { status: 200, transactionId: Math.trunc(Math.random()*100) }
+    }else{
+        const URL = import.meta.env.VITE_API_URL ?? "localhost";
+        const PORT = import.meta.env.VITE_API_PORT ?? "8080";
+
+        const response = await fetch(`http://${URL}:${PORT}/comprar/start`, {
+            method: "POST",
+            body: JSON.stringify({
+                comprador: {
+                    nombre: buyer.name,
+                    apellidos: buyer.surname,
+                    email: buyer.email,
+                    dni: buyer.dni,
+                    spam: buyer.spam,
+                    direccion: buyer.address,
+                    tlf: buyer.tlf
+                },
+                lista_entradas: tickets.map((ticket, index)=>{
+                    return {
+                        idEvento: ticket.evid,
+                        idEntrada: ticket.id,
+                        dni: guests[index].dni,
+                    }
+                })
+            })
+        });
+
+        const result = await response.json();
+
+        return {status: result.Status == "OK" ? 200: 400, transactionId: result.Message}
+    }
 }   
 
-function cancelTransaction(transactionId){
-    if(transactionId !== null){
-        //llamada a la api para cancelar la transaccion
-        console.log("El usuario ha cancelado la transaccion");
+async function cancelTransaction(transactionId){
+    if(transactionId !== null && !import.meta.env.VITE_IS_API_LOCAL){
+        const URL = import.meta.env.VITE_API_URL ?? "localhost";
+        const PORT = import.meta.env.VITE_API_PORT ?? "8080";
+
+        const response = await fetch(`http://${URL}:${PORT}/comprar/cancelar/${transactionId}`);
+
+        return;
     }
 }
 
 
-function fetchUserFromServer(dni){
-    return new Promise((resolve) => {
-        console.log("Requested ",dni," to server");
-        setTimeout(() => {
-        console.log("userFound");
-        //resolve({name: "Abel", surname: "Fernandez Palomo", email:"micorreo@gmail.com", dni:dni, tlf: "", address: "", postal_code: "", consent: false, spam: false, partner: false});
-        resolve(null);
-        }, 5000);
-    })
+async function fetchUserFromServer(dni){
+    if(!import.meta.env.VITE_IS_API_LOCAL){
+        return new Promise((resolve) => {
+            setTimeout(() => {
+            resolve({name: "Abel", surname: "Fernandez Palomo", email:"micorreo@gmail.com", dni:dni, tlf: "", address: "", postal_code: "", consent: false, spam: false, partner: false});
+            }, 5000);
+        })
+    }else{
+        const URL = import.meta.env.VITE_API_URL ?? "localhost";
+        const PORT = import.meta.env.VITE_API_PORT ?? "8080";
+
+        const response = await fetch(`http://${URL}:${PORT}/usuario/${dni}`);
+
+        const result = await response.json();
+
+        if(result.hasOwnProperty("Status")){
+            return null;
+        }else{
+            return {
+                name: result.nombre,
+                surname: result.apellidos,
+                email: result.email,
+                dni: result.dni,
+                spam: result.spam,
+                address: result.direccion,
+                tlf: result.tlf,
+                postal_code: "",
+                consent: false,
+                partner: false
+            }
+        }
+
+    }
 }
 
-export {fetchUserFromServer, getTicketsFromEvent, generateRequestForTickets, getTicketsFromRequest, cancelTransaction, uploadTicketsInfo, getEventFromId}
+export {fetchUserFromServer, getTicketsFromEvent, generateRequestForTickets, cancelTransaction, uploadTicketsInfo, getEventFromId}
