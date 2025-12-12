@@ -85,6 +85,17 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
         }
     };
 
+    // Función para determinar si el campo es válido (tiene contenido)
+    const isFieldValid = (field) => {
+        const value = mainData[field];
+        return !!value && typeof value === 'string' && value.trim().length > 0;
+    };
+
+    // Función para determinar si un campo específico dentro de UN TICKET es válido
+    const isTicketFieldValid = (ticket, field) => {
+        const value = ticket[field]; // Obtenemos el valor del campo dentro del objeto ticket
+        return !!value && typeof value === 'string' && value.trim().length > 0;
+    };
 
     // --- RENDER ---
     return (
@@ -92,26 +103,34 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
             
             {/* SECCIÓN 1: Datos Principales (Grid 2 columnas) */}
             <div className="form-grid">
-                <CampoTexto
-                    nombre="NOMBRE" placeholder="Nombre del concierto" obligatorio="si"
-                    value={mainData.nombre} hasValue={!!mainData.nombre}
-                    handleChange={(e) => handleMainDataChange(e, 'nombre')}
-                />
-                <CampoTexto
-                    nombre="FECHA" placeholder="dd/mm/aaaa" obligatorio="si"
-                    value={mainData.fecha} hasValue={!!mainData.fecha}
-                    handleChange={(e) => handleMainDataChange(e, 'fecha')}
-                />
-                <CampoTexto
-                    nombre="LOCALIZACION" placeholder="Dirección" obligatorio="si"
-                    value={mainData.localizacion} hasValue={!!mainData.localizacion}
-                    handleChange={(e) => handleMainDataChange(e, 'localizacion')}
-                />
-                <CampoTexto
-                    nombre="ARTISTA/S" placeholder="Nombre del artista o grupo" obligatorio="si"
-                    value={mainData.artista} hasValue={!!mainData.artista}
-                    handleChange={(e) => handleMainDataChange(e, 'artista')}
-                />
+                <div className={isFieldValid('nombre') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto
+                        nombre="NOMBRE" placeholder="Nombre del concierto" obligatorio="si"
+                        value={mainData.nombre} hasValue={!!mainData.nombre}
+                        handleChange={(e) => handleMainDataChange(e, 'nombre')}
+                    />
+                </div>
+                <div className={isFieldValid('fecha') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto
+                        nombre="FECHA" placeholder="dd/mm/aaaa" obligatorio="si"
+                        value={mainData.fecha} hasValue={!!mainData.fecha}
+                        handleChange={(e) => handleMainDataChange(e, 'fecha')}
+                    />
+                </div>
+                <div className={isFieldValid('localizacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto
+                        nombre="LOCALIZACION" placeholder="Dirección" obligatorio="si"
+                        value={mainData.localizacion} hasValue={!!mainData.localizacion}
+                        handleChange={(e) => handleMainDataChange(e, 'localizacion')}
+                    />
+                </div>
+                <div className={isFieldValid('artista') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto
+                        nombre="ARTISTA/S" placeholder="Nombre del artista o grupo" obligatorio="si"
+                        value={mainData.artista} hasValue={!!mainData.artista}
+                        handleChange={(e) => handleMainDataChange(e, 'artista')}
+                    />
+                </div>
             </div>
 
 
@@ -121,21 +140,27 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
                     <div key={ticket.id} className="ticket-block">
                         <h4 className="ticket-section-title">Tipo de entrada {index + 1}</h4>
                         <div className="form-grid">
-                            <CampoTexto
-                                nombre="NOMBRE" placeholder="Ej: Entrada General" obligatorio="si"
-                                value={ticket.nombre} hasValue={!!ticket.nombre}
-                                handleChange={(e) => handleTicketChange(e, ticket.id, 'nombre')}
-                            />
-                            <CampoTexto
-                                nombre="CANTIDAD" placeholder="Ej: 300" obligatorio="si"
-                                value={ticket.cantidad} hasValue={!!ticket.cantidad}
-                                handleChange={(e) => handleTicketChange(e, ticket.id, 'cantidad')}
-                            />
-                            <CampoTexto
-                                nombre="PRECIO" placeholder="Ej: 20€" obligatorio="si"
-                                value={ticket.precio} hasValue={!!ticket.precio}
-                                handleChange={(e) => handleTicketChange(e, ticket.id, 'precio')}
-                            />
+                            <div className={isTicketFieldValid(ticket, 'nombre') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                                <CampoTexto
+                                    nombre="NOMBRE" placeholder="Ej: Entrada General" obligatorio="si"
+                                    value={ticket.nombre} hasValue={!!ticket.nombre}
+                                    handleChange={(e) => handleTicketChange(e, ticket.id, 'nombre')}
+                                />
+                            </div>
+                            <div className={isTicketFieldValid(ticket, 'cantidad') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                                <CampoTexto
+                                    nombre="CANTIDAD" placeholder="Ej: 300" obligatorio="si"
+                                    value={ticket.cantidad} hasValue={!!ticket.cantidad}
+                                    handleChange={(e) => handleTicketChange(e, ticket.id, 'cantidad')}
+                                />
+                            </div>
+                            <div className={isTicketFieldValid(ticket, 'precio') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                                <CampoTexto
+                                    nombre="PRECIO" placeholder="Ej: 20€" obligatorio="si"
+                                    value={ticket.precio} hasValue={!!ticket.precio}
+                                    handleChange={(e) => handleTicketChange(e, ticket.id, 'precio')}
+                                />
+                            </div>
                         </div>
                     </div>
                 ))}

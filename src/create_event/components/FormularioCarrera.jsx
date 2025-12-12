@@ -57,6 +57,11 @@ function FormularioCarrera({ onFormSubmit, triggerAlert, onBackClick }) {
         onBackClick({ ...mainData });
     }; 
 
+    // Función para determinar si el campo es válido (tiene contenido)
+    const isFieldValid = (field) => {
+        const value = mainData[field];
+        return !!value && typeof value === 'string' && value.trim().length > 0;
+    };
 
     // --- RENDER ---
     return (
@@ -64,36 +69,49 @@ function FormularioCarrera({ onFormSubmit, triggerAlert, onBackClick }) {
 
             {/* SECCIÓN 1: Datos Principales (Grid 2 columnas) */}
             <div className="form-grid">
-                <CampoTexto className="ctxt"
-                    nombre="NOMBRE" placeholder="Nombre" obligatorio="si"
-                    value={mainData.nombre} hasValue={!!mainData.nombre}
-                    handleChange={(e) => handleMainDataChange(e, 'nombre')}
-                />
-                <CampoTexto className="ctxt"
-                    nombre="FECHA" placeholder="dd/mm/aaaa" obligatorio="si"
-                    value={mainData.fecha} hasValue={!!mainData.fecha}
-                    handleChange={(e) => handleMainDataChange(e, 'fecha')}
-                />
-                <CampoTexto className="ctxt"
-                    nombre="LOCALIZACION" placeholder="Dirección" obligatorio="si"
-                    value={mainData.localizacion} hasValue={!!mainData.localizacion}
-                    handleChange={(e) => handleMainDataChange(e, 'localizacion')}
-                />
-                <CampoTexto className="ctxt"
-                    nombre="HORA" placeholder="Hora del evento" obligatorio="si"
-                    value={mainData.hora} hasValue={!!mainData.hora}
-                    handleChange={(e) => handleMainDataChange(e, 'hora')}
-                />
-                <CampoTexto className="ctxt"
-                    nombre="RECAUDACION" placeholder="Ingresos para recaudar" obligatorio="si"
-                    value={mainData.recaudacion} hasValue={!!mainData.recaudacion}
-                    handleChange={(e) => handleMainDataChange(e, 'recaudacion')}
-                />
-                <CampoTexto className="ctxt"
-                    nombre="NUMERO DE DORSALES" placeholder="Número de dorsales" obligatorio="si"
-                    value={mainData.dorsales} hasValue={!!mainData.dorsales}
-                    handleChange={(e) => handleMainDataChange(e, 'dorsales')}
-                />
+                <div className={isFieldValid('nombre') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto className="ctxt"
+                        nombre="NOMBRE" placeholder="Nombre" obligatorio="si"
+                        value={mainData.nombre} hasValue={!!mainData.nombre}
+                        handleChange={(e) => handleMainDataChange(e, 'nombre')}
+                    />
+                </div>
+                <div className={isFieldValid('fecha') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto className="ctxt"
+                        nombre="FECHA" placeholder="dd/mm/aaaa" obligatorio="si"
+                        value={mainData.fecha} hasValue={!!mainData.fecha}
+                        handleChange={(e) => handleMainDataChange(e, 'fecha')}
+                    />
+                </div>
+
+                <div className={isFieldValid('localizacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto className="ctxt"
+                        nombre="LOCALIZACION" placeholder="Dirección" obligatorio="si"
+                        value={mainData.localizacion} hasValue={!!mainData.localizacion}
+                        handleChange={(e) => handleMainDataChange(e, 'localizacion')}
+                    />
+                </div>
+                <div className={isFieldValid('hora') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto className="ctxt"
+                        nombre="HORA" placeholder="Hora del evento" obligatorio="si"
+                        value={mainData.hora} hasValue={!!mainData.hora}
+                        handleChange={(e) => handleMainDataChange(e, 'hora')}
+                    />
+                </div>
+                <div className={isFieldValid('recaudacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto className="ctxt"
+                        nombre="RECAUDACION" placeholder="Ingresos para recaudar" obligatorio="si"
+                        value={mainData.recaudacion} hasValue={!!mainData.recaudacion}
+                        handleChange={(e) => handleMainDataChange(e, 'recaudacion')}
+                    />
+                </div>
+                <div className={isFieldValid('dorsales') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto className="ctxt"
+                        nombre="NUMERO DE DORSALES" placeholder="Número de dorsales" obligatorio="si"
+                        value={mainData.dorsales} hasValue={!!mainData.dorsales}
+                        handleChange={(e) => handleMainDataChange(e, 'dorsales')}
+                    />
+                </div>
             </div>
 
 

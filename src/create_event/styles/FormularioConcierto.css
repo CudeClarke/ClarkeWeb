@@ -95,3 +95,48 @@
     border-radius: 4px;
     background-color: #eee; /* Fondo grisáceo como en la foto */
 }
+
+#campo {
+    padding: 10px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
+/* 1. Asegura que el contenedor del campo es relativo.
+   Si ya estaba en el CSS de CampoTexto, genial. Si no, intenta forzarlo: */
+.validation-wrapper .div-campo {
+    position: relative !important; 
+}
+
+/* 2. DIBUJAR EL TICK: Usamos el wrapper para detectar la validez, 
+      y posicionamos el tick dentro del .div-campo. */
+.validation-wrapper.is-valid .div-campo::after {
+    content: '✓'; 
+    
+    position: absolute;
+    right: 15px; 
+    
+    /* AJUSTE CLAVE: Como el wrapper está en el grid,
+       ajustamos la posición vertical para que caiga sobre el input. */
+    top: 35px; /* <--- AJUSTA ESTE VALOR manualmente según tu diseño */
+    
+    color: green;
+    font-size: 1.2em;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* 3. AJUSTE DE PADDING: Dejamos espacio dentro del input. */
+.validation-wrapper.is-valid .div-campo input[type="text"] {
+    padding-right: 30px !important; 
+}
+
+/* 4. ARREGLAR EL GRID (Muy Importante): 
+      Si tu grid espera que .div-campo sean los elementos hijos, 
+      debemos asegurarnos de que el .validation-wrapper se comporta como un .div-campo. */
+.form-grid > .validation-wrapper {
+    /* Esto hace que el wrapper ocupe un slot en el grid de 2 columnas */
+    display: block; 
+    width: 100%;
+}
