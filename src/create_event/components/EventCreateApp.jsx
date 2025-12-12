@@ -4,6 +4,7 @@ import SelectButton from './SelectButton.jsx';
 import '../styles/EventCreateApp.css';
 import FormularioConcierto from './FormularioConcierto.jsx';
 import FormularioRifa from './FormularioRifa.jsx';
+import FormularioCarrera from './FormularioCarrera.jsx';
 import FormularioOtro from './FormularioOtro.jsx';
 import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
 
@@ -60,7 +61,7 @@ function EventCreateApp() {
         // 2. Opcional: Limpiar los datos del evento para que el usuario pueda empezar de cero
         setEventData({ type: null, details: null });
         // 3. Mostrar un mensaje de confirmación
-        showAlert("Volviendo al paso de selección de tipo de evento.");
+        showAlert(IS_OK, "Volviendo al paso de selección de tipo de evento.");
     };
 
     return (
@@ -113,7 +114,9 @@ function EventCreateApp() {
                             )}
 
                             {/* Resto de tipos (placeholders por ahora) */}
-                            {eventData.type === "Carrera" && <p>Formulario Carrera en construcción...</p>}
+                            {eventData.type === "Carrera" && (
+                                <FormularioCarrera onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack} />
+                            )}
                             {eventData.type === "Rifa" && (
                                 <FormularioRifa onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
                             )}
