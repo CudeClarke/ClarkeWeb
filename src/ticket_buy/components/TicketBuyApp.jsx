@@ -188,6 +188,7 @@ function TicketBuyApp({event_id}){
                 
                 isAccessible={isAccessible}
                 
+                setAlert={(data)=>{clarkeAlert(setAlert, data)}}
                 ></SubMenuUserData>
 
             </TicketBuyDeploy>

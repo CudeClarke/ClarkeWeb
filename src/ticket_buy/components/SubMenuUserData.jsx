@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import {CampoTexto} from '../../generic/components/CampoTexto'
 import { ClarkeButton, IS_CONFIRM, IS_RETURN } from '../../generic/components/Button';
 import '../styles/SubMenuUserData.css'
 import {PopUp} from '../../generic/components/PopUp'
 import UserDataAccessiblePopUpContent from './UserDataAccessiblePopUpContent';
+import { Content_popUp } from './Content_popUp';
+import { IS_ERROR } from '../../generic/components/Alert';
 
-function SubMenuUserData({handleConfirm, handleReturn, isAccessible}){
+function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert}){
 
     const [data, setData] = useState({name: "", surname: "", email: "", dni: "", tlf: "", address: "", postal_code: "", spam: false, consent: false, partner: false})
 
     const [accessibleStep, setAccessibleStep] = useState(0);
+
+    const [requestForAutocomplete, setRequestForAutocomplete] = useState(1);
 
     const fieldsForPopUp = [
         {
@@ -42,6 +46,23 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible}){
 
     return (
     <>
+
+        {
+            (requestForAutocomplete && !isAccessible) ? (<PopUp>
+                <Content_popUp handleContinue={
+                    (data)=>{
+                        setRequestForAutocomplete(0)
+                        if(data == null){
+                            setAlert({status: IS_ERROR, msg: "No se encontró el usuario"});
+                            return;
+                        }
+                        setData(data);
+                    }} handleCancel={()=>{console.log("el user no ha querido");setRequestForAutocomplete(0)}}>
+
+                </Content_popUp>
+            </PopUp>) : <></>
+        }
+
         <div className='sub-menu-user-data-wrap'>
             <div className='sub-menu-user-data-half'>
                 <h1>Datos Básicos</h1>

@@ -100,4 +100,16 @@ function cancelTransaction(transactionId){
     }
 }
 
-export {getTicketsFromEvent, generateRequestForTickets, getTicketsFromRequest, cancelTransaction, uploadTicketsInfo, getEventFromId}
+
+function fetchUserFromServer(dni){
+    return new Promise((resolve) => {
+        console.log("Requested ",dni," to server");
+        setTimeout(() => {
+        console.log("userFound");
+        //resolve({name: "Abel", surname: "Fernandez Palomo", email:"micorreo@gmail.com", dni:dni, tlf: "", address: "", postal_code: "", consent: false, spam: false, partner: false});
+        resolve(null);
+        }, 5000);
+    })
+}
+
+export {fetchUserFromServer, getTicketsFromEvent, generateRequestForTickets, getTicketsFromRequest, cancelTransaction, uploadTicketsInfo, getEventFromId}
