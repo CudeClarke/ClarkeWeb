@@ -3,6 +3,9 @@ import TicketBuyDeploy from '../../ticket_buy/components/TicketBuyDeploy.jsx';
 import SelectButton from './SelectButton.jsx';
 import '../styles/EventCreateApp.css';
 import FormularioConcierto from './FormularioConcierto.jsx';
+import FormularioRifa from './FormularioRifa.jsx';
+import FormularioCarrera from './FormularioCarrera.jsx';
+import FormularioOtro from './FormularioOtro.jsx';
 import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
 
 // --- CONFIGURACIÓN DE IMÁGENES ---
@@ -10,7 +13,7 @@ import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
 const EVENT_IMAGES = {
     // Imagen por defecto (Girasol) cuando no hay nada seleccionado
     default: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673",
-    
+
     // Las claves deben coincidir EXACTAMENTE con los 'value' de tus botones en SelectButton
     Carrera: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee49eb83d37",   // Foto de los corredores
     Rifa: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4d13de7bd",         // Foto del bingo/rifa
@@ -22,8 +25,8 @@ function EventCreateApp() {
     // ESTADO
     const [isActive, setActive] = useState(0);
     const [eventData, setEventData] = useState({
-        type: null, 
-        details: null 
+        type: null,
+        details: null
     });
 
     // --- ESTADO PARA LA ALERTA ---
@@ -39,8 +42,8 @@ function EventCreateApp() {
 
     // LÓGICA PARA ELEGIR LA IMAGEN ACTUAL
     // Si hay un tipo seleccionado, usa su imagen. Si no, usa la default.
-    const currentSideImage = eventData.type && EVENT_IMAGES[eventData.type] 
-        ? EVENT_IMAGES[eventData.type] 
+    const currentSideImage = eventData.type && EVENT_IMAGES[eventData.type]
+        ? EVENT_IMAGES[eventData.type]
         : EVENT_IMAGES.default;
 
     const handleFormSuccess = (formData) => {
@@ -51,6 +54,16 @@ function EventCreateApp() {
         // ALERTA DE ÉXITO AL CONFIRMAR DATOS
         showAlert(IS_OK, "Datos del evento guardados correctamente");
     };
+
+    const handleBack = () => {
+        // 1. Volver al primer paso
+        setActive(0);
+        // 2. Opcional: Limpiar los datos del evento para que el usuario pueda empezar de cero
+        setEventData({ type: null, details: null });
+        // 3. Mostrar un mensaje de confirmación
+        showAlert(IS_OK, "Volviendo al paso de selección de tipo de evento.");
+    };
+
     return (
         <div className="three-column-layout">
 
@@ -67,7 +80,7 @@ function EventCreateApp() {
                         handleHeaderClick={() => {
                             if (isActive !== 0) {
                                 setActive(0);
-                                setEventData({ type: null, details: null }); 
+                                setEventData({ type: null, details: null });
                             }
                         }}
                     >
@@ -94,16 +107,22 @@ function EventCreateApp() {
                         }}
                     >
                         <div style={{ padding: "20px" }}>
-                            
+
                             {/* RENDERIZADO CONDICIONAL: SI ES CONCIERTO, MOSTRAMOS SU FORMULARIO */}
                             {eventData.type === "Concierto" && (
                                 <FormularioConcierto onFormSubmit={handleFormSuccess} triggerAlert={showAlert} />
                             )}
 
                             {/* Resto de tipos (placeholders por ahora) */}
-                            {eventData.type === "Carrera" && <p>Formulario Carrera en construcción...</p>}
-                            {eventData.type === "Rifa" && <p>Formulario Rifa en construcción...</p>}
-                            {eventData.type === "Otro" && <p>Formulario Otro en construcción...</p>}
+                            {eventData.type === "Carrera" && (
+                                <FormularioCarrera onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack} />
+                            )}
+                            {eventData.type === "Rifa" && (
+                                <FormularioRifa onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
+                            )}
+                            {eventData.type === "Otro" && (
+                                <FormularioOtro onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
+                            )}
 
                             {/* NOTA: Hemos quitado el botón "CONFIRMAR DATOS" genérico de aquí,
                                 porque ahora cada formulario tiene el suyo propio dentro. */}
