@@ -4,17 +4,22 @@ import Evento from './Evento.jsx'
 import { ExpandedEvent } from './ExpandedEvent.jsx'
 import { useEffect, useState } from 'react';
 import {PopUp} from '/src/generic/components/PopUp.jsx'
-import { fetchEvents, fetchFromLocal } from '../utils/api/api_functions.js';
+import { fetchEvents } from '../utils/api/api_functions.js';
 
 function EvListApp(){
 
     const [eventList, setEventList] = useState([]);
 
     useEffect(()=>{
-        setEventList(fetchEvents());
+        const fn = async ()=>{
+            setEventList(await fetchEvents());
+        }
+        fn();
     }, []);
 
     const [selected, setSelected] = useState(null)
+
+    const images_url = (import.meta.env.VITE_IS_API_LOCAL == "no" ? `http://${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}/` : "/")
 
     return (
         <>
@@ -29,7 +34,7 @@ function EvListApp(){
                                     title={evento.name} 
                                     location={evento.location} 
                                     date={evento.date} 
-                                    imageUrl={evento.img} 
+                                    imageUrl={images_url+evento.img} 
                                     more_info_click_effect={
                                         () => {
                                             setSelected(evento)
@@ -55,7 +60,7 @@ function EvListApp(){
                             name={selected.name} 
                             location={selected.location} 
                             date={selected.date}
-                            imageUrl={selected.img}
+                            imageUrl={images_url+selected.img}
                             descrip={selected.description}
                             tag_list={selected.tag_list}
                             objective_recaudation={selected.objective_recaudation}

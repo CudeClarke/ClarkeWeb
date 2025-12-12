@@ -4,7 +4,7 @@ async function getEventFromId(evid){
     
     let event;
 
-    if(!import.meta.env.VITE_IS_API_LOCAL){
+    if(import.meta.env.VITE_IS_API_LOCAL == "si"){
         event = events.filter((e)=> (e.idEvento == evid)).at(0)
     }else{
         const URL = import.meta.env.VITE_API_URL ?? "localhost";
@@ -54,7 +54,7 @@ async function getTicketsFromEvent(evid){
         }
     ];
 
-    if(!import.meta.env.VITE_IS_API_LOCAL){
+    if(import.meta.env.VITE_IS_API_LOCAL == "si"){
         return tickets;
     }else{
         const URL = import.meta.env.VITE_API_URL ?? "localhost";
@@ -104,7 +104,7 @@ async function generateRequestForTickets(selectedTickets, tickets){
 async function checkTickets(list_of_requested_tickets){
     //en fin tu sabes, aqui el backend hará lo suyo
 
-    if(!import.meta.env.VITE_IS_API_LOCAL){
+    if(import.meta.env.VITE_IS_API_LOCAL == "si"){
         return { response: "ok", status: 200 }
     }else{
         const URL = import.meta.env.VITE_API_URL ?? "localhost";
@@ -128,7 +128,7 @@ async function checkTickets(list_of_requested_tickets){
 async function uploadTicketsInfo(tickets, buyer, guests){
     //en fin tu sabes, aqui el backend hará lo suyo
 
-    if(!import.meta.env.VITE_IS_API_LOCAL){
+    if(import.meta.env.VITE_IS_API_LOCAL == "si"){
         return { status: 200, transactionId: Math.trunc(Math.random()*100) }
     }else{
         const URL = import.meta.env.VITE_API_URL ?? "localhost";
@@ -163,7 +163,7 @@ async function uploadTicketsInfo(tickets, buyer, guests){
 }   
 
 async function cancelTransaction(transactionId){
-    if(transactionId !== null && !import.meta.env.VITE_IS_API_LOCAL){
+    if(transactionId !== null && import.meta.env.VITE_IS_API_LOCAL == "si"){
         const URL = import.meta.env.VITE_API_URL ?? "localhost";
         const PORT = import.meta.env.VITE_API_PORT ?? "8080";
 
@@ -175,7 +175,7 @@ async function cancelTransaction(transactionId){
 
 
 async function fetchUserFromServer(dni){
-    if(!import.meta.env.VITE_IS_API_LOCAL){
+    if(import.meta.env.VITE_IS_API_LOCAL == "si"){
         return new Promise((resolve) => {
             setTimeout(() => {
             resolve({name: "Abel", surname: "Fernandez Palomo", email:"micorreo@gmail.com", dni:dni, tlf: "", address: "", postal_code: "", consent: false, spam: false, partner: false});
