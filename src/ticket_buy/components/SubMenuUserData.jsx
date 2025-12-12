@@ -132,14 +132,16 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
                     <input 
                         onChange={()=>{
                             const newData = {...data};
-                            newData.spam = !newData.spam;
+                            newData.consent = !newData.consent;
                             setData(newData)
                         }} 
                         type='checkbox' 
-                        id='spam' 
+                        id='consent' 
+                        value={data.consent}
                         className='sub-menu-user-data-checkbox'
                         /> 
-                    <label className='sub-menu-user-data-checkbox-label' htmlFor="spam">Quiero recibir más información sobre cudeca</label>
+                    <label className='sub-menu-user-data-checkbox-label' htmlFor="consent">Consiento el tratamiento de mis datos por Cudeca</label>
+                    <p>*</p>
                 </div>
             </div>
             
@@ -178,7 +180,7 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
                         hasValue
                     />
                     <CampoTexto 
-                        nombre="CÓDIGO POSTAl" 
+                        nombre="CÓDIGO POSTAL" 
                         placeholder="Código Postal" 
                         obligatorio="no" 
                         handleChange={
@@ -197,15 +199,14 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
                             <input 
                                 onChange={()=>{
                                     const newData = {...data};
-                                    newData.consent = !newData.consent;
+                                    newData.spam = !newData.spam;
                                     setData(newData)
                                 }} 
                                 type='checkbox' 
                                 id='spam' 
                                 className='sub-menu-user-data-checkbox'
                                 /> 
-                            <label className='sub-menu-user-data-checkbox-label' htmlFor="spam">Consiento el tratamiento de mis datos por Cudeca</label>
-                            <p>*</p>
+                            <label className='sub-menu-user-data-checkbox-label' htmlFor="spam">Quiero recibir más información sobre cudeca</label>
                         </div>
 
                         <div className='sub-menu-user-data-checkbox-wrap'>
@@ -216,10 +217,10 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
                                     setData(newData)
                                 }} 
                                 type='checkbox' 
-                                id='spam' 
+                                id='partner' 
                                 className='sub-menu-user-data-checkbox'
                                 /> 
-                            <label className='sub-menu-user-data-checkbox-label' htmlFor="spam">Quiero ser socio de Cudeca</label>
+                            <label className='sub-menu-user-data-checkbox-label' htmlFor="partner">Quiero ser socio de Cudeca</label>
                         </div>
                     </div>
                 </div>
