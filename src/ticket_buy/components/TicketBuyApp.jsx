@@ -34,23 +34,22 @@ function TicketBuyApp({event_id}){
 
     const [alertInfo, setAlert] = useState({status: null, msg: ""});
 
-    const [transactionId, setTransactionId] = useState(null);
-
     const [isAccessible, setAccessible] = useState(false);
 
-    const handleWindowExit = (e)=>{
-      cancelTransaction(transactionId);
-    }
 
     useEffect(()=>{
-      window.addEventListener("beforeunload", handleWindowExit);
 
-      setTickets(getTicketsFromEvent(event_id));
+      const fn = async()=>{
 
-      setEventInfo(getEventFromId(event_id));
+        setTickets(await getTicketsFromEvent(event_id));
+
+        setEventInfo(await getEventFromId(event_id));
+
+      }
+
+      fn();
 
       ()=>{
-        window.removeEventListener("beforeunload", handleWindowExit);
       }
     }, [])
 
@@ -93,7 +92,7 @@ function TicketBuyApp({event_id}){
 
               isSelected={isActive===0} 
 
-              handleHeaderClick={()=>{if(isActive != 0) {setActive(0); setReceivedTickets(null); cancelTransaction(transactionId);}}} //siempre se puede volver al primero, pero implica anular los tickets pedidos
+              handleHeaderClick={()=>{if(isActive != 0) {setActive(0); setReceivedTickets(null);}}} //siempre se puede volver al primero, pero implica anular los tickets pedidos
               >
               
               {
@@ -106,9 +105,9 @@ function TicketBuyApp({event_id}){
                 ticket_types={tickets}
 
                 handleConfirm={
-                  (selectedTickets)=>{
+                  async (selectedTickets)=>{
 
-                    const {response, transaction_id, status} = generateRequestForTickets(selectedTickets, tickets)
+                    const {response, status} = await generateRequestForTickets(selectedTickets, tickets)
 
                     if(status != 200){
                       //aqui panick total, no nos han dado lo que queriamos
@@ -119,9 +118,6 @@ function TicketBuyApp({event_id}){
 
                     //si seguimos aqui es q nos han dado nuestras entradas con sus id, las guardamos en un estado 
                     setReceivedTickets(response);
-
-                    //actualizamos y guardamos nuestro transaction id
-                    setTransactionId(transaction_id);
 
                     //y ya podemos pasar a la siguiente parte, nos cerramos y abrimos la siguiente pestaña
                     setActive(1);
@@ -158,7 +154,7 @@ function TicketBuyApp({event_id}){
                 handleReturn={()=>{setActive(0); setReceivedTickets(null)}} //volver hacia atras, se borran los tickets pedidos, si vuelve los tendra que volver a pedir
 
                 handleConfirm={
-                  (data)=>{
+                  async (data)=>{
 
                     const {status, msg} = isValidUser(data);
 
@@ -173,7 +169,12 @@ function TicketBuyApp({event_id}){
                     setBuyerInfo(data);
 
                     if(isAccessible){
-                      uploadTicketsInfo(receivedTickets, data, receivedTickets.map((t)=>{return {name: data.name, surname: data.surname, email: data.email, dni:data.dni}}), transactionId);
+                      const {status, transactionId} = await uploadTicketsInfo(receivedTickets, data, receivedTickets.map((t)=>{return {name: data.name, surname: data.surname, email: data.email, dni:data.dni}}));
+                      
+                      if(status != 200){
+                        clarkeAlert(setAlert, {status: IS_ERROR, msg: "Ha ocurrido un error contactando con el servido por favor inténtelo más tarde."});
+                        return;
+                      }
                       window.location.href = ("/payment/?transactionId="+transactionId);
                     }
                     //pasamos a la última parte
@@ -216,14 +217,15 @@ function TicketBuyApp({event_id}){
                     selected_tickets={receivedTickets} 
                     buyer_info={buyerInfo} 
                     handleReturn={()=>isActive(2)}
-                    handleConfirm={(data)=>{
+                    handleConfirm={async (data)=>{
                       if(data.every( u => isValidUser(u).status == 200)){ //es decir, si todos los usuarios son validos
                         //ya se mandará el mensaje final a la api
-                        uploadTicketsInfo(receivedTickets, buyerInfo, data, transactionId);
+                        const {status, transactionId} = await uploadTicketsInfo(receivedTickets, buyerInfo, data);
 
-                        window.removeEventListener("beforeunload", handleWindowExit);
-
-                        window.addEventListener("beforeunload", (e)=>{});
+                        if(status != 200){
+                          clarkeAlert(setAlert, {status: IS_ERROR, msg: "Ha ocurrido un error relacionado con el servidor, inténtelo de nuevo más tarde"});
+                          return;
+                        }
 
                         window.location.href = ("/payment/?transactionId="+transactionId);
 
