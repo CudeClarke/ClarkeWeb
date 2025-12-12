@@ -52,7 +52,7 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
                 <Content_popUp handleContinue={
                     (data)=>{
                         setRequestForAutocomplete(0)
-                        if(data == null){
+                        if(data === null){
                             setAlert({status: IS_ERROR, msg: "No se encontró el usuario"});
                             return;
                         }
