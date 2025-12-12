@@ -217,7 +217,7 @@ function TicketBuyApp({event_id}){
                   <SubMenuGuestData 
                     selected_tickets={receivedTickets} 
                     buyer_info={buyerInfo} 
-                    handleReturn={()=>isActive(2)}
+                    handleReturn={()=>setActive(1)}
                     handleConfirm={async (data)=>{
                       if(data.every( u => isValidUser(u).status == 200)){ //es decir, si todos los usuarios son validos
                         //ya se mandará el mensaje final a la api
