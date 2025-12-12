@@ -1,5 +1,7 @@
 
 .div-content{
+
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -40,8 +42,17 @@
     width: 100vw;
 }
 
+.div-ctxt-dni .div-campo{
+    width: 100%;
+}
+
+.div-ctxt-dni .div-campo > input{
+    width: 80% !important;
+    padding: .5em !important;
+}
+
 .p-inferior{
-    font-size: .5em;
+    font-size: .7em;
     padding-top: 1.2em;
 }
 
@@ -89,78 +100,34 @@
     justify-content: center;   
 }
 
-.text-reduced{
+.dot-wrap{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 5px;
-    font-size: 1.2em;
+    gap: .2em;
+}
+.dot{
+    width: .7em;
+    height: .7em;
+    border-radius: 50%;
+    background-color: #0fab13;
+    animation: bounce .8s infinite alternate;
 }
 
-.div-content-collaborate{
-    display: flex;
-    flex-direction: column;
-
-    gap: 30px;
-
-    border: 2px solid black;
-    border-radius: .5em;
-    box-shadow: 0 0 3px 2px rgba(108, 112, 114, 0.7); /* X | Y | Difuminado | Extensión | Color */    
-
-    margin-left: 0%;
-    margin-top: 0%;
-
-    z-index: 100;
-
-    padding: 30px 20px; /* Padding interior del modal */
-
-    width: 35vw; /* Ancho específico para el diseño */
+.dot1{
+    animation-delay: 0;
 }
 
-.div-body-collaborate{
-    display: flex;
-    justify-content: center;
+.dot2{
+    animation-delay: .25s;
 }
 
-.div-body{
+.dot3{
+    animation-delay: .52s;
 }
 
-.div-txtUp{
-    display: flex;
-    justify-content: center;
-    margin-top: -5%;
-    gap: 20px;
+
+
+@keyframes bounce {
+    0%{transform: translateY(-50%);}
+    100%{transform: translateY(50%);}
 }
 
-.div-collaborate{
-    margin-top: 3%;
-}
-
-.ctxt-collaborate{
-}
-
-.div-button-collaborate{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1em;
-    font-size: .8em;
-}
-
-.div-cb-donar{ /* Creo un div */
-    width: 15vw;
-    padding-bottom: .8em;
-}
-
-.div-cb-denegar{
-    width: 15vw; 
-    margin-left: 30%;   
-}
-
-.p-txtDown{
-    font-size: .5em;
-}
-
-.img-flor2{
-    width: 5vw;
-}
