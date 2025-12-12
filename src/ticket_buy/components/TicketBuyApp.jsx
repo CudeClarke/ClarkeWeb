@@ -53,8 +53,9 @@ function TicketBuyApp({event_id}){
       }
     }, [])
 
-
-    const backgroundImage = "url('"+(eventInfo != null ? eventInfo.img : "")+"')";
+    const images_url = (import.meta.env.VITE_IS_API_LOCAL == "no" ? `http://${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}/` : "/")
+    const eventimage_url = (eventInfo != null ? ""+images_url+""+eventInfo.img: "");
+    const background_event = `url('${eventimage_url}')`;
 
     return (
       eventInfo == null ?
@@ -64,7 +65,7 @@ function TicketBuyApp({event_id}){
 
 
       <div style={{
-        backgroundImage: backgroundImage, 
+        backgroundImage: background_event, 
         width: "80%", 
         margin: "auto",
         backgroundRepeat: "no-repeat",
@@ -243,7 +244,7 @@ function TicketBuyApp({event_id}){
 
           </div>
           
-          <Section_image nombre={eventInfo.name} ubicacion={eventInfo.location} fecha={eventInfo.date} imageUrl={eventInfo.img}></Section_image>
+          <Section_image nombre={eventInfo.name} ubicacion={eventInfo.location} fecha={eventInfo.date} imageUrl={eventimage_url}></Section_image>
         
         </div>
 
