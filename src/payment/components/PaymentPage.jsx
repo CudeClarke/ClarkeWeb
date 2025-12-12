@@ -365,16 +365,14 @@ if (selectedMethod === 'mastercard') {
             </ClarkeButton>
           </div>
           <div className='payment-cancel-button'>
-              <ClarkeButton text={"Cancelar"} type={IS_RETURN} size={"1em"} click_effect={()=>{
+              <ClarkeButton text={"Cancelar"} type={IS_RETURN} size={"1em"} click_effect={async ()=>{
                 const url = new URL(window.location.href);
 
                 const transactionId = url.searchParams.get("transactionId");
 
-                cancelTransaction(transactionId);
+                await cancelTransaction(transactionId);
 
-                setTimeout(()=>{
-                  window.location.href = "/"
-                }, 1000)
+                window.location.href = "/"
                 
               }}
             ></ClarkeButton>
