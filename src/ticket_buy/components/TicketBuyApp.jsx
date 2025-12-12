@@ -189,6 +189,8 @@ function TicketBuyApp({event_id}){
                 isAccessible={isAccessible}
                 
                 setAlert={(data)=>{clarkeAlert(setAlert, data)}}
+
+                exitAccessible={()=>setAccessible(false)}
                 ></SubMenuUserData>
 
             </TicketBuyDeploy>
@@ -251,9 +253,13 @@ function TicketBuyApp({event_id}){
       :
         <></>
     }
-    <div className={"accessibility-button-app-wrap"} title={isAccessible ? 'Desactivar modo accesible' : "Activar modo accesible"} onClick={()=>setAccessible(!isAccessible)}>
-      <Accessibility_button type={isAccessible?IS_ON:IS_OFF}></Accessibility_button>
-    </div>
+
+    {
+      (isActive == 2 || (isActive==1 && isAccessible)) ? <></>:
+      <div className={"accessibility-button-app-wrap"} title={isAccessible ? 'Desactivar modo accesible' : "Activar modo accesible"} onClick={()=>setAccessible(!isAccessible)}>
+        <Accessibility_button type={isAccessible?IS_ON:IS_OFF}></Accessibility_button>
+      </div>
+    }
 
     </>
     )
