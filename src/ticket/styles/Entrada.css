@@ -61,7 +61,6 @@
   margin: 5%;
   
   width: 90%;
-  height: 20%;
   font-weight: bold;
   
 }
@@ -82,7 +81,7 @@
   font-size: 1vw;
   border-radius: 0.5em;
   margin-left: 5%;
-  width: 50%;
+  width: 40%;
   font-weight: bold;
 }
 
@@ -96,7 +95,7 @@
   font-size: 1vw;
   border-radius: 0.5em;
   margin-left: 5%;
-  width: 35%;
+  width: 45%;
   font-weight: bold;
 }
 .nombrePersona p {
@@ -135,10 +134,11 @@
 .patrocinadores {
   width: 90%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 3em;
   align-items: center;
-  
 }
+
 
 .patrocinadores img {
   width: 25%;
