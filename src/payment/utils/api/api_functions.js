@@ -22,7 +22,7 @@ async function sendData(data, transactionId){
     if(import.meta.env.VITE_IS_API_LOCAL == "si"){
         return new Promise((resolve) => {
           setTimeout(() => {
-            resolve(true);
+            resolve({status: true, ids: [1, 2, 3, 4]});
           }, 5000);
         });
     }else{
@@ -36,8 +36,12 @@ async function sendData(data, transactionId){
         });
 
         const result = await response.json();
+        let status = true;
+        if(Object.keys(result).some((k)=>k=="Status")){
+            status = false;
+        }
 
-        return result.Status === "OK";
+        return {status: status, ids: result};
 
     }
 

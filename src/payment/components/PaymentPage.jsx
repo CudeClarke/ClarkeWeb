@@ -336,13 +336,16 @@ if (selectedMethod === 'mastercard') {
                 const url = new URL(window.location.href);
 
                 const transactionId = url.searchParams.get("transactionId");
-                let success;
+                let success, lista_ids;
 
                 setWaiting(true);
 
                 try{
                   //enviar al servidor
-                  success = await sendData({method: selectedMethod, ...selectedData}, transactionId);
+                  let {status, ids} = await sendData({method: selectedMethod, ...selectedData}, transactionId);
+                  console.log(status, ids);
+                  success = status;
+                  lista_ids = ids;
 
                 }catch(e){
 
@@ -352,7 +355,7 @@ if (selectedMethod === 'mastercard') {
                 
                 if(success){
 
-                  window.location.href = "/"
+                  window.location.href = "/ticket/?id="+lista_ids.join(",");
                   
                 }else{
 
