@@ -5,11 +5,20 @@ import '../styles/Formulario.css';
 import CampoAdjunto from "../../generic/components/CampoAdjunto"; 
 import { IS_ERROR } from "../../generic/components/Alert"; // Importamos la constante de error
 
-function FormularioConcierto({ onFormSubmit, triggerAlert }) {
+function FormularioConcierto({ onFormSubmit, triggerAlert, initialData }) {
     // --- ESTADOS ---
 
     // 1. Datos principales del evento
-    const [mainData, setMainData] = useState({
+    const [mainData, setMainData] = useState(initialData ? {
+            nombre: initialData.nombre,
+            ubicacion: initialData.ubicacion,
+            objetivoRecaudacion: initialData.objetivoRecaudacion,
+            descripcion: initialData.descripcion,
+            date: initialData.date,
+            url: initialData.url,
+            artista: initialData.artista,
+            tags: initialData.tags,
+        } : {
         nombre: "",
         ubicacion: "",
         objetivoRecaudacion: "",
@@ -64,30 +73,59 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
 
     // --- VALIDACIÓN Y ENVÍO ---
 
-    const validateForm = () => {
-        // 1. Validar datos principales
+    const validateEmptyFields = () => {
         for (const key in mainData) {
-            if (key != "url" && !mainData[key].trim()) return false;
+            if (key !== "url" && key !== "tags" && !mainData[key].trim()) return false;
         }
-
-        // 2. Validar datos de entradas
-        if (tickets.length === 0) return false; // Debe haber al menos una entrada
+        if (tickets.length === 0) return false;
         for (const ticket of tickets) {
-            if (!ticket.nombre.trim() || !ticket.subAforo.trim() || !ticket.precio.trim()) {
+            if (!ticket.nombre.trim() || !ticket.subAforo.trim() || !ticket.precio.trim() || !ticket.descripcion.trim()) {
                 return false;
             }
         }
         return true;
     };
 
-    const handleSubmit = () => {
-        if (validateForm()) {
-            // Si todo está OK, enviamos los datos al padre
-            onFormSubmit({ ...mainData, entradas: tickets });
-        } else {
-            // AQUÍ IRÁ TU COMPONENTE DE ALERTA GENÉRICO.
-            triggerAlert(IS_ERROR, "Por favor, rellena todos los campos obligatorios (*)");
+    const validateFormats = () => {
+        // 1. Fecha
+        const dateRegex = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+        if (!dateRegex.test(mainData.date)) {
+            triggerAlert(IS_ERROR, "El formato de la fecha debe ser aaaa-mm-dd");
+            return false;
         }
+
+        // 2. Números (Enteros o decimales)
+        const numRegex = /^[0-9]+(\.[0-9]+)?$/;
+
+        if (!numRegex.test(mainData.objetivoRecaudacion)) {
+            triggerAlert(IS_ERROR, "El Objetivo de Recaudación debe ser un número válido");
+            return false;
+        }
+
+        for (const ticket of tickets) {
+            if (!numRegex.test(ticket.subAforo)) {
+                triggerAlert(IS_ERROR, "La Cantidad de entradas debe ser un número");
+                return false;
+            }
+            if (!numRegex.test(ticket.precio)) {
+                triggerAlert(IS_ERROR, "El Precio de las entradas debe ser un número");
+                return false;
+            }
+        }
+
+        return true;
+    };
+
+    const handleSubmit = () => {
+        if (!validateEmptyFields()) {
+            triggerAlert(IS_ERROR, "Por favor, rellena todos los campos obligatorios (*)");
+            return;
+        }
+
+        if (!validateFormats()) {
+            return; // La alerta ya salta dentro de la función
+        }
+        onFormSubmit({ ...mainData, entradas: tickets });
     };
 
     // Función para determinar si el campo es válido (tiene contenido)
