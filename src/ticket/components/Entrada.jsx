@@ -10,8 +10,7 @@ import logoCudeca from '../assets/Logo.png'
   -idEntrada: codigo alfanumerico identificador de la entrada
 */
 
-function Entrada({nombreEvento,imagen,propietarioNombre,propietarioApellidos,qr,extraInfo,idEntrada}){
-
+function Entrada({nombreEvento,imagen,propietarioNombre,qr,extraInfo,idEntrada, patros}){
 
   return <div className="div-entrada" style={{ backgroundImage: `url(${imagen})` }}>
       <div className="Contenido">
@@ -22,7 +21,7 @@ function Entrada({nombreEvento,imagen,propietarioNombre,propietarioApellidos,qr,
             </div>
             <div className="filaDatos">  
               <div className="nombrePersona">
-                <p>{propietarioApellidos},</p><p>{propietarioNombre}</p>
+                <p>{propietarioNombre}</p>
               </div>
               <div className="extraDatos">
                 <p>{extraInfo}</p>
@@ -35,9 +34,10 @@ function Entrada({nombreEvento,imagen,propietarioNombre,propietarioApellidos,qr,
         </div>
         
         <div className="patrocinadores">
-          <img src={logoCudeca} alt="patro1" />
-          <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-213fdf8b6d92" alt="patro2" />
-          <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-214195f73e12" alt="patro3" />
+          {
+          patros.map(patrocinador=>{
+            return <img src={patrocinador.logo} alt={patrocinador.name}></img>
+          })}
         </div>
         <div className="idEntrada">
           <p>{idEntrada}</p>

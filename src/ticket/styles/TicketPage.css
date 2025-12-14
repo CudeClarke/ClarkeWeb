@@ -20,9 +20,29 @@
 .boton {
   display: flex;
   justify-content: center;
+  font-size: 1.5em;
+  border-radius: 1em;
+  padding: .8em;
+  gap: 1em;
+  background-color: #0fab13;
+  color: white;
+  align-items: center;
+  font-weight: bold;
+}
+
+.boton:hover{
+  cursor: pointer;
+  background-color: #0b700f;
+  transition: all .3s;
+}
+
+.boton-img-wrap{
+  height: 1em;
+  aspect-ratio: 7/4;
 }
 .boton img{
-  width: 3%;
+  width: 100%;
+  object-fit: cover;
 }
 .texto{
   margin: 0 auto;
@@ -50,15 +70,13 @@
   align-items: center;         /* centra verticalmente */
   background-color: #0fab13;
   font-size: 2em;
-  padding: 0.2em 0.5em;
-  padding-bottom: 0.3em;
   border: none;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 99999px;
   user-select: none;
   color: white;
-  width: 2vw;
-  height: 5vh;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .arrow:hover {

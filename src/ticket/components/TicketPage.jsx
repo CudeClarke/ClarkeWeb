@@ -1,49 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Entrada } from "./Entrada";
 import '../styles/TicketPage.css';
-import entradas from '../assets/test.json';
 import { ClarkeButton } from "../../generic/components/Button";
 import descargar from "../assets/descargar.png"
+import { getTicketsFromIds } from "../utils/api/api_functions";
+
 function TicketPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [entradas, setEntradas] = useState(null);
+
+  useEffect(()=>{
+    const fn = async()=>{
+      const url = new URL(window.location.href);
+      const idlist = url.searchParams.get("id").split(",");
+      setEntradas(await getTicketsFromIds(idlist));
+    }
+    fn();
+  }, [])
 
   const prevEntry = () => {
-    setCurrentIndex((prev) => (prev === 0 ? entradas.length - 1 : prev - 1));
+    setCurrentIndex(((currentIndex-1+entradas.length)%entradas.length));
   };
 
   const nextEntry = () => {
-    setCurrentIndex((prev) => (prev === entradas.length - 1 ? 0 : prev + 1));
+    setCurrentIndex(((currentIndex+1)%entradas.length));
   };
+  if(entradas){
+      return (
+        <div className="Body">
+          <div className="texto">
+            <h1>¡Entrada(s) comprada(s) con exito!</h1>
+          </div>
+          <div className="boton">
+            <p>{"Descargar aquí"}</p>
+            <div className="boton-img-wrap">
+              <img src={descargar} alt="descargar" />
+            </div>
+          </div>
+          <div className="carousel">
+            <div className="arrow left" onClick={prevEntry}><p>{"<"}</p></div>
+            <Entrada
+              key={entradas[currentIndex].idEntrada}
+              nombreEvento={entradas[currentIndex].nombreEvento}
+              imagen={entradas[currentIndex].imagen}
+              propietarioNombre={entradas[currentIndex].propietarioNombre}
+              qr={entradas[currentIndex].qr}
+              extraInfo={entradas[currentIndex].extraInfo}
+              idEntrada={entradas[currentIndex].idEntrada}
+              patros={entradas[currentIndex].patros}
+            />
+            <div className="arrow right" onClick={nextEntry}><p>{">"}</p></div>
+          </div>
 
-  return (
-    <div className="Body">
-      <div className="texto">
-        <h1>¡Entrada(s) comprada(s) con exito!</h1>
-      </div>
-      <div className="boton">
-        <ClarkeButton type={0} text={"Descargar aquí!!"}></ClarkeButton>
-        <img src={descargar} alt="" />
-      </div>
-      <div className="carousel">
-        <button className="arrow left" onClick={prevEntry}>{"<"}</button>
-        <Entrada
-          key={entradas[currentIndex].idEntrada}
-          nombreEvento={entradas[currentIndex].nombreEvento}
-          imagen={entradas[currentIndex].imagen}
-          propietarioNombre={entradas[currentIndex].propietarioNombre}
-          propietarioApellidos={entradas[currentIndex].propietarioApellidos}
-          qr={entradas[currentIndex].qr}
-          extraInfo={entradas[currentIndex].extraInfo}
-          idEntrada={entradas[currentIndex].idEntrada}
-        />
-        <button className="arrow right" onClick={nextEntry}>{">"}</button>
-      </div>
-
-      <div className="boton2">
-        <ClarkeButton type={2} text={"Seguir viendo eventos"}></ClarkeButton>
-      </div>
-    </div>
-  );
+          <div className="boton2">
+            <a href="/">
+              <ClarkeButton type={2} text={"Seguir viendo eventos"} size={"1em"}></ClarkeButton>
+            </a>
+          </div>
+        </div>
+      );
+    }else{
+      return <></>
+    }
 }
 
 export { TicketPage };
