@@ -1,0 +1,36 @@
+.Body {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1em;
+  border-left: 0.1em solid #0fab13;
+  border-right: 0.1em solid #0fab13;
+  display: flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.listaEntradas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.boton {
+  display: flex;
+  justify-content: center;
+}
+.boton img{
+  width: 3%;
+}
+.texto{
+  margin: 0 auto;
+  text-align: center;
+  color:#0fab13;
+  width: 100%;
+}
+
+.boton2 button{
+  text-decoration: none;
+}

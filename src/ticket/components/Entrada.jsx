@@ -1,12 +1,13 @@
 import "../styles/Entrada.css"
-
+import logoCudeca from '../assets/Logo.png'
 /*
   -nombreEvento: nombre del evento
   -imagen: imagen de fondo de la entrada
   -propietarioNombre: nombre de la persona a la que esta destinada la entrada
   -propietarioApellidos: apellidos de la persona
-  -qr: url de la imagen del qr
+  -qr: qr de la entrada
   -extraInfo: informacion extra del evento(como el asiento)
+  -idEntrada: codigo alfanumerico identificador de la entrada
 */
 
 function Entrada({nombreEvento,imagen,propietarioNombre,propietarioApellidos,qr,extraInfo,idEntrada}){
@@ -34,7 +35,7 @@ function Entrada({nombreEvento,imagen,propietarioNombre,propietarioApellidos,qr,
         </div>
         
         <div className="patrocinadores">
-          <img className="afate" src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-21405c747e1f" alt="patro1" />
+          <img src={logoCudeca} alt="patro1" />
           <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-213fdf8b6d92" alt="patro2" />
           <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-214195f73e12" alt="patro3" />
         </div>
