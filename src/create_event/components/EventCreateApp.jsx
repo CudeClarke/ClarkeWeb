@@ -7,63 +7,71 @@ import FormularioRifa from './FormularioRifa.jsx';
 import FormularioCarrera from './FormularioCarrera.jsx';
 import FormularioOtro from './FormularioOtro.jsx';
 import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
-import EventDataResume from './EventDataResume.jsx';
+import EventSummary from './EventSummary.jsx';
 import { uploadEvent } from '../utils/api/api_functions.js';
 
 // --- CONFIGURACIÓN DE IMÁGENES ---
-// Aquí debes poner las rutas reales a tus imágenes importadas o URLs.
 const EVENT_IMAGES = {
-    // Imagen por defecto (Girasol) cuando no hay nada seleccionado
     default: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673",
-
-    // Las claves deben coincidir EXACTAMENTE con los 'value' de tus botones en SelectButton
-    Carrera: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee49eb83d37",   // Foto de los corredores
-    Rifa: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4d13de7bd",         // Foto del bingo/rifa
-    Concierto: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4f4261631", // Foto del concierto
-    Otro: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673" // Girasol u otra
+    Carrera: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee49eb83d37",
+    Rifa: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4d13de7bd",
+    Concierto: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4f4261631",
+    Otro: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673"
 };
 
 function EventCreateApp() {
-    // ESTADO
     const [isActive, setActive] = useState(0);
     const [eventData, setEventData] = useState({
         type: null,
         details: null
     });
 
-    // --- ESTADO PARA LA ALERTA ---
     const [alertInfo, setAlert] = useState({ status: null, msg: "" });
 
     const showAlert = (status, msg) => {
         setAlert({ status, msg });
-        // Limpiamos la alerta un poco después de que termine su animación interna (3000ms)
         setTimeout(() => {
             setAlert({ status: null, msg: "" });
         }, 4000);
     };
 
-    // LÓGICA PARA ELEGIR LA IMAGEN ACTUAL
-    // Si hay un tipo seleccionado, usa su imagen. Si no, usa la default.
     const currentSideImage = eventData.type && EVENT_IMAGES[eventData.type]
         ? EVENT_IMAGES[eventData.type]
         : EVENT_IMAGES.default;
 
     const handleFormSuccess = (formData) => {
-        // Guardamos los datos recibidos del formulario
         setEventData({ ...eventData, details: formData });
-        // Avanzamos al siguiente paso
         setActive(2);
-        // ALERTA DE ÉXITO AL CONFIRMAR DATOS
         showAlert(IS_OK, "Datos del evento guardados correctamente");
     };
 
     const handleBack = () => {
-        // 1. Volver al primer paso
         setActive(0);
-        // 2. Opcional: Limpiar los datos del evento para que el usuario pueda empezar de cero
         setEventData({ type: null, details: null });
-        // 3. Mostrar un mensaje de confirmación
-        showAlert(IS_OK, "Volviendo al paso de selección de tipo de evento.");
+        showAlert(IS_OK, "Volviendo al inicio.");
+    };
+
+    const handleBackToForm = () => {
+        setActive(1);
+    };
+
+    const handleFinalSubmit = async () => {
+        try {
+            const fullEventData = { ...eventData.details, type: eventData.type };
+            const status = await uploadEvent(fullEventData);
+
+            if (!status) {
+                showAlert(IS_ERROR, "Error al crear el evento. Inténtelo más tarde.");
+            } else {
+                showAlert(IS_OK, "¡Evento creado con éxito!");
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 1500);
+            }
+        } catch (error) {
+            console.error(error);
+            showAlert(IS_ERROR, "Error de conexión.");
+        }
     };
 
     return (
@@ -73,8 +81,7 @@ function EventCreateApp() {
 
             <div className="center-column">
 
-                {/* --- PASO 0: WRAPPER --- */}
-                {/* Si isActive es 0, este bloque crece y empuja a los de abajo al fondo */}
+                {/* PASO 0 */}
                 <div className={`deploy-wrapper ${isActive === 0 ? 'expanded' : ''}`}>
                     <TicketBuyDeploy
                         name="Seleccionar tipo de evento"
@@ -90,16 +97,14 @@ function EventCreateApp() {
                             handleConfirm={(selectedType) => {
                                 setEventData({ ...eventData, type: selectedType });
                                 setActive(1);
-                                // ALERTA DE ÉXITO AL SELECCIONAR TIPO
-                                showAlert(IS_OK, "Tipo de evento seleccionado: " + selectedType);
+                                showAlert(IS_OK, "Tipo seleccionado: " + selectedType);
                             }}
                         />
                     </TicketBuyDeploy>
                 </div>
 
 
-                {/* --- PASO 1: WRAPPER --- */}
-                {/* Si isActive es 1, este bloque crece. Empuja al Paso 2 al fondo */}
+                {/* PASO 1: DATOS */}
                 <div className={`deploy-wrapper ${isActive === 1 ? 'expanded' : ''}`}>
                     <TicketBuyDeploy
                         name="Datos Evento"
@@ -109,32 +114,44 @@ function EventCreateApp() {
                         }}
                     >
                         <div style={{ padding: "20px" }}>
-
-                            {/* RENDERIZADO CONDICIONAL: SI ES CONCIERTO, MOSTRAMOS SU FORMULARIO */}
+                            {/* AQUÍ ES DONDE AÑADIMOS initialData={eventData.details} */}
+                            
                             {eventData.type === "Concierto" && (
-                                <FormularioConcierto onFormSubmit={handleFormSuccess} triggerAlert={showAlert} />
+                                <FormularioConcierto 
+                                    onFormSubmit={handleFormSuccess} 
+                                    triggerAlert={showAlert}
+                                    initialData={eventData.details} 
+                                />
                             )}
-
-                            {/* Resto de tipos (placeholders por ahora) */}
                             {eventData.type === "Carrera" && (
-                                <FormularioCarrera onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack} />
+                                <FormularioCarrera 
+                                    onFormSubmit={handleFormSuccess} 
+                                    triggerAlert={showAlert} 
+                                    onBackClick={handleBack}
+                                    initialData={eventData.details}
+                                />
                             )}
                             {eventData.type === "Rifa" && (
-                                <FormularioRifa onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
+                                <FormularioRifa 
+                                    onFormSubmit={handleFormSuccess} 
+                                    triggerAlert={showAlert} 
+                                    onBackClick={handleBack} 
+                                    initialData={eventData.details}
+                                />
                             )}
                             {eventData.type === "Otro" && (
-                                <FormularioOtro onFormSubmit={handleFormSuccess} triggerAlert={showAlert} onBackClick={handleBack}/>
+                                <FormularioOtro 
+                                    onFormSubmit={handleFormSuccess} 
+                                    triggerAlert={showAlert} 
+                                    initialData={eventData.details}
+                                />
                             )}
-
-                            {/* NOTA: Hemos quitado el botón "CONFIRMAR DATOS" genérico de aquí,
-                                porque ahora cada formulario tiene el suyo propio dentro. */}
                         </div>
                     </TicketBuyDeploy>
                 </div>
 
 
-                {/* --- PASO 2: WRAPPER --- */}
-                {/* Si isActive es 2, este crece (aunque ya no hay nada debajo) */}
+                {/* PASO 2: VERIFICAR */}
                 <div className={`deploy-wrapper ${isActive === 2 ? 'expanded' : ''}`}>
                     <TicketBuyDeploy
                         name="Verificar Evento"
@@ -144,17 +161,11 @@ function EventCreateApp() {
                         }}
                     >
                         <div className="event-app-event-resume">
-                            <h1>Resumen: {eventData.type}</h1>
-                            <EventDataResume event_data={eventData}></EventDataResume>
-                            <button className="confirm-button" onClick={async ()=>{
-                                const status = await uploadEvent({...eventData.details})
-
-                                if(!status){
-                                    showAlert(IS_ERROR, "Ha ocurrido un error intentado crear el evento, por favor inténtelo de nuevo más tarde.")
-                                }else{
-                                    window.location.href = "/"
-                                }
-                            }}>CREAR EVENTO</button>
+                            <EventSummary 
+                                eventData={eventData} 
+                                onFinalSubmit={handleFinalSubmit}
+                                onBack={handleBackToForm}
+                            />
                         </div>
                     </TicketBuyDeploy>
                 </div>
@@ -167,7 +178,6 @@ function EventCreateApp() {
                 </div>
             </div>
 
-            {/* --- RENDERIZADO DE LA ALERTA --- */}
             {alertInfo.status !== null && (
                 <Alert type={alertInfo.status} msg={alertInfo.msg} />
             )}
