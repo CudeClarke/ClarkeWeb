@@ -1,0 +1,153 @@
+.div-entrada > * {
+  position: relative;
+  z-index: 2;
+}
+.div-entrada{
+  margin:10%;
+  width: 40vw;        /* ancho */
+  height: 45vh;       /* alto */
+  border:solid;
+  border-width: 0.1em;
+  border-color: rgb(78, 68, 68);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2em;
+  /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);*/  
+}
+
+.div-entrada::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  filter: blur(5px);
+  transform: scale(1.1);
+  z-index: 0;
+}
+
+.div-entrada::after {
+  content: "";
+  position: absolute;
+  inset: 5%;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.8);  /* ⬅️ blanco con 30% de opacidad */
+  z-index: 1;
+}
+.Contenido {
+  position: absolute;
+  inset: 5%;
+  display: flex;
+  flex-direction: column; /* IMPORTANTE */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;    /* separa los bloques verticalmente */
+  
+  z-index: 2;
+  
+}
+
+.nombreEvento {
+  background-color: white;
+  text-align: center;
+  padding: 0.2em;
+  font-size: 1.5vw;
+  border-radius: 0.6em; 
+  margin: 5%;
+  
+  width: 90%;
+  height: 20%;
+  font-weight: bold;
+  
+}
+
+.filaDatos{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nombrePersona{
+  background-color: white;
+  text-align: center;
+  padding: 0.2em;
+  font-size: 1vw;
+  border-radius: 0.5em;
+  margin-left: 5%;
+  width: 50%;
+  height: 100%;
+  font-weight: bold;
+}
+
+.extraDatos{
+  background-color: white;
+  text-align: center;
+  padding: 0.2em;
+  font-size: 1vw;
+  border-radius: 0.5em;
+  margin-left: 5%;
+  width: 35%;
+  height: 100%;
+  font-weight: bold;
+}
+.nombrePersona p {
+  display: inline;
+}
+
+.qr{
+  display: inline;
+  
+}
+.qr img {
+  width: 100%;
+  height: auto;
+  grid-row: 1 / 3;
+}
+
+
+.primeraFila {
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* izquierda texto — derecha QR */
+  grid-template-rows: auto auto;     /* dos filas */
+  
+  width: 100%;
+  
+}
+
+.texto {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3; /* ocupa las dos filas */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 90%;
+}
+
+.patrocinadores {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.patrocinadores img {
+  width: 20%;
+  height: auto;
+}
+
+
+
+.idEntrada {
+  width: 100%;
+  align-items: center;
+}
+
+.idEntrada p{
+  font-size: 0.5em;
+  text-align: center;
+  margin-bottom: 10%;
+}
