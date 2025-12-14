@@ -8,7 +8,7 @@
     display: inline-block;
     width: 100%;
     /* Estilos del borde para parecerse a CampoTexto */
-    border: 1px solid #ccc;
+    border: 1px solid #0fab13;
     border-radius: 4px;
     background-color: white;
     overflow: hidden;
@@ -34,7 +34,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #888; /* Placeholder color */
+    color: #888888; /* Placeholder color */
 }
 
 .file-browse-button {

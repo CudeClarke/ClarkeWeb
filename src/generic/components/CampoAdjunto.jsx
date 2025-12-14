@@ -39,24 +39,33 @@ function CampoAdjunto({ nombre, placeholder, obligatorio, value, handleChange })
                 {isRequired && <span className="obligatorio-star"> *</span>}
             </label>
             <div className="custom-file-input">
-                <input
-                    type="file"
-                    id={nombre.toLowerCase()}
-                    name={nombre.toLowerCase()}
-                    onChange={handleFileChange}
-                    // Limita a archivos de imagen
-                    accept="image/*"
-                    // Permitir selección de varios archivos si fuera necesario
-                    multiple={false} 
-                />
-                
                 {/* Visualización personalizada para imitar CampoTexto */}
                 <span className="file-display-text">
                     {fileName}
+                    <input
+                        type="file"
+                        id={nombre.toLowerCase()}
+                        name={nombre.toLowerCase()}
+                        onChange={handleFileChange}
+                        // Limita a archivos de imagen
+                        accept="image/*"
+                        // Permitir selección de varios archivos si fuera necesario
+                        multiple={false} 
+                    />
                 </span>
 
                 <span className="file-browse-button">
                     {value ? 'Cambiar' : 'Seleccionar'}
+                    <input
+                        type="file"
+                        id={nombre.toLowerCase()}
+                        name={nombre.toLowerCase()}
+                        onChange={handleFileChange}
+                        // Limita a archivos de imagen
+                        accept="image/*"
+                        // Permitir selección de varios archivos si fuera necesario
+                        multiple={false} 
+                    />
                 </span>
             </div>
             
