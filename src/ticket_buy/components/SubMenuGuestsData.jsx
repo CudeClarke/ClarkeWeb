@@ -22,7 +22,7 @@ function generateGuestForms(selected_tickets, data, setData){
 
 function SubMenuGuestData({selected_tickets, buyer_info, handleConfirm, handleReturn}){
 
-    const [data, setData] = useState(selected_tickets.map((_)=>{return {name: "", surname: "", email: "", dni: ""}}))
+    const [data, setData] = useState(selected_tickets.map((_)=>{return {name: "", surname: "", email: "", dni: "", consent: true}}))
 
     return <div className='sub-menu-guest-data-wrap'>
 
