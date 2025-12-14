@@ -83,6 +83,7 @@ function EvListApp(){
                             imageUrl={images_url+selected.img}
                             descrip={selected.description}
                             tag_list={selected.tag_list}
+                            patr_list={selected.patr_list}
                             objective_recaudation={selected.objective_recaudation}
                             actual_recaudation={selected.actual_recaudation}
                             close_action={()=>setSelected(null)}

@@ -14,7 +14,8 @@ async function fetchEvents(){
                 tag_list: e.evento.tags,
                 objective_recaudation: e.evento.objetivoRecaudacion,
                 actual_recaudation: e.evento.recaudacion,
-                description: e.evento.descripcion
+                description: e.evento.descripcion,
+                patr_list: e.evento.patrocinadores
             }
         })
     }else{
@@ -34,7 +35,8 @@ async function fetchEvents(){
                 tag_list: e.evento.tags,
                 objective_recaudation: e.evento.objetivoRecaudacion,
                 actual_recaudation: e.evento.recaudacion,
-                description: e.evento.descripcion
+                description: e.evento.descripcion,
+                patr_list: e.evento.patrocinadores
             }
         });
 

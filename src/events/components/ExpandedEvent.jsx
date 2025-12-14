@@ -31,19 +31,14 @@ function ExpandedEvent({id, name, descrip, location, date, imageUrl, patr_list, 
                                 </div>
                             </div>
                             <div className='expanded-event-patros-list'>
-                                <div className='expanded-event-patro-wrap'>
-                                    <img className="expanded-event-patro-img" src='https://design.penpot.app/assets/by-file-media-id/8fd8c29f-33f9-8038-8007-20feabeb6e15'></img>
-                                </div>
-                                <div className='expanded-event-patro-wrap'>
-                                    <img className="expanded-event-patro-img" src='https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-20fe3f63b2e1'></img>
-                                </div>
-                                <div className='expanded-event-patro-wrap'>
-                                    <img className="expanded-event-patro-img" src='https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-20fe50652b98'></img>
-                                </div>
-
-                                <div className='expanded-event-patro-wrap'>
-                                    <img className="expanded-event-patro-img" src='https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-20fe50652b98'></img>
-                                </div>
+                                {
+                                    patr_list.map((p)=>{
+                                        const patr_url = (import.meta.env.VITE_IS_API_LOCAL == "no" ? `http://${import.meta.env.VITE_API_URL}:${import.meta.env.VITE_API_PORT}/${p.logo}` : "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-20fe50652b98")
+                                        return (<div className='expanded-event-patro-wrap'>
+                                            <img className="expanded-event-patro-img" src={patr_url} alt={p.nombre}></img>
+                                        </div>);
+                                    })
+                                }
                             </div>
                         </div>
 
