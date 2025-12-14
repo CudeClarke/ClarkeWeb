@@ -1,0 +1,39 @@
+.event-list-filter-section{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+    justify-content: space-between;
+    padding-top:5vh;
+    align-items: center;
+}
+
+.event-list-filter-section h1{
+    font-size: 3em;
+    font-weight: 900;
+}
+
+.event-list-search-box{
+    font-size: 1.1em;
+    padding: .5em;
+    padding-left: 1em;
+    border-radius: 9999px;
+    border: 2px solid #0fab13;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.event-list-search-box svg{
+    width: 1em;
+    height: 1em;
+}
+
+.event-list-search-box input{
+    border: none;
+    font-size: 1em;
+}
+
+.event-list-search-box input:focus{
+    outline: none;
+}
