@@ -137,3 +137,13 @@
 .deploy-wrapper .ticket-buy-deploy-container {
     height: 100%;
 }
+
+.event-app-event-resume{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.confirm-button{
+    justify-self: flex-end;
+}
