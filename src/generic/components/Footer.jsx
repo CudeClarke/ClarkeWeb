@@ -58,6 +58,7 @@ function Footer(){
                <img 
                  src={logoAyuntamiento}
                  className="logo-img"
+                 alt="logo ayuntamiento torremolinos"
                />
             </div>
           </div>

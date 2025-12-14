@@ -10,8 +10,8 @@ function Cabecera(){
 
     return (
         <div className="div-cabecera">
-            <img className="img-logo" src={Logo}></img>
-            <img className="img-flor" src={Flor}></img>
+            <img className="img-logo" src={Logo} alt="logo cudeca"></img>
+            <img className="img-flor" src={Flor} alt="logo flor cudeca"></img>
             <div className="div-button">
                 <a href="/">
                     <ClarkeButton text={"Inicio"} type={IS_HEADER} size={"1em"}></ClarkeButton>

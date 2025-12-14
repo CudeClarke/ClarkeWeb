@@ -14,7 +14,7 @@ function ExpandedEvent({id, name, descrip, location, date, imageUrl, patr_list, 
             <div className='expanded-event-content'>
                 <div className='expanded-event-content-upper-half'>
                     <div className='expanded-event-img-wrap'>
-                        <img className='expanded-event-img' src={imageUrl}>
+                        <img className='expanded-event-img' src={imageUrl} alt={"imagen de "+name}>
                         </img>
                     </div>
 
@@ -71,7 +71,7 @@ function ExpandedEvent({id, name, descrip, location, date, imageUrl, patr_list, 
                             </p>
                         </div>
                         <div className='expanded-event-sunflower-wrap'>
-                            <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b72deff" alt="" className='expanded-event-sunflower-img'/>
+                            <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b72deff" alt="imagen girasol cudeca" className='expanded-event-sunflower-img'/>
                         </div>
                     </div>
                 </div>

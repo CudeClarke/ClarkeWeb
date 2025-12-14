@@ -15,7 +15,7 @@ function CollaborationQuery(){
         </div>
 
         <div className="collaboration-query-img-wrap">
-            <img className="collaboration-query-img" src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b72deff"></img>
+            <img className="collaboration-query-img" src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b72deff" alt="girasol cudeca"></img>
         </div>
     </div>
 }
