@@ -1,0 +1,11 @@
+
+
+.event-list{
+    width: 80%;
+    margin: auto;
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+    margin-bottom: 2em;
+}
