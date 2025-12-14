@@ -1,0 +1,29 @@
+[
+  {
+    "nombreEvento": "Concierto de Jazz 2026",
+    "imagen": "https://design.penpot.app/assets/by-file-media-id/8fd8c29f-33f9-8038-8007-1ed23b38acdd",
+    "propietarioNombre": "Juan",
+    "propietarioApellidos": "Pérez",
+    "qr": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-21382e94ae9a",
+    "extraInfo": "Asiento: F12",
+    "idEntrada": "E123ABC"
+  },
+  {
+    "nombreEvento": "III Cena Benéfica Cudeca Afate",
+    "imagen": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23c402bb3",
+    "propietarioNombre": "María",
+    "propietarioApellidos": "García",
+    "qr": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-21382e94ae9a",
+    "extraInfo": "Pabellón 3, Entrada B",
+    "idEntrada": "E456DEF"
+  },
+  {
+    "nombreEvento": "Cena generica 729",
+    "imagen": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b5043de",
+    "propietarioNombre": "Carlos",
+    "propietarioApellidos": "López",
+    "qr": "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-21382e94ae9a",
+    "extraInfo": "Entrada general",
+    "idEntrada": "E789GHI"
+  }
+]
