@@ -34,3 +34,43 @@
 .boton2 button{
   text-decoration: none;
 }
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  position: relative;
+  width: 100%;
+}
+
+.arrow {
+  display: flex;               /* activa flexbox */
+  justify-content: center;     /* centra horizontalmente */
+  align-items: center;         /* centra verticalmente */
+  background-color: #0fab13;
+  font-size: 2em;
+  padding: 0.2em 0.5em;
+  padding-bottom: 0.3em;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  color: white;
+  width: 2vw;
+  height: 5vh;
+}
+
+.arrow:hover {
+  background-color: #26d42c;
+}
+
+.arrow.left {
+  position: absolute;
+  left: 0;
+}
+
+.arrow.right {
+  position: absolute;
+  right: 0;
+}

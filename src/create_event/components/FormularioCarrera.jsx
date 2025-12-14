@@ -5,13 +5,23 @@ import '../styles/Formulario.css';
 import CampoAdjunto from "../../generic/components/CampoAdjunto"; 
 import { IS_ERROR } from "../../generic/components/Alert"; // Importamos la constante de error
 
-function FormularioCarrera({ onFormSubmit, triggerAlert }) {
+function FormularioCarrera({ onFormSubmit, triggerAlert, initialData }) {
     // --- ESTADOS ---
 
     // 1. Datos principales del evento
-    const [mainData, setMainData] = useState({
+    const [mainData, setMainData] = useState(initialData ? {
+        nombre: initialData.nombre,
+        ubicacion: initialData.ubicacion,
+        recorrido: initialData.recorrido, // <--- NUEVO CAMPO
+        objetivoRecaudacion: initialData.objetivoRecaudacion,
+        descripcion: initialData.descripcion,
+        date: initialData.date,
+        url: initialData.url,
+        tags: initialData.tags,
+    } : {
         nombre: "",
         ubicacion: "",
+        recorrido: "", // <--- Inicializamos
         objetivoRecaudacion: "",
         descripcion: "",
         date: "",
@@ -20,9 +30,11 @@ function FormularioCarrera({ onFormSubmit, triggerAlert }) {
     });
 
     // 2. Lista de tipos de entradas (empezamos con una por defecto)
-    const [tickets, setTickets] = useState([
-        { id: Date.now(), nombre: '', subAforo: '', precio: '', descripcion: "" }
-    ]);
+    const [tickets, setTickets] = useState(
+        (initialData && initialData.entradas) 
+        ? initialData.entradas 
+        : [{ id: Date.now(), nombre: '', subAforo: '', precio: '', descripcion: "" }]
+    );
 
     // --- HANDLERS ---
 
@@ -63,31 +75,64 @@ function FormularioCarrera({ onFormSubmit, triggerAlert }) {
 
     // --- VALIDACIÓN Y ENVÍO ---
 
-    const validateForm = () => {
-        // 1. Validar datos principales
-        for (const key in mainData) {
-            if (key != "url" && !mainData[key].trim()) return false;
+    const validateEmptyFields = () => {
+            for (const key in mainData) {
+                if (key !== "url" && key !== "tags" && !mainData[key].trim()) return false;
+            }
+            if (tickets.length === 0) return false;
+            for (const ticket of tickets) {
+                if (!ticket.nombre.trim() || !ticket.subAforo.trim() || !ticket.precio.trim() || !ticket.descripcion.trim()) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    
+        const validateFormats = () => {
+        // 1. Fecha
+        const dateRegex = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+        if (!dateRegex.test(mainData.date)) {
+            triggerAlert(IS_ERROR, "El formato de la fecha debe ser aaaa-mm-dd");
+            return false;
         }
 
-        // 2. Validar datos de entradas
-        if (tickets.length === 0) return false; // Debe haber al menos una entrada
+        // 2. Números
+        const numRegex = /^[0-9]+(\.[0-9]+)?$/;
+
+        if (!numRegex.test(mainData.recorrido)) {
+            triggerAlert(IS_ERROR, "El Recorrido debe ser un número");
+            return false;
+        }
+        if (!numRegex.test(mainData.objetivoRecaudacion)) {
+            triggerAlert(IS_ERROR, "El Objetivo de Recaudación debe ser un número");
+            return false;
+        }
+
         for (const ticket of tickets) {
-            if (!ticket.nombre.trim() || !ticket.subAforo.trim() || !ticket.precio.trim()) {
+            if (!numRegex.test(ticket.subAforo)) {
+                triggerAlert(IS_ERROR, "La Cantidad de los dorsales debe ser un número");
+                return false;
+            }
+            if (!numRegex.test(ticket.precio)) {
+                triggerAlert(IS_ERROR, "El Precio de los dorsales debe ser un número");
                 return false;
             }
         }
+
         return true;
     };
-
-    const handleSubmit = () => {
-        if (validateForm()) {
-            // Si todo está OK, enviamos los datos al padre
+    
+        const handleSubmit = () => {
+            if (!validateEmptyFields()) {
+                triggerAlert(IS_ERROR, "Por favor, rellena todos los campos obligatorios (*)");
+                return;
+            }
+    
+            if (!validateFormats()) {
+                return; // La alerta ya salta dentro de la función
+            }
             onFormSubmit({ ...mainData, entradas: tickets });
-        } else {
-            // AQUÍ IRÁ TU COMPONENTE DE ALERTA GENÉRICO.
-            triggerAlert(IS_ERROR, "Por favor, rellena todos los campos obligatorios (*)");
-        }
-    };
+        };
 
     // Función para determinar si el campo es válido (tiene contenido)
     const isFieldValid = (field) => {
@@ -131,6 +176,11 @@ function FormularioCarrera({ onFormSubmit, triggerAlert }) {
                     />
                 </div>
 
+                {/* NUEVO CAMPO RECORRIDO */}
+                <div className={isFieldValid('recorrido') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto nombre="RECORRIDO (KM)" placeholder="Ej: 10km" obligatorio="si" value={mainData.recorrido} hasValue={!!mainData.recorrido} handleChange={(e) => handleMainDataChange(e, 'recorrido')} />
+                </div>
+
                 <div className={isFieldValid('objetivoRecaudacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
                     <CampoTexto
                         nombre="OBJ. RECAUDACION (€)" placeholder="1000" obligatorio="si"
@@ -147,14 +197,6 @@ function FormularioCarrera({ onFormSubmit, triggerAlert }) {
                     />
                 </div>
 
-                <CampoAdjunto
-                    nombre="IMAGEN" 
-                    placeholder="Subir archivo adjunto" 
-                    obligatorio="no"
-                    value={mainData.url} 
-                    handleChange={(e) => {handleMainDataChange(e, 'url')}}
-                />
-
                 <div className="div-descripcion">
                         <div className="div-campo">
                             <label htmlFor="descripcion">DESCRIPCIÓN*</label><br />
@@ -167,6 +209,14 @@ function FormularioCarrera({ onFormSubmit, triggerAlert }) {
                             />
                     </div>
                 </div>
+
+                <CampoAdjunto
+                    nombre="IMAGEN" 
+                    placeholder="Subir archivo adjunto" 
+                    obligatorio="no"
+                    value={mainData.url} 
+                    handleChange={(e) => {handleMainDataChange(e, 'url')}}
+                />
                 
             </div>
 
