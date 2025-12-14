@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 // Asegúrate de que la ruta a CampoTexto es correcta según tu estructura
 import { CampoTexto } from "../../generic/components/CampoTexto";
-import '../styles/FormularioConcierto.css';
+import '../styles/Formulario.css';
+import CampoAdjunto from "../../generic/components/CampoAdjunto"; 
 import { IS_ERROR } from "../../generic/components/Alert"; // Importamos la constante de error
 
 function FormularioConcierto({ onFormSubmit, triggerAlert }) {
@@ -9,15 +10,19 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
 
     // 1. Datos principales del evento
     const [mainData, setMainData] = useState({
-        nombre: '',
-        fecha: '',
-        localizacion: '',
-        artista: ''
+        nombre: "",
+        ubicacion: "",
+        objetivoRecaudacion: "",
+        descripcion: "",
+        date: "",
+        url: "",
+        artista: "",
+        tags: '',
     });
 
     // 2. Lista de tipos de entradas (empezamos con una por defecto)
     const [tickets, setTickets] = useState([
-        { id: Date.now(), nombre: '', cantidad: '', precio: '' }
+        { id: Date.now(), nombre: '', subAforo: '', precio: '', descripcion: "" }
     ]);
 
     // --- HANDLERS ---
@@ -40,7 +45,7 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
 
     // Añade un nuevo bloque de entradas
     const addTicketType = () => {
-        setTickets([...tickets, { id: Date.now(), nombre: '', cantidad: '', precio: '' }]);
+        setTickets([...tickets, { id: Date.now(), nombre: '', subAforo: '', precio: '', descripcion: '' }]);
     };
 
     const removeTicketType = () => {
@@ -62,13 +67,13 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
     const validateForm = () => {
         // 1. Validar datos principales
         for (const key in mainData) {
-            if (!mainData[key].trim()) return false;
+            if (key != "url" && !mainData[key].trim()) return false;
         }
 
         // 2. Validar datos de entradas
         if (tickets.length === 0) return false; // Debe haber al menos una entrada
         for (const ticket of tickets) {
-            if (!ticket.nombre.trim() || !ticket.cantidad.trim() || !ticket.precio.trim()) {
+            if (!ticket.nombre.trim() || !ticket.subAforo.trim() || !ticket.precio.trim()) {
                 return false;
             }
         }
@@ -78,7 +83,7 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
     const handleSubmit = () => {
         if (validateForm()) {
             // Si todo está OK, enviamos los datos al padre
-            onFormSubmit({ ...mainData, tickets: tickets });
+            onFormSubmit({ ...mainData, entradas: tickets });
         } else {
             // AQUÍ IRÁ TU COMPONENTE DE ALERTA GENÉRICO.
             triggerAlert(IS_ERROR, "Por favor, rellena todos los campos obligatorios (*)");
@@ -110,20 +115,31 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
                         handleChange={(e) => handleMainDataChange(e, 'nombre')}
                     />
                 </div>
-                <div className={isFieldValid('fecha') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+
+                <div className={isFieldValid('date') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
                     <CampoTexto
-                        nombre="FECHA" placeholder="dd/mm/aaaa" obligatorio="si"
-                        value={mainData.fecha} hasValue={!!mainData.fecha}
-                        handleChange={(e) => handleMainDataChange(e, 'fecha')}
+                        nombre="FECHA" placeholder="aaaa-mm-dd" obligatorio="si"
+                        value={mainData.date} hasValue={!!mainData.date}
+                        handleChange={(e) => handleMainDataChange(e, 'date')}
                     />
                 </div>
-                <div className={isFieldValid('localizacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+
+                <div className={isFieldValid('ubicacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
                     <CampoTexto
                         nombre="LOCALIZACION" placeholder="Dirección" obligatorio="si"
-                        value={mainData.localizacion} hasValue={!!mainData.localizacion}
-                        handleChange={(e) => handleMainDataChange(e, 'localizacion')}
+                        value={mainData.ubicacion} hasValue={!!mainData.ubicacion}
+                        handleChange={(e) => handleMainDataChange(e, 'ubicacion')}
                     />
                 </div>
+
+                <div className={isFieldValid('objetivoRecaudacion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto
+                        nombre="OBJ. RECAUDACION (€)" placeholder="1000" obligatorio="si"
+                        value={mainData.objetivoRecaudacion} hasValue={!!mainData.objetivoRecaudacion}
+                        handleChange={(e) => handleMainDataChange(e, 'objetivoRecaudacion')}
+                    />
+                </div>
+
                 <div className={isFieldValid('artista') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
                     <CampoTexto
                         nombre="ARTISTA/S" placeholder="Nombre del artista o grupo" obligatorio="si"
@@ -131,6 +147,34 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
                         handleChange={(e) => handleMainDataChange(e, 'artista')}
                     />
                 </div>
+
+                <div className={isFieldValid('tags') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                    <CampoTexto
+                        nombre="TAGS" placeholder="tag1 tag2 tag3" obligatorio="si"
+                        value={mainData.tags} hasValue={!!mainData.tags}
+                        handleChange={(e) => handleMainDataChange(e, 'tags')}
+                    />
+                </div>
+
+                <div className="div-descripcion">
+                        <div className="div-campo">
+                            <label htmlFor="descripcion">DESCRIPCIÓN*</label><br />
+                            <textarea
+                                id="descripcion"
+                                placeholder="Descripción del evento"
+                                value={mainData.descripcion}
+                                onChange={(e) => handleMainDataChange(e, 'descripcion')}
+                            />
+                    </div>
+                </div>
+                <CampoAdjunto
+                    nombre="IMAGEN" 
+                    placeholder="Subir archivo adjunto" 
+                    obligatorio="no"
+                    value={mainData.url} 
+                    handleChange={(e) => {handleMainDataChange(e, 'url')}}
+                    style={{resize:'none'}}
+                />
             </div>
 
 
@@ -147,11 +191,11 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
                                     handleChange={(e) => handleTicketChange(e, ticket.id, 'nombre')}
                                 />
                             </div>
-                            <div className={isTicketFieldValid(ticket, 'cantidad') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                            <div className={isTicketFieldValid(ticket, 'subAforo') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
                                 <CampoTexto
                                     nombre="CANTIDAD" placeholder="Ej: 300" obligatorio="si"
-                                    value={ticket.cantidad} hasValue={!!ticket.cantidad}
-                                    handleChange={(e) => handleTicketChange(e, ticket.id, 'cantidad')}
+                                    value={ticket.subAforo} hasValue={!!ticket.subAforo}
+                                    handleChange={(e) => handleTicketChange(e, ticket.id, 'subAforo')}
                                 />
                             </div>
                             <div className={isTicketFieldValid(ticket, 'precio') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
@@ -159,6 +203,14 @@ function FormularioConcierto({ onFormSubmit, triggerAlert }) {
                                     nombre="PRECIO" placeholder="Ej: 20€" obligatorio="si"
                                     value={ticket.precio} hasValue={!!ticket.precio}
                                     handleChange={(e) => handleTicketChange(e, ticket.id, 'precio')}
+                                />
+                            </div>
+
+                            <div className={isTicketFieldValid(ticket, 'descripcion') ? 'validation-wrapper is-valid' : 'validation-wrapper'}>                   
+                                <CampoTexto
+                                    nombre="DESCRIPCIÓN" placeholder="Entrada básica con acceso a sala" obligatorio="si"
+                                    value={ticket.descripcion} hasValue={!!ticket.descripcion}
+                                    handleChange={(e) => handleTicketChange(e, ticket.id, 'descripcion')}
                                 />
                             </div>
                         </div>

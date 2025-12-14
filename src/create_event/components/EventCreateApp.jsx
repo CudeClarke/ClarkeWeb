@@ -7,6 +7,8 @@ import FormularioRifa from './FormularioRifa.jsx';
 import FormularioCarrera from './FormularioCarrera.jsx';
 import FormularioOtro from './FormularioOtro.jsx';
 import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
+import EventDataResume from './EventDataResume.jsx';
+import { uploadEvent } from '../utils/api/api_functions.js';
 
 // --- CONFIGURACIÓN DE IMÁGENES ---
 // Aquí debes poner las rutas reales a tus imágenes importadas o URLs.
@@ -141,9 +143,18 @@ function EventCreateApp() {
                             if (eventData.type && eventData.details && isActive !== 2) setActive(2);
                         }}
                     >
-                        <div style={{ padding: "20px" }}>
-                            <h3>Resumen: {eventData.type}</h3>
-                            <button className="confirm-button">CREAR EVENTO</button>
+                        <div className="event-app-event-resume">
+                            <h1>Resumen: {eventData.type}</h1>
+                            <EventDataResume event_data={eventData}></EventDataResume>
+                            <button className="confirm-button" onClick={async ()=>{
+                                const status = await uploadEvent({...eventData.details})
+
+                                if(!status){
+                                    showAlert(IS_ERROR, "Ha ocurrido un error intentado crear el evento, por favor inténtelo de nuevo más tarde.")
+                                }else{
+                                    window.location.href = "/"
+                                }
+                            }}>CREAR EVENTO</button>
                         </div>
                     </TicketBuyDeploy>
                 </div>
