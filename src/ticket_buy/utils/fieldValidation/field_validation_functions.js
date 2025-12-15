@@ -4,7 +4,7 @@ function validateDni(dni){
   var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
   var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
   var nieRexp = /^[XYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
-  var str = dni.toString().toUpperCase();
+  var str = dni.toString().trim().toUpperCase();
 
   if (!nifRexp.test(str) && !nieRexp.test(str)) return false; //si no cumple el formato a la calle
 
@@ -25,6 +25,7 @@ function validateDni(dni){
 
 const validateEmail = (email) => {
   return String(email)
+    .trim()
     .toLowerCase()
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -37,19 +38,19 @@ function isValidUser(data){
         return {status: 400, msg: "Algunos campos obligatorios están vacíos, por favor rellenar antes de continuar." };
     }
 
-    if( !/^[A-Za-zÁ-Úá-ú]+$/.test(data.name) ){
+    if( !/^[A-Za-zÁ-Úá-ú]+$/.test(data.name.trim()) ){
         return {status: 400, msg: `Formato del nombre incorrecto: ${data.name}` };
     }
 
-    if( ! (data.surname.split(' ').every((s)=>{return /^[A-Za-zÁ-Úá-ú]+$/.test(s)}))){
+    if( ! (data.surname.trim().split(' ').filter(s=>s).every((s)=>{return /^[A-Za-zÁ-Úá-ú]+$/.test(s)}))){
         return {status: 400, msg: `Formato de los apellidos incorrecto: ${data.surname}` };
     }
 
-    if( !validateEmail(data.email) ){
+    if( !validateEmail(data.email.trim()) ){
         return {status: 400, msg: `Formato del correo incorrecto: ${data.email}` };
     }
 
-    if( !validateDni(data.dni) ){
+    if( !validateDni(data.dni.trim()) ){
         return {status: 400, msg: `Formato del DNI/NIE incorrecto: ${data.dni}` };
     }
 
