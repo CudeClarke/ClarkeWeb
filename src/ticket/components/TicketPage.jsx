@@ -44,7 +44,6 @@ function TicketPage() {
               nombreEvento={entradas[currentIndex].nombreEvento}
               imagen={entradas[currentIndex].imagen}
               propietarioNombre={entradas[currentIndex].propietarioNombre}
-              qr={entradas[currentIndex].qr}
               extraInfo={entradas[currentIndex].extraInfo}
               idEntrada={entradas[currentIndex].idEntrada}
               patros={entradas[currentIndex].patros}

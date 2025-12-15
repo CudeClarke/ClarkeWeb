@@ -9,14 +9,17 @@ import FormularioOtro from './FormularioOtro.jsx';
 import { Alert, IS_OK, IS_ERROR } from '../../generic/components/Alert.jsx';
 import EventSummary from './EventSummary.jsx';
 import { uploadEvent } from '../utils/api/api_functions.js';
-
+import imagen_concierto from '../assets/imagen-concierto.png'
+import imagen_rifa from '../assets/imagen-rifa.png'
+import imagen_carrera from '../assets/imagen-carrera.png'
+import imagen_generico from '/girasol.png'
 // --- CONFIGURACIÓN DE IMÁGENES ---
 const EVENT_IMAGES = {
-    default: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673",
-    Carrera: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee49eb83d37",
-    Rifa: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4d13de7bd",
-    Concierto: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee4f4261631",
-    Otro: "https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ee51353b673"
+    default: imagen_generico,
+    Carrera: imagen_carrera,
+    Rifa: imagen_rifa,
+    Concierto: imagen_concierto,
+    Otro: imagen_generico
 };
 
 function EventCreateApp() {

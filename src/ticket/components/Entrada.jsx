@@ -1,5 +1,5 @@
 import "../styles/Entrada.css"
-import logoCudeca from '../assets/Logo.png'
+import imagen_qr from '../assets/imagen_qr.png'
 /*
   -nombreEvento: nombre del evento
   -imagen: imagen de fondo de la entrada
@@ -10,7 +10,7 @@ import logoCudeca from '../assets/Logo.png'
   -idEntrada: codigo alfanumerico identificador de la entrada
 */
 
-function Entrada({nombreEvento,imagen,propietarioNombre,qr,extraInfo,idEntrada, patros}){
+function Entrada({nombreEvento,imagen,propietarioNombre,extraInfo,idEntrada, patros}){
 
   return <div className="div-entrada" style={{ backgroundImage: `url(${imagen})` }}>
       <div className="Contenido">
@@ -29,7 +29,7 @@ function Entrada({nombreEvento,imagen,propietarioNombre,qr,extraInfo,idEntrada, 
             </div>
           </div>
           <div className="qr">
-            <img src={qr} alt="QR"/>
+            <img src={imagen_qr} alt="QR"/>
           </div>
         </div>
         

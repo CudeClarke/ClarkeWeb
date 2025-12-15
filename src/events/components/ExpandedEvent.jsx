@@ -1,5 +1,6 @@
 import '../styles/ExpandedEvent.css'
 import { ClarkeButton, IS_CONFIRM } from '/src/generic/components/Button';
+import imagen_girasol from '/girasol.png'
 
 function ExpandedEvent({id, name, descrip, location, date, imageUrl, patr_list, tag_list, objective_recaudation, actual_recaudation, close_action}){
 
@@ -71,7 +72,7 @@ function ExpandedEvent({id, name, descrip, location, date, imageUrl, patr_list, 
                             </p>
                         </div>
                         <div className='expanded-event-sunflower-wrap'>
-                            <img src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b72deff" alt="imagen girasol cudeca" className='expanded-event-sunflower-img'/>
+                            <img src={imagen_girasol} alt="imagen girasol cudeca" className='expanded-event-sunflower-img'/>
                         </div>
                     </div>
                 </div>
