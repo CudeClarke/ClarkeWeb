@@ -1,0 +1,49 @@
+.sub-menu-ticket-select-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1em;
+}
+
+.sub-menu-ticket-select-container hr {
+    width: 95%;
+}
+
+.sub-menu-ticket-select-accesible .sub-menu-ticket-select-tickets{
+    gap: 3em !important;
+    font-size: 1.2em !important;
+}
+
+.sub-menu-ticket-select-tickets{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em;
+}
+
+.sub-menu-ticket-select-collaborate{
+    width: 95%;
+}
+
+.sub-menu-ticket-select-subtotals{
+    width: 95%;
+}
+
+.sub-menu-ticket-select-subtotals hr {
+    width: 100%;
+}
+
+.sub-menu-ticket-select-button-area{
+    display: flex;
+    justify-content: end;
+    width: 90%;
+    padding-bottom: 1em;
+}
+
+.sub-menu-ticket-select-button-area-unactive > .button{
+    background-color: #074b09;
+    cursor: not-allowed;
+}

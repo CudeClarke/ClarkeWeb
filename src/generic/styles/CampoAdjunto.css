@@ -1,0 +1,59 @@
+.campo-adjunto-container {
+    /* Asegura que el contenedor de CampoTexto sea consistente */
+    margin-bottom: 20px;
+}
+
+.custom-file-input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    /* Estilos del borde para parecerse a CampoTexto */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.custom-file-input input[type="file"] {
+    /* Hace que el input real sea invisible pero cubra todo para ser clickeable */
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    cursor: pointer;
+    direction: ltr;
+}
+
+.file-display-text {
+    /* Área de texto que muestra el nombre del archivo */
+    display: block;
+    padding: 10px 80px 10px 10px; /* Deja espacio para el botón */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #888888; /* Placeholder color */
+}
+
+.file-browse-button {
+    /* Botón "Seleccionar/Cambiar" */
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    border-left: 1px solid #ccc;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    transition: background-color 0.2s;
+}
+
+.custom-file-input:hover .file-browse-button {
+    background-color: #e0e0e0;
+}

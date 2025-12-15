@@ -1,0 +1,193 @@
+.payment-wrapper {
+  min-height: calc(100vh - 90px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  background-color: #dfe0e4;
+}
+
+.payment-box {
+  width: 70%;
+  max-width: 1000px;
+  min-height: 600px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+/* Contenedor general del formulario */
+.payment-form {
+  margin-top: 32px;
+  padding-left: 32px;   /* 👈 separa la primera columna del borde */
+  padding-right: 32px;  /* por si quieres simetría */
+}
+
+/* GRID de dos columnas para Mastercard */
+.payment-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  row-gap: 16px;
+}
+
+/* Campo que ocupa las dos columnas (Número de tarjeta) */
+.payment-field.full-width {
+  grid-column: 1 / 3;
+}
+/* ================== SECCIÓN MASTERCARD ================== */
+
+/* Fila pequeña: fecha y CVV, alineadas como un campo normal */
+.payment-card-mini-row {
+  display: grid;
+  grid-template-columns: 0.35fr 0.29fr;  /* fecha más larga, CVV más corto */
+  gap: 16px;
+}
+
+/* Contenedor del logo, independiente del grid */
+.payment-visa-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -120px;       /* lo subimos un poco para que quede a la altura de Fecha/CVV */
+  padding-right: 70px;     /* alineado con el padding derecho del formulario */
+}
+
+/* Logo Verified by Visa más grande */
+.payment-card-logo img {
+  width: 350px;            /* ajusta a gusto: 240–280 queda bien */
+  height: auto;
+  object-fit: contain;
+}
+
+/* ======BIZUM/PAYPAL ====*/
+.payment-form-single {
+  margin-top: 32px;
+  max-width: 420px;
+  
+   display: flex;            
+  flex-direction: column;   
+  gap: 20px; 
+}
+.payment-form-bizum {
+  margin-top: 32px;
+  padding-left: 32px;
+  padding-right: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Columna izquierda (el campo de teléfono) */
+.payment-bizum-left {
+  flex: 1;
+  max-width: 420px;      
+}
+
+/* Columna derecha (la imagen) */
+.payment-bizum-right {
+ display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-right: 180px; 
+}
+
+/* Columna derecha (la imagen) */
+.payment-paypal-right {
+ display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+  padding-right: 0px; 
+}
+/* Tamaño de la imagen de Bizum */
+.payment-bizum-image {
+  width: 200px;    
+  height: auto;
+  object-fit: contain;
+}
+
+/* Tamaño de la imagen de Paypal */
+.payment-paypal-image {
+  width: 300px;   
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* ====METODOS DE PAGO======= */
+.payment-methods-row {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  margin-top: 32px; 
+}
+
+/* Tarjeta de cada método de pago */
+.payment-method-card {
+  background-color: hsl(0, 0%, 100%);
+  border: 4px solid #c5c5c5;
+  border-radius: 10px;
+  padding: 3px 40px;
+  min-width: 160px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+
+  transition:
+   border-color 0.2s ease,
+   box-shadow 0.2s ease,
+   transform 0.12s ease;
+}
+
+/* Tamaño de los logos */
+.payment-logo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.payment-method-card.selected {
+  border-color: #1cb543;
+  box-shadow: 0 0 0 5px rgba(28, 181, 67, 0.35);
+  transform: translateY(-2px);
+}
+
+
+.payment-method-card:hover {
+  border-color: #1cb543;
+  box-shadow: 0 0 0 5px rgba(28, 181, 67, 0.25);
+}
+
+/* CONTENEDOR DEL BOTÓN */
+/* Layout interno: contenido + botón abajo */
+.payment-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Contenido (métodos + formulario) ocupa todo el alto disponible */
+.payment-content {
+  flex: 1;
+}
+
+/* Botón siempre abajo a la derecha del recuadro blanco */
+.payment-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 32px 24px 32px; /* arriba, derecha, abajo, izquierda */
+  gap: .4em;
+  align-items: center;
+}
+
+.payment-button-continue-unactive > .button{
+  cursor: not-allowed;
+  background-color: #074b09;
+}

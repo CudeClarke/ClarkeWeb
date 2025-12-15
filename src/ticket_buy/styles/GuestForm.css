@@ -1,0 +1,26 @@
+
+
+
+.guest-form-wrap{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1em;
+}
+
+
+
+
+.guest-form-wrap .div-campo input{
+    width: 90% !important;
+    padding: .8em !important;
+    outline: none;
+    font-size: 1em;
+}
+
+
+.guest-form-wrap .div-campo input:focus{
+    box-shadow: 0px 0px 2px 2px #0fab13;
+}

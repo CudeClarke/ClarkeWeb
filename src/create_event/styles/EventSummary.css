@@ -1,0 +1,71 @@
+.event-summary-container {
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.summary-title {
+    color: #0fab13;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border: 1px solid #eee; /* Borde exterior */
+}
+
+.summary-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee; /* Líneas divisorias */
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Columna de las etiquetas (Tipo, Nombre, etc.) */
+.summary-label-cell {
+    font-weight: bold;
+    color: #555;
+    width: 150px; /* Ancho fijo para alinear */
+    background-color: #f9f9f9; /* Un fondo muy sutil */
+}
+
+/* Columna de los valores */
+.summary-value-cell {
+    font-weight: 500;
+}
+
+/* Estilo para textos largos (Descripción, Premios) */
+.long-text-value {
+    white-space: pre-wrap; /* Mantiene los saltos de línea */
+}
+
+/* Botones de acción */
+.summary-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.back-button, .confirm-create-button {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button {
+    background-color: white;
+    color: #0fab13;
+    border: 2px solid #0fab13;
+}
+
+.confirm-create-button {
+    background-color: #0fab13;
+    color: white;
+    border: none;
+}

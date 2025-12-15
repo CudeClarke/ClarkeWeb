@@ -1,0 +1,133 @@
+
+.div-content{
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+
+    border: 2px solid black;
+    border-radius: .5em;
+    box-shadow: 0 0 3px 2px rgba(108, 112, 114, 0.7); /* X | Y | Difuminado | Extensión | Color */    
+
+    margin-left: 0%;
+    margin-top: 0%;
+
+    z-index: 100;
+
+    padding: 30px 45px; /* Padding interior del modal */
+
+    width: 500px; /* Ancho específico para el diseño */
+    max-width: 90%; /* Responsividad */
+}
+
+.text-data{
+    font-size: 1.5em;
+    text-align: left;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.seccion-Uno{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 20px;
+}
+
+.div-ctxt-dni{
+    margin-top: -1.5%;
+    width: 100vw;
+}
+
+.div-ctxt-dni .div-campo{
+    width: 100%;
+}
+
+.div-ctxt-dni .div-campo > input{
+    width: 80% !important;
+    padding: .5em !important;
+}
+
+.p-inferior{
+    font-size: .7em;
+    padding-top: 1.2em;
+}
+
+.text-legal {
+    font-size: 0.8em;
+    color: #555;
+    margin-top: -25px; /* Moverlo cerca del input DNI */
+}
+
+.hr-separador{
+    border: 2px solid black;
+}
+
+.div-content-access{
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+
+    border: 2px solid black;
+    border-radius: .5em;
+    box-shadow: 0 0 3px 2px rgba(108, 112, 114, 0.7); /* X | Y | Difuminado | Extensión | Color */    
+
+    margin-left: 0%;
+    margin-top: 0%;
+
+    z-index: 100;
+
+    padding: 30px 1px; /* Padding interior del modal */
+
+    width: 35vw; /* Ancho específico para el diseño */
+}
+
+.text-data-access{
+    font-size: 1.5em;
+    text-align: center;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.div-buttonCont{
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.dot-wrap{
+    display: flex;
+    gap: .2em;
+}
+.dot{
+    width: .7em;
+    height: .7em;
+    border-radius: 50%;
+    background-color: #0fab13;
+    animation: bounce .8s infinite alternate;
+}
+
+.dot1{
+    animation-delay: 0;
+}
+
+.dot2{
+    animation-delay: .25s;
+}
+
+.dot3{
+    animation-delay: .52s;
+}
+
+
+
+@keyframes bounce {
+    0%{transform: translateY(-50%);}
+    100%{transform: translateY(50%);}
+}
+

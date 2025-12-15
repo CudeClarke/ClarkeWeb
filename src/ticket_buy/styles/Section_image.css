@@ -1,0 +1,77 @@
+
+.div-section{
+    display: flex;
+    align-items: center;    
+    flex-direction: column;
+    gap: 15px;
+    width: 15vw;
+    height: 45vh;
+}
+
+
+.div-section_image{
+    border: 2px solid #0fab13;
+    border-radius: 1em;
+    width: 90%;
+    aspect-ratio: 1920/1080;
+}
+
+.img-first{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1em;
+}
+
+.div-info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.text-nombre{ 
+    background-color: white;
+    border: .2px groove #0fab13;
+    border-radius: .7em;
+    box-shadow: 0 0 1.5px .5px rgba(108, 112, 114, 0.7); /* X | Y | Difuminado | Extensión | Color */
+    width: 80%;
+    text-align: center;
+    padding: .8em;
+}
+
+.div-ubic{
+    display: flex;
+    align-items: center; 
+    background-color: white;
+    width: 70%;
+    border: .2px groove #0fab13;
+    border-radius: .8em;
+    box-shadow: 0 0 3px 1px rgba(108, 112, 114, 0.7); /* X | Y | Difuminado | Extensión | Color */
+    gap: 15%;
+    padding: .5em;
+}
+
+.text-ubic{
+    display: flex;
+    justify-content: center; 
+}
+
+.img-map{
+    display: flex;
+    justify-content: left; 
+    width: 20%;
+}
+
+.text-fecha{
+    display: flex;
+    justify-content: center; 
+}
+
+.img-calendar{
+    display: flex;
+    justify-content: left; 
+    width: 20%;
+}
+

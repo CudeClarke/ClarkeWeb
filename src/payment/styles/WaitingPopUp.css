@@ -1,0 +1,38 @@
+.waiting-pop-up-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  gap: 4em;
+  font-family: Arial;
+}
+
+.waiting-pop-up-container > h1{
+    font-size: 2.5em;
+}
+
+.waiting-pop-up-card {
+  width: 10vw;
+  aspect-ratio: 80/50;
+  background: linear-gradient(135deg, #3b8beb, #0058c9);
+  border-radius: 8px;
+  position: relative;
+  animation: slide 1.6s ease-in-out infinite;
+}
+
+.waiting-pop-up-card::before {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  width: 40%;
+  height: 40%;
+  background: rgba(255,255,255,0.4);
+  border-radius: 4px;
+}
+
+@keyframes slide {
+  0% { transform: translateX(-2vw); }
+  50% { transform: translateX(2vw); }
+  100% { transform: translateX(-2vw); }
+}

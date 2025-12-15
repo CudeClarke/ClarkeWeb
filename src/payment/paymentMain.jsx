@@ -1,13 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import CudeWrap from './generic/components/CudeWrap'
-import banner from './generic/assets/banner.jpg'
-
+import '../index.css'
+import CudeWrap from '../generic/components/CudeWrap.jsx'
+import PaymentPage from './components/PaymentPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CudeWrap>
-      <img src={banner} style={{width: "100vw"}}></img>
+      <PaymentPage></PaymentPage>
     </CudeWrap>
   </StrictMode>
 )

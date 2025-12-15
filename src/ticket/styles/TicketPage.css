@@ -1,0 +1,94 @@
+.Body {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1em;
+  border-left: 0.1em solid #0fab13;
+  border-right: 0.1em solid #0fab13;
+  display: flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.listaEntradas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.boton {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  border-radius: 1em;
+  padding: .8em;
+  gap: 1em;
+  background-color: #0fab13;
+  color: white;
+  align-items: center;
+  font-weight: bold;
+}
+
+.boton:hover{
+  cursor: pointer;
+  background-color: #0b700f;
+  transition: all .3s;
+}
+
+.boton-img-wrap{
+  height: 1em;
+  aspect-ratio: 7/4;
+}
+.boton img{
+  width: 100%;
+  object-fit: cover;
+}
+.texto{
+  margin: 0 auto;
+  text-align: center;
+  color:#0fab13;
+  width: 100%;
+}
+
+.boton2 button{
+  text-decoration: none;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  position: relative;
+  width: 100%;
+}
+
+.arrow {
+  display: flex;               /* activa flexbox */
+  justify-content: center;     /* centra horizontalmente */
+  align-items: center;         /* centra verticalmente */
+  background-color: #0fab13;
+  font-size: 2em;
+  border: none;
+  cursor: pointer;
+  border-radius: 99999px;
+  user-select: none;
+  color: white;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.arrow:hover {
+  background-color: #26d42c;
+}
+
+.arrow.left {
+  position: absolute;
+  left: 0;
+}
+
+.arrow.right {
+  position: absolute;
+  right: 0;
+}
