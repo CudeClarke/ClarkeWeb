@@ -10,16 +10,16 @@ function Evento({title, location, date, imageUrl, buy_tickets_click_effect, more
         <>
             <div className='event-div'>
                 <div className='event-div-img-wrap'>
-                    <img className='event-div-img' src={imageUrl}></img>
+                    <img className='event-div-img' src={imageUrl} alt={"imagen "+title}></img>
                 </div>
                 <div className='event-div-content'>
                     <h1 className='event-div-content-title'>{title.toUpperCase()}</h1>
                     <div className='event-div-content-info-div'>
-                        <img src={mapIcon} className='event-div-icon'></img>
+                        <img src={mapIcon} className='event-div-icon' alt='icono mapa'></img>
                         <p>{location}</p>
                     </div>
                     <div className='event-div-content-info-div'>
-                        <img src={calendarIcon} className='event-div-icon'></img>
+                        <img src={calendarIcon} className='event-div-icon' alt='icono calendario'></img>
                         <p>{date}</p>
                     </div>
 
