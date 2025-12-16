@@ -1,7 +1,7 @@
 import { ClarkeButton, IS_CONFIRM } from "../../generic/components/Button.jsx";
 import { CampoTexto } from "../../generic/components/CampoTexto.jsx";
 import '../styles/CollaborationQuery.css'
-
+import imagen_girasol from '/girasol.png'
 function CollaborationQuery(){
     return <div className="collaboration-query-container">
 
@@ -15,7 +15,7 @@ function CollaborationQuery(){
         </div>
 
         <div className="collaboration-query-img-wrap">
-            <img className="collaboration-query-img" src="https://design.penpot.app/assets/by-file-media-id/fffce8d7-4b40-8153-8007-1ed23b72deff" alt="girasol cudeca"></img>
+            <img className="collaboration-query-img" src={imagen_girasol} alt="girasol cudeca"></img>
         </div>
     </div>
 }

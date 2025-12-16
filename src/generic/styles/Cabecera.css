@@ -36,3 +36,27 @@
     margin-right: 35%;
     margin-top: 5.5%;
 }
+
+@media (max-width: 650px) {
+    .img-flor{
+        display: none;
+    }
+
+    .div-button{
+        display: flex;
+        gap: 30px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 5%;
+        margin-top: 7%;
+    }
+}
+
+@media (max-width: 450px) {
+    .div-button{
+        flex-direction: column;
+        gap: .3em;
+        margin-top: 5%;
+    }
+}

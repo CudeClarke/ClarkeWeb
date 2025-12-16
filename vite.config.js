@@ -15,7 +15,8 @@ export default defineConfig({
         events: resolve(dir, 'events/index.html'),
         payment: resolve(dir, 'payment/index.html'),
         ticket_buy: resolve(dir, 'ticket_buy/index.html'),
-        eventcreate: resolve(dir, 'eventcreate/index.html')
+        eventcreate: resolve(dir, 'eventcreate/index.html'),
+        ticket: resolve(dir, 'ticket/index.html')
       },
     },
   },

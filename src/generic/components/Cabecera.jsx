@@ -10,7 +10,9 @@ function Cabecera(){
 
     return (
         <div className="div-cabecera">
-            <img className="img-logo" src={Logo} alt="logo cudeca"></img>
+            <a href="/">
+                <img className="img-logo" src={Logo} alt="logo cudeca"></img>
+            </a>
             <img className="img-flor" src={Flor} alt="logo flor cudeca"></img>
             <div className="div-button">
                 <a href="/">

@@ -9,3 +9,15 @@
     grid-gap: 2vw;
     margin-bottom: 2em;
 }
+
+@media (max-width: 800px) {
+    .event-list{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px){
+    .event-list{
+        width: 90%;
+    }
+}
