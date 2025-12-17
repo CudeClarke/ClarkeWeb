@@ -20,7 +20,7 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
             title: "Introduzca su nombre", 
             placeholder: "Nombre", 
             handleChangeField: (e)=>setData({...data, name: e.target.value}),
-            handleContinue: ()=>{setAccessibleStep(1);setData({...data, consent: true});}
+            handleContinue: ()=>{setAccessibleStep(1);}
         },
         {
             title: "Introduzca sus apellidos", 
@@ -39,7 +39,8 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
             placeholder: "12345678A", 
             handleChangeField: (e)=>setData({...data, dni: e.target.value}),
             handleContinue: ()=>{
-                handleConfirm(data)
+                setData({...data, consent: true});
+                handleConfirm({...data, consent: true})
                 setAccessibleStep(0);
             }
         }]
@@ -137,7 +138,7 @@ function SubMenuUserData({handleConfirm, handleReturn, isAccessible, setAlert, e
                         }} 
                         type='checkbox' 
                         id='consent' 
-                        value={data.consent}
+                        checked={data.consent}
                         className='sub-menu-user-data-checkbox'
                         /> 
                     <label className='sub-menu-user-data-checkbox-label' htmlFor="consent">Consiento el tratamiento de mis datos por Cudeca</label>

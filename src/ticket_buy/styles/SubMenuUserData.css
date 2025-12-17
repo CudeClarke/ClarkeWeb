@@ -78,3 +78,9 @@
     font-size: 1em;
 }
 }
+
+@media (max-width: 700px) {
+    .sub-menu-user-data-grid{
+        grid-template-columns: 1fr;
+    }
+}

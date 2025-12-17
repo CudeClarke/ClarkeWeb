@@ -19,7 +19,7 @@
     padding: 30px 45px; /* Padding interior del modal */
 
     width: 500px; /* Ancho específico para el diseño */
-    max-width: 90%; /* Responsividad */
+    max-width: 70vw; /* Responsividad */
 }
 
 .text-data{
@@ -39,7 +39,6 @@
 
 .div-ctxt-dni{
     margin-top: -1.5%;
-    width: 100vw;
 }
 
 .div-ctxt-dni .div-campo{
@@ -129,5 +128,14 @@
 @keyframes bounce {
     0%{transform: translateY(-50%);}
     100%{transform: translateY(50%);}
+}
+
+@media (max-width: 600px) {
+    .seccion-Uno{
+        flex-direction: column;
+    }
+    .div-ctxt-dni .div-campo > input{
+        width: 100%;
+    }
 }
 
