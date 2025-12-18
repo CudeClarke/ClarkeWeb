@@ -66,3 +66,9 @@
     animation-name: ticket-deploy-ungrow;
     animation-duration: .2s;
 }
+
+@media (max-width: 800px) {
+    .ticket-buy-deploy-content{
+        width: 100%;
+    }
+}

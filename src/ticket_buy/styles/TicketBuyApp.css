@@ -1,0 +1,43 @@
+.ticket-buy-app-back{
+    width: 80%; 
+    margin: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 2px 2px 2px grey
+}
+
+.ticket-buy-app-content{
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.ticket-buy-app-menu-section{
+    width: 80%;
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.ticket-buy-app-content > .div-section{
+    width: 20%;
+}
+
+@media (max-width: 800px) {
+    .ticket-buy-app-content{
+        flex-direction: column;
+    }
+
+    .ticket-buy-app-menu-section{
+        width: 100%;
+    }
+
+    .ticket-buy-app-content > .div-section{
+    width: 60%;
+}
+}
+
+@media (max-width: 475px) {
+    .ticket-buy-app-back{
+        width: 100%;
+    }
+}

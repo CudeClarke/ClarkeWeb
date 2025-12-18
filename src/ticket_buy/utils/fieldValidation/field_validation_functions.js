@@ -38,7 +38,7 @@ function isValidUser(data){
         return {status: 400, msg: "Algunos campos obligatorios están vacíos, por favor rellenar antes de continuar." };
     }
 
-    if( !/^[A-Za-zÁ-Úá-ú]+$/.test(data.name.trim()) ){
+    if( ! (data.name.trim().split(' ').filter(s=>s).every((s)=>{return /^[A-Za-zÁ-Úá-ú]+$/.test(s)}))){
         return {status: 400, msg: `Formato del nombre incorrecto: ${data.name}` };
     }
 

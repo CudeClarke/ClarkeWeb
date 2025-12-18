@@ -8,7 +8,7 @@ import { isValidUser } from '../utils/fieldValidation/field_validation_functions
 import Section_image from './Section_image.jsx'
 import { Alert, IS_ERROR, IS_OK } from '../../generic/components/Alert.jsx'
 import {Accessibility_button, IS_OFF, IS_ON} from './Accessibility_button.jsx'
-
+import '../styles/TicketBuyApp.css'
 
 function clarkeAlert(setAlert, content){
   setAlert(content);
@@ -64,25 +64,14 @@ function TicketBuyApp({event_id}){
     <>
 
 
-      <div style={{
-        backgroundImage: background_event, 
-        width: "80%", 
-        margin: "auto",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        boxShadow: "0px 2px 2px 2px grey"
+      <div className="ticket-buy-app-back" style={{
+        backgroundImage: background_event
       }}>
 
     
-        <div style={
-          {
-            display: 'flex',
-            alignItems: "center",
-            backdropFilter: "blur(8px)"
-          }
-          }>
+        <div className="ticket-buy-app-content">
 
-          <div style={{width: "80%", maxHeight: "85vh", overflowY: "scroll"}}>
+          <div className="ticket-buy-app-menu-section">
 
 
             {/*PRIMERA PARTE, SELCCIONAR ENTRADAS*/}

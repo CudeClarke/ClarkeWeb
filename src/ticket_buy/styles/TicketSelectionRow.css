@@ -32,3 +32,17 @@
     display: flex;
     align-items: center;
 }
+
+@media (max-width: 650px) {
+    .ticket-selection-row-container{
+        font-size: .8em;
+    }
+}
+
+@media (max-width: 600px) {
+    .ticket-selection-row-container{
+        font-size: 1em;
+        flex-direction: column;
+        gap: .5em;
+    }
+}

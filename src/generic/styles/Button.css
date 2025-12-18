@@ -63,14 +63,12 @@
     background-color: #0fab13;
     color: white;
 
-    padding: .8vh;
+    padding: .8em;
     padding-left: 8%;
     padding-right: 8%;
-
+    margin-top: -.5em;
     border: .1px solid white;
     border-radius: .6em;
-
-    height: 3vw;
 
     font-size: 100%;
 }

@@ -23,3 +23,9 @@
     justify-content: end;
     gap: 2em;
 }
+
+
+.sub-menu-guest-data-wrap > button {
+    margin-right: 1em;
+    margin-left: 1em;
+}

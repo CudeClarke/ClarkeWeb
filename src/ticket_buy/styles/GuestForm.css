@@ -24,3 +24,10 @@
 .guest-form-wrap .div-campo input:focus{
     box-shadow: 0px 0px 2px 2px #0fab13;
 }
+
+
+@media (max-width: 700px) {
+    .guest-form-wrap{
+        grid-template-columns: 1fr;
+    }
+}
